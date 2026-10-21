@@ -6,7 +6,20 @@ set -e
 # ARGUMENTS #
 #############
 
-MEDIALIBRARY_HASH=8d573499ae79298f772e23bfc46dabf486843c25
+MEDIALIBRARY_HASH=a3fbcd9e904ee775b57be512acb40f3b1bd8de68
+
+# The fork master follows VLC 4; retain the tested VLC 3-compatible revision.
+LIBVLCPP_HASH=44c1f48e56a66c3f418175af1e1ef3fd1ab1b118
+
+# Fetch the fork master, then select the compatible base before local patches.
+fetch_libvlcpp()
+{
+  git config -f .gitmodules submodule.libvlcpp.url git@github.com:StuckedJp/libvlcpp.git
+  git config -f .gitmodules submodule.libvlcpp.branch master
+  git submodule sync -- libvlcpp
+  git submodule update --init --remote libvlcpp
+  git -C libvlcpp checkout --detach "$LIBVLCPP_HASH"
+}
 
 while [ $# -gt 0 ]; do
   case $1 in
@@ -110,12 +123,12 @@ cd ${SRC_DIR}
 # The CI will always use this block
 if [ ! -d "${MEDIALIBRARY_MODULE_DIR}/medialibrary" ]; then
   echo -e "\e[1m\e[32mmedialibrary source not found, cloning\e[0m"
-  git clone http://code.videolan.org/videolan/medialibrary.git "${MEDIALIBRARY_MODULE_DIR}/medialibrary"
+  git clone --branch 0.13.x git@github.com:StuckedJp/medialibrary.git "${MEDIALIBRARY_MODULE_DIR}/medialibrary"
   avlc_checkfail "medialibrary source: git clone failed"
   cd ${MEDIALIBRARY_MODULE_DIR}/medialibrary
   git reset --hard ${MEDIALIBRARY_HASH}
   avlc_checkfail "medialibrary source: Failed to switch to expected commit hash"
-  git submodule update --init libvlcpp
+  fetch_libvlcpp
   # TODO: remove when switching to VLC 4.0
   cd libvlcpp
   git am ${SRC_DIR}/buildsystem/patches/libvlcpp/*
@@ -124,7 +137,7 @@ elif [ "$RESET" = "1" ]; then
     git fetch --all --tags
     git reset --hard ${MEDIALIBRARY_HASH}
     avlc_checkfail "medialibrary source: Failed to switch to expected commit hash"
-    git submodule update --init libvlcpp
+    fetch_libvlcpp
     # TODO: remove when switching to VLC 4.0
     cd libvlcpp
     git am ${SRC_DIR}/buildsystem/patches/libvlcpp/*

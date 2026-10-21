@@ -37,7 +37,7 @@
     <CheckBoxPreference
             app:singleLineTitle="false"
             android:key="show_headers"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:summary="@string/show_headers_summary"
             android:title="@string/show_headers"/>
 

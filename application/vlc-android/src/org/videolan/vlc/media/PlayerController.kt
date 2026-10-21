@@ -303,6 +303,15 @@ class PlayerController(val context: Context) : IVLCVout.Callback, MediaPlayer.Ev
 
     fun getVolume() = if (!mediaplayer.isReleased) mediaplayer.volume else 100
 
+    fun getPrograms(): List<ProgramInfo> =
+        if (mediaplayer.isReleased) emptyList() else ProgramSelection.programs(mediaplayer)
+
+    fun getProgram(): Int =
+        if (mediaplayer.isReleased) -1 else ProgramSelection.selected(mediaplayer)
+
+    fun setProgram(id: Int): Boolean =
+        !mediaplayer.isReleased && ProgramSelection.select(mediaplayer, id)
+
     fun setVolume(volume: Int) = if (!mediaplayer.isReleased) mediaplayer.setVolume(volume) else -1
 
     suspend fun expand(): IMediaList? {

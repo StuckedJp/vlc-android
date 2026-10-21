@@ -1844,6 +1844,15 @@ class PlaybackService : MediaBrowserServiceCompat(), LifecycleOwner, CoroutineSc
     private fun setPosition(pos: Float) = playlistManager.player.setPosition(pos)
 
     @MainThread
+    fun getPrograms() = playlistManager.player.getPrograms()
+
+    @MainThread
+    fun getProgram() = playlistManager.player.getProgram()
+
+    @MainThread
+    fun setProgram(id: Int) = playlistManager.player.setProgram(id)
+
+    @MainThread
     fun setAudioTrack(index: String) = playlistManager.player.setAudioTrack(index)
 
     @MainThread

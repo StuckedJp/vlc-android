@@ -73,6 +73,7 @@ import org.videolan.tools.PLAYBACK_HISTORY
 import org.videolan.tools.POSITION_IN_AUDIO_LIST
 import org.videolan.tools.POSITION_IN_MEDIA
 import org.videolan.tools.POSITION_IN_MEDIA_LIST
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.POSITION_IN_SONG
 import org.videolan.tools.SLEEP_TIMER_DEFAULT_INTERVAL
 import org.videolan.tools.SLEEP_TIMER_DEFAULT_RESET_INTERACTION
@@ -277,7 +278,12 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
         service.onPlaylistLoaded()
         if (mlUpdate) {
             service.awaitMedialibraryStarted()
-            mediaList.replaceWith(withContext(Dispatchers.IO) { mediaList.copy.updateWithMLMeta() })
+            val refreshed = withContext(Dispatchers.IO) { mediaList.copy.updateWithMLMeta() }
+            refreshed.forEach {
+                it.time = PlaybackSessionStore.current.get(it.uri.toString()).time
+                it.position = 0f
+            }
+            mediaList.replaceWith(refreshed)
             getCurrentMedia()?.let { refreshTrackMeta(it) }
             if (BuildConfig.BETA) {
                 Log.d(TAG, "load after ml update with values: ")
@@ -333,7 +339,9 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
             // load playlist
             shuffling = settings.getBoolean(if (audio) AUDIO_SHUFFLING else MEDIA_SHUFFLING, false)
             val position = max(0, settings.getInt(if (audio) POSITION_IN_AUDIO_LIST else POSITION_IN_MEDIA_LIST, 0))
-            savedTime = settings.getLong(if (audio) POSITION_IN_SONG else POSITION_IN_MEDIA, -1)
+            savedTime = playList.getOrNull(position)?.let {
+                PlaybackSessionStore.current.get(it.uri.toString()).time
+            } ?: 0L
             if (!audio && position < playList.size && settings.getBoolean(VIDEO_PAUSED, false)) {
                 playList[position].addFlags(MediaWrapper.MEDIA_PAUSED)
             }
@@ -502,9 +510,9 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
         }
 
         val mw = mediaList.getMedia(index) ?: return
-        val mediaFromMl = medialibrary.getMedia(mw.uri)
-        if (mediaFromMl != null)
-            mw.time = mediaFromMl.time
+        // Persistent ML progress may belong to an earlier process.
+        mw.time = PlaybackSessionStore.current.get(mw.uri.toString()).time
+        mw.position = 0f
 
         val isInCustomPiP: Boolean = service.isInPiPMode.value ?: false
         if (mw.type == MediaWrapper.TYPE_VIDEO && !isAppStarted() && !isInCustomPiP) videoBackground = true
@@ -528,7 +536,7 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
             if (!isBenchmark && AndroidDevices.isTv && isVideoPlaying) {
                 VideoPlayerActivity.startOpened(ctx, mw.uri, currentIndex)
             }
-            val title = mw.getMetaLong(MediaWrapper.META_TITLE)
+            val title = PlaybackSessionStore.current.get(mw.uri.toString()).title.toLong()
             if (title > 0) uri = "$uri#$title".toUri()
 
             val start: Long
@@ -566,8 +574,10 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
             if (dav1dThreadNumber.isNotEmpty() && dav1dThreadNumber.toInt() >= 1) {
                 media.addOption(":dav1d-thread-frames=$dav1dThreadNumber")
             }
-            //todo in VLC 4.0, this should be done by using libvlc_media_player_set_time instead of start-time
-            media.addOption(":start-time=${start/1000L}")
+            if (BuildConfig.DEBUG) Log.d(TAG, "Process resume point: ${start}ms")
+            // TS PAT/PMT and PCR may not exist when VLC applies start-time.
+            // PlayerController performs the resume after the initial buffering.
+            media.addOption(":start-time=0")
             media.addOption(":no-sout-chromecast-video")
             VLCOptions.setMediaOptions(media, ctx, flags or mw.flags, PlaybackService.hasRenderer())
             /* keeping only video during benchmark */
@@ -689,10 +699,13 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
         val currentMedia = getCurrentMedia() ?: return@outerLaunch
         if (currentMedia.uri.scheme.isSchemeFD()) return@outerLaunch
         if (Settings.getInstance(AppContextProvider.appContext).getBoolean(KEY_INCOGNITO, false)) return@outerLaunch
+        // Do not replace the remembered point with startup/preroll timestamps.
+        if (player.isRestoringPosition) return@outerLaunch
         //Save progress
         val time = player.mediaplayer.time
         val length = player.getLength()
         val canSwitchToVideo = player.canSwitchToVideo()
+        rememberSessionPosition(currentMedia, time, length, titleIdx, end)
         launch(Dispatchers.IO) innerLaunch@ {
             val media = if (entryUrl != null) medialibrary.getMedia(entryUrl) else medialibrary.findMedia(currentMedia) ?: return@innerLaunch
             if (showAudioPlayer.value != true) BaseBrowserFragment.needRefresh.postValue(true)
@@ -765,7 +778,8 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
             } else if (settings.getBoolean(KEY_SAVE_INDIVIDUAL_AUDIO_DELAY, true)) {
                 player.setAudioDelay(savedDelay)
             }
-            val abStart = if (settings.getBoolean(PLAYBACK_HISTORY, true))  media.getMetaLong(MediaWrapper.META_AB_REPEAT_START) else 0L
+            val abStart = if (settings.getBoolean(PLAYBACK_HISTORY, true) &&
+                PlaybackSessionStore.current.get(media.uri.toString()).time > 0L) media.getMetaLong(MediaWrapper.META_AB_REPEAT_START) else 0L
             if (abStart != 0L) {
                 abRepeatOn.value = true
                 val abStop = media.getMetaLong(MediaWrapper.META_AB_REPEAT_STOP)
@@ -1024,20 +1038,26 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
                 mw.removeFlags(MediaWrapper.MEDIA_FROM_START)
                 0L
             }
-            mw.time <= 0L -> when {
-                savedTime > 0L -> savedTime
-                else -> 0L
-            }
-            else -> mw.time
+            savedTime > 0L -> savedTime // explicit current-process handoff
+            else -> PlaybackSessionStore.current.get(mw.uri.toString()).time
         }
         savedTime = 0L
         return start
     }
 
+    private fun rememberSessionPosition(media: MediaWrapper, time: Long, length: Long, title: Int, end: Boolean = false) {
+        val store = PlaybackSessionStore.current
+        store.remember(media.uri.toString(), time, length, title, end)
+        entryUrl?.let { store.remember(it, time, length, title, end) }
+    }
+
     @Synchronized
     private fun savePosition(reset: Boolean = false, video: Boolean = false) {
         if (settings.getBoolean(KEY_INCOGNITO, false)) return
-        if (!hasMedia()) return
+        if (!hasMedia() || player.isRestoringPosition) return
+        getCurrentMedia()?.let {
+            rememberSessionPosition(it, player.getCurrentTime(), player.getLength(), player.getTitleIdx(), reset)
+        }
         settings.edit {
             val audio = !video && isAudioList()
             putBoolean(if (audio) AUDIO_SHUFFLING else MEDIA_SHUFFLING, shuffling)
@@ -1202,6 +1222,10 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
     private val mediaplayerEventListener = object : MediaPlayerEventListener {
         private var lastTimeMetaSaved = 0L
 
+        override suspend fun onResumePositionChanged(position: Long) {
+            service.onResumePositionChanged(position)
+        }
+
         override suspend fun onEvent(event: MediaPlayer.Event) {
             when (event.type) {
                 MediaPlayer.Event.Playing -> {
@@ -1231,6 +1255,7 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
                     playingState.value = true
                 }
                 MediaPlayer.Event.EndReached -> {
+                    getCurrentMedia()?.let { rememberSessionPosition(it, 0L, 0L, 0, true) }
                     clearABRepeat()
                     getCurrentMedia()?.addFlags(MediaWrapper.MEDIA_FROM_START)
                     if (currentIndex != nextIndex) {

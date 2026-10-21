@@ -1,0 +1,270 @@
+diff --git a/modules/demux/mpeg/ts.c b/modules/demux/mpeg/ts.c
+index 6baeb470bc..f4e4729e66 100644
+--- a/modules/demux/mpeg/ts.c
++++ b/modules/demux/mpeg/ts.c
+@@ -35,6 +35,7 @@
+ #include <vlc_access.h>    /* DVB-specific things */
+ #include <vlc_demux.h>
+ #include <vlc_input.h>
++#include <vlc_interrupt.h>
+ 
+ #include "ts_pid.h"
+ #include "ts_streams.h"
+@@ -160,6 +161,8 @@ vlc_module_begin ()
+         change_safe()
+ 
+     add_bool( "ts-split-es", true, SPLIT_ES_TEXT, SPLIT_ES_LONGTEXT, false )
++    add_bool( "ts-allow-slow-seek", true, "Allow HTTP byte-range seeking",
++              "Probe duration and seek over seekable HTTP files of known size.", true )
+     add_bool( "ts-seek-percent", false, SEEK_PERCENT_TEXT, SEEK_PERCENT_LONGTEXT, true )
+     add_bool( "ts-cc-check", true, CC_CHECK_TEXT, CC_CHECK_LONGTEXT, true )
+     add_bool( "ts-pmtfix-waitdata", true, TS_SKIP_GHOST_PROGRAM_TEXT, NULL, true )
+@@ -531,6 +534,12 @@ static int Open( vlc_object_t *p_this )
+     vlc_stream_Control( p_sys->stream, STREAM_CAN_SEEK, &p_sys->b_canseek );
+     vlc_stream_Control( p_sys->stream, STREAM_CAN_FASTSEEK,
+                         &p_sys->b_canfastseek );
++    /* HTTP range requests are seekable, but deliberately not fast-seekable. */
++    p_sys->b_slowseek = p_sys->b_canseek && !p_sys->b_canfastseek &&
++        (!strcmp( p_demux->psz_access, "http" ) ||
++         !strcmp( p_demux->psz_access, "https" )) &&
++        var_InheritBool( p_demux, "ts-allow-slow-seek" ) &&
++        stream_Size( p_sys->stream ) >= p_sys->i_packet_size;
+ 
+     if( !p_sys->b_access_control && var_CreateGetBool( p_demux, "ts-pmtfix-waitdata" ) )
+         p_sys->es_creation = DELAY_ES;
+@@ -1917,7 +1926,8 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+         return vlc_stream_Seek( p_sys->stream, 0 );
+ 
+     const int64_t i_stream_size = stream_Size( p_sys->stream );
+-    if( !p_sys->b_canfastseek || i_stream_size < p_sys->i_packet_size )
++    if( (!p_sys->b_canfastseek && !p_sys->b_slowseek) ||
++        i_stream_size < p_sys->i_packet_size )
+         return VLC_EGENERIC;
+ 
+     const uint64_t i_initial_pos = vlc_stream_Tell( p_sys->stream );
+@@ -1929,8 +1939,19 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+         return VLC_EGENERIC;
+ 
+     bool b_found = false;
++    /* Do not mix decode timestamps with PCR: decoder lead can exceed the
++     * search tolerance and make the timestamp function non-monotonic. */
++    const bool b_use_pcr = !p_pmt->pcr.b_disable && p_pmt->i_pid_pcr != 0x1FFF;
++    uint64_t i_best_pos = 0;
++    vlc_tick_t i_best_diff = VLC_TICK_INVALID;
++    unsigned i_requests = 0;
++    size_t i_packets = 0;
++    const vlc_tick_t deadline = mdate() + VLC_TICK_FROM_SEC(10);
+     while( (i_head_pos + p_sys->i_packet_size) <= i_tail_pos && !b_found )
+     {
++        if( vlc_killed() || (p_sys->b_slowseek &&
++            (++i_requests > 32 || mdate() >= deadline)) )
++            break;
+         /* Round i_pos to a multiple of p_sys->i_packet_size */
+         uint64_t i_splitpos = i_head_pos + (i_tail_pos - i_head_pos) / 2;
+         uint64_t i_div = i_splitpos % p_sys->i_packet_size;
+@@ -1942,6 +1963,9 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+         uint64_t i_pos = i_splitpos;
+         while( i_pos < i_tail_pos )
+         {
++            if( vlc_killed() || (p_sys->b_slowseek &&
++                (++i_packets > PROBE_MAX * 32 || mdate() >= deadline)) )
++                goto seek_done;
+             ts_90khz_t i_pktpcr = TS_90KHZ_INVALID;
+             block_t *p_pkt = ReadTSPacket( p_demux );
+             if( !p_pkt )
+@@ -1961,13 +1985,13 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+                 {
+                     if( p_pkt->i_buffer >= 4 + 2 + 5 )
+                     {
+-                        if( p_pmt->i_pid_pcr == i_pid )
++                        if( b_use_pcr && p_pmt->i_pid_pcr == i_pid )
+                             i_pktpcr = GetPCR( p_pkt );
+                         i_skip += 1 + __MIN(p_pkt->p_buffer[4], 182);
+                     }
+                 }
+ 
+-                if( p_pkt->i_buffer > 4 && p_pkt->i_buffer > i_skip && i_pktpcr == TS_90KHZ_INVALID && p_pid->type == TYPE_STREAM &&
++                if( !b_use_pcr && p_pkt->i_buffer > 4 && p_pkt->i_buffer > i_skip && i_pktpcr == TS_90KHZ_INVALID && p_pid->type == TYPE_STREAM &&
+                     ts_stream_Find_es( p_pid->u.p_stream, p_pmt ) &&
+                    (p_pkt->p_buffer[1] & 0xC0) == 0x40 && /* Payload start but not corrupt */
+                    (p_pkt->p_buffer[3] & 0xD0) == 0x10    /* Has payload but is not encrypted */
+@@ -1982,6 +2006,8 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+                     {
+                         if( i_pktdts != TS_90KHZ_INVALID )
+                             i_pktpcr = i_pktdts;
++                        else if( i_pktpts != TS_90KHZ_INVALID )
++                            i_pktpcr = i_pktpts;
+                     }
+                 }
+             }
+@@ -1990,6 +2016,12 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+             if( i_pktpcr != TS_90KHZ_INVALID )
+             {
+                 vlc_tick_t i_diff = i_seektime - TimeStampWrapAround( p_pmt->pcr.i_first, FROM_SCALE(i_pktpcr) );
++                if( i_diff >= 0 &&
++                    (i_best_diff == VLC_TICK_INVALID || i_diff < i_best_diff) )
++                {
++                    i_best_diff = i_diff;
++                    i_best_pos = i_pos - p_sys->i_packet_size;
++                }
+                 if ( i_diff < 0 )
+                     i_tail_pos = (i_splitpos >= p_sys->i_packet_size) ? i_splitpos - p_sys->i_packet_size : 0;
+                 else if( i_diff < CLOCK_FREQ / 2 ) // 500ms
+@@ -2004,12 +2036,27 @@ static int SeekToTime( demux_t *p_demux, const ts_pmt_t *p_pmt, vlc_tick_t i_see
+             i_tail_pos = (i_splitpos >= p_sys->i_packet_size) ? i_splitpos - p_sys->i_packet_size : 0;
+     }
+ 
++seek_done:
++    /* Sparse PCRs need not fall inside the 500 ms window. Start just before
++     * the target and let ES_OUT_SET_NEXT_DISPLAY_TIME discard the preroll.
++     * Never turn cancellation or an exhausted I/O budget into success. */
++    if( !b_found && p_sys->b_slowseek && !vlc_killed() && i_requests <= 32 &&
++        i_packets <= PROBE_MAX * 32 && mdate() < deadline &&
++        i_best_diff != VLC_TICK_INVALID && i_best_diff < VLC_TICK_FROM_SEC(2) )
++    {
++        b_found = vlc_stream_Seek( p_sys->stream, i_best_pos ) == VLC_SUCCESS;
++        if( b_found )
++            msg_Dbg( p_demux, "Time seek preroll: %"PRId64" us", i_best_diff );
++    }
+     if( !b_found )
+     {
+         msg_Dbg( p_demux, "Seek():cannot find a time position." );
+-        vlc_stream_Seek( p_sys->stream, i_initial_pos );
++        if( vlc_stream_Seek( p_sys->stream, i_initial_pos ) )
++            msg_Err( p_demux, "Cannot restore position after failed time seek" );
+         return VLC_EGENERIC;
+     }
++    msg_Dbg( p_demux, "Time seek succeeded: target=%"PRId64" us, offset=%"PRIu64,
++             i_seektime, vlc_stream_Tell( p_sys->stream ) );
+     return VLC_SUCCESS;
+ }
+ 
+@@ -2018,12 +2065,14 @@ static int ProbeChunk( demux_t *p_demux, int i_program, bool b_end, ts_90khz_t *
+     demux_sys_t *p_sys = p_demux->p_sys;
+     int i_count = 0;
+     block_t *p_pkt = NULL;
++    const vlc_tick_t deadline = mdate() + VLC_TICK_FROM_SEC(5);
+ 
+     for( ;; )
+     {
+         *pi_pcr = TS_90KHZ_INVALID;
+ 
+-        if( i_count++ > PROBE_CHUNK_COUNT || !( p_pkt = ReadTSPacket( p_demux ) ) )
++        if( vlc_killed() || (p_sys->b_slowseek && mdate() >= deadline) ||
++            i_count++ > PROBE_CHUNK_COUNT || !( p_pkt = ReadTSPacket( p_demux ) ) )
+         {
+             break;
+         }
+@@ -2122,6 +2171,10 @@ int ProbeStart( demux_t *p_demux, int i_program )
+     const uint64_t i_initial_pos = vlc_stream_Tell( p_sys->stream );
+     int64_t i_stream_size = stream_Size( p_sys->stream );
+ 
++    if( i_stream_size < p_sys->i_packet_size )
++        return VLC_EGENERIC;
++    const vlc_tick_t deadline = mdate() + VLC_TICK_FROM_SEC(5);
++
+     int i_probe_count = 0;
+     int64_t i_pos;
+     ts_90khz_t i_pcr = TS_90KHZ_INVALID;
+@@ -2132,8 +2185,12 @@ int ProbeStart( demux_t *p_demux, int i_program )
+         i_pos = p_sys->i_packet_size * i_probe_count;
+         i_pos = __MIN( i_pos, i_stream_size );
+ 
+-        if( vlc_stream_Seek( p_sys->stream, i_pos ) )
+-            return VLC_EGENERIC;
++        if( vlc_killed() || (p_sys->b_slowseek && mdate() >= deadline) ||
++            vlc_stream_Seek( p_sys->stream, i_pos ) )
++        {
++            b_found = false;
++            break;
++        }
+ 
+         ProbeChunk( p_demux, i_program, false, &i_pcr, &b_found );
+ 
+@@ -2154,6 +2211,10 @@ int ProbeEnd( demux_t *p_demux, int i_program )
+     const uint64_t i_initial_pos = vlc_stream_Tell( p_sys->stream );
+     int64_t i_stream_size = stream_Size( p_sys->stream );
+ 
++    if( i_stream_size < p_sys->i_packet_size )
++        return VLC_EGENERIC;
++    const vlc_tick_t deadline = mdate() + VLC_TICK_FROM_SEC(5);
++
+     int i_probe_count = PROBE_CHUNK_COUNT;
+     int64_t i_pos;
+     ts_90khz_t i_pcr = TS_90KHZ_INVALID;
+@@ -2164,8 +2225,12 @@ int ProbeEnd( demux_t *p_demux, int i_program )
+         i_pos = i_stream_size - (p_sys->i_packet_size * i_probe_count);
+         i_pos = __MAX( i_pos, 0 );
+ 
+-        if( vlc_stream_Seek( p_sys->stream, i_pos ) )
+-            return VLC_EGENERIC;
++        if( vlc_killed() || (p_sys->b_slowseek && mdate() >= deadline) ||
++            vlc_stream_Seek( p_sys->stream, i_pos ) )
++        {
++            b_found = false;
++            break;
++        }
+ 
+         ProbeChunk( p_demux, i_program, true, &i_pcr, &b_found );
+ 
+diff --git a/modules/demux/mpeg/ts.h b/modules/demux/mpeg/ts.h
+index 05c6c32aac..4b0fbfccd3 100644
+--- a/modules/demux/mpeg/ts.h
++++ b/modules/demux/mpeg/ts.h
+@@ -49,6 +49,7 @@ struct demux_sys_t
+     stream_t   *stream;
+     bool        b_canseek;
+     bool        b_canfastseek;
++    bool        b_slowseek;
+     vlc_mutex_t     csa_lock;
+ 
+     /* TS packet size (188, 192, 204) */
+diff --git a/modules/demux/mpeg/ts_psi.c b/modules/demux/mpeg/ts_psi.c
+index ebb4b72833..f81a471070 100644
+--- a/modules/demux/mpeg/ts_psi.c
++++ b/modules/demux/mpeg/ts_psi.c
+@@ -2031,11 +2031,17 @@ static void PMTCallBack( void *data, dvbpsi_pmt_t *p_dvbpsipmt )
+     UpdatePESFilters( p_demux, p_demux->p_sys->seltype == PROGRAM_ALL );
+ 
+     /* Probe Boundaries */
+-    if( p_sys->b_canfastseek && p_pmt->i_last_dts == VLC_TICK_INVALID )
++    if( (p_sys->b_canfastseek || p_sys->b_slowseek) &&
++        p_pmt->i_last_dts == VLC_TICK_INVALID &&
++        (!p_sys->b_slowseek || !p_pmt->b_boundary_probe_attempted) )
+     {
++        p_pmt->b_boundary_probe_attempted = true;
+         p_pmt->i_last_dts = VLC_TICK_INVALID;
+-        ProbeStart( p_demux, p_pmt->i_number );
+-        ProbeEnd( p_demux, p_pmt->i_number );
++        if( ProbeStart( p_demux, p_pmt->i_number ) == VLC_SUCCESS )
++        {
++            if( ProbeEnd( p_demux, p_pmt->i_number ) != VLC_SUCCESS )
++                p_pmt->i_last_dts = VLC_TICK_INVALID;
++        }
+         if( p_pmt->i_last_dts != VLC_TICK_INVALID &&
+             p_pmt->i_last_dts < p_pmt->pcr.i_first_dts )
+             p_pmt->i_last_dts = TimeStampWrapAround( p_pmt->pcr.i_first_dts, p_pmt->i_last_dts );
+diff --git a/modules/demux/mpeg/ts_streams.c b/modules/demux/mpeg/ts_streams.c
+index d850e3c063..c8081faa57 100644
+--- a/modules/demux/mpeg/ts_streams.c
++++ b/modules/demux/mpeg/ts_streams.c
+@@ -124,6 +124,7 @@ ts_pmt_t *ts_pmt_New( demux_t *p_demux )
+ 
+     pmt->i_last_dts = VLC_TICK_INVALID;
+     pmt->i_last_dts_byte = 0;
++    pmt->b_boundary_probe_attempted = false;
+ 
+     pmt->p_atsc_si_basepid      = NULL;
+     pmt->p_si_sdt_pid = NULL;
+diff --git a/modules/demux/mpeg/ts_streams_private.h b/modules/demux/mpeg/ts_streams_private.h
+index c6a5ab0827..5750c4fcfa 100644
+--- a/modules/demux/mpeg/ts_streams_private.h
++++ b/modules/demux/mpeg/ts_streams_private.h
+@@ -75,6 +75,7 @@ struct ts_pmt_t
+ 
+     vlc_tick_t i_last_dts;
+     uint64_t i_last_dts_byte;
++    bool b_boundary_probe_attempted;
+ 
+     /* ARIB specific */
+     struct

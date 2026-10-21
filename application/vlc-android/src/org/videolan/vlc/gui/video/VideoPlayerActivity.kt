@@ -1309,7 +1309,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
                     } else if (event.isCtrlPressed) {
                         touchDelegate.seekDelta(-60000)
                     } else if (fov == 0f)
-                        touchDelegate.seekDelta(-Settings.videoDoubleTapJumpDelay * 1000)
+                        touchDelegate.seekDelta(-15000)
                     else
                         service?.updateViewpoint(-5f, 0f, 0f, 0f, false)
                     return true
@@ -1330,7 +1330,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
                     } else if (event.isCtrlPressed) {
                         touchDelegate.seekDelta(60000)
                     } else if (fov == 0f)
-                        touchDelegate.seekDelta(Settings.videoDoubleTapJumpDelay * 1000)
+                        touchDelegate.seekDelta(15000)
                     else
                         service?.updateViewpoint(5f, 0f, 0f, 0f, false)
                     return true

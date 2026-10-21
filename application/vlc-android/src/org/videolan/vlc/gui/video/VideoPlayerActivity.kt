@@ -166,8 +166,8 @@ import org.videolan.tools.SCREEN_ORIENTATION
 import org.videolan.tools.Settings
 import org.videolan.tools.VIDEO_PAUSED
 import org.videolan.tools.VIDEO_RATIO
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.VIDEO_RESUME_TIME
-import org.videolan.tools.VIDEO_RESUME_URI
 import org.videolan.tools.VIDEO_TRANSITION_SHOW
 import org.videolan.tools.dp
 import org.videolan.tools.getContextWithLocale
@@ -623,8 +623,14 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
         val sc = ScreenConfig(dm, xRange, yRange, resources.configuration.orientation)
         touchDelegate = VideoTouchDelegate(this, generateTouchFlags(), sc, isTv)
         UiTools.setRotationAnimation(this)
+        val session = PlaybackSessionStore.current
+        if (intent.getStringExtra(KEY_PLAYBACK_SESSION)?.let { it != session.id } == true ||
+            (savedInstanceState != null && savedInstanceState.getString(KEY_PLAYBACK_SESSION) != session.id)) {
+            intent.removeExtra(PLAY_EXTRA_START_TIME)
+        }
+        intent.putExtra(KEY_PLAYBACK_SESSION, session.id)
         if (savedInstanceState != null) {
-            savedTime = savedInstanceState.getLong(KEY_TIME)
+            savedTime = session.restoreTime(savedInstanceState.getString(KEY_PLAYBACK_SESSION), savedInstanceState.getLong(KEY_TIME))
             savedMediaList = savedInstanceState.parcelableList(KEY_MEDIA_LIST)
             savedMediaIndex = savedInstanceState.getInt(KEY_MEDIA_INDEX)
             val list = savedInstanceState.getBoolean(KEY_LIST, false)
@@ -820,6 +826,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putString(KEY_PLAYBACK_SESSION, PlaybackSessionStore.current.id)
         if (videoUri != null && "content" != videoUri?.scheme) {
             outState.putLong(KEY_TIME, savedTime)
             if (playlistModel == null) outState.putParcelable(KEY_URI, videoUri)
@@ -2256,14 +2263,8 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
 
                         lastAudioTrack = media.audioTrack.toString()
                         lastSpuTrack = media.spuTrack.toString()
-                    } else if (!fromStart) {
-                        // not in media library
-                            val rTime = settings.getLong(VIDEO_RESUME_TIME, -1L)
-                            val lastUri = settings.getString(VIDEO_RESUME_URI, "")
-                            if (rTime > 0 && service.currentMediaLocation == lastUri) {
-                                    settings.putSingle(VIDEO_RESUME_TIME, -1L)
-                                    startTime = rTime
-                            }
+                    } else if (!fromStart && startTime <= 0L) {
+                        startTime = PlaybackSessionStore.current.get(uri.toString()).time
                     }
                 }
 
@@ -2278,9 +2279,14 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
                 media.addFlags(MediaWrapper.MEDIA_VIDEO)
                 if (fromStart) media.addFlags(MediaWrapper.MEDIA_FROM_START)
 
-                // Set resume point
+                // Never restore DB progress from an earlier application process.
+                if (!continueplayback) {
+                    media.time = PlaybackSessionStore.current.get(uri.toString()).time
+                    media.position = 0f
+                }
+                // Explicit intent positions and live service handoffs remain supported.
                 if (!continueplayback && !fromStart) {
-                    if (startTime <= 0L && media.time > 0L) startTime = media.time
+                    if (startTime <= 0L) startTime = media.time
                     if (startTime > 0L) service.saveStartTime(startTime)
                 }
 
@@ -2581,6 +2587,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
         private const val RESULT_PLAYBACK_ERROR = RESULT_FIRST_USER + 2
         private const val RESULT_VIDEO_TRACK_LOST = RESULT_FIRST_USER + 3
         internal const val DEFAULT_FOV = 80f
+        private const val KEY_PLAYBACK_SESSION = "playback_session"
         private const val KEY_TIME = "saved_time"
         private const val KEY_LIST = "saved_list"
         private const val KEY_MEDIA_LIST = "media_list"

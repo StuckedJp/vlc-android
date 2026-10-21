@@ -1,0 +1,118 @@
+diff --git a/libvlc/jni/libvlcjni-mediaplayer.c b/libvlc/jni/libvlcjni-mediaplayer.c
+index 382efb3..6b37481 100644
+--- a/libvlc/jni/libvlcjni-mediaplayer.c
++++ b/libvlc/jni/libvlcjni-mediaplayer.c
+@@ -55,6 +55,9 @@ static const libvlc_event_type_t mp_events[] = {
+     libvlc_MediaPlayerSeekableChanged,
+     libvlc_MediaPlayerPausableChanged,
+     libvlc_MediaPlayerLengthChanged,
++#ifdef LIBVLC_MEDIA_PLAYER_HAS_PROGRAMS
++    libvlc_MediaPlayerProgramChanged,
++#endif
+ #ifdef LIBVLC_MEDIA_PLAYER_HAS_RECORDING
+     libvlc_MediaPlayerRecordChanged,
+ #endif
+@@ -99,6 +102,10 @@ MediaPlayer_event_cb(vlcjni_object *p_obj, const libvlc_event_t *p_ev,
+ {
+     switch (p_ev->type)
+     {
++#ifdef LIBVLC_MEDIA_PLAYER_HAS_PROGRAMS
++        case libvlc_MediaPlayerProgramChanged:
++            break;
++#endif
+ #if defined(LIBVLC_VERSION_MAJOR) && LIBVLC_VERSION_MAJOR >= 4
+         case libvlc_MediaPlayerStopped:
+             pthread_mutex_lock(&p_obj->p_sys->stop_lock);
+@@ -797,7 +804,12 @@ mediaplayer_tracklist_to_object(JNIEnv *env,
+         jobject jtrack = mediaplayer_track_to_object(env, p_track);
+ 
+         if (jtrack)
++        {
+             (*env)->SetObjectArrayElement(env, array, i_idx++, jtrack);
++            (*env)->DeleteLocalRef(env, jtrack);
++        }
++        if ((*env)->ExceptionCheck(env))
++            break;
+     }
+     while ((p_track = p_track->p_next) != NULL);
+ 
+@@ -806,6 +818,43 @@ error:
+     return array;
+ }
+ 
++jobject
++Java_org_videolan_libvlc_MediaPlayer_nativeGetPrograms(JNIEnv *env, jobject thiz)
++{
++#ifdef LIBVLC_MEDIA_PLAYER_HAS_PROGRAMS
++    vlcjni_object *obj = VLCJniObject_getInstance(env, thiz);
++    return obj ? mediaplayer_tracklist_to_object(env,
++        libvlc_media_player_get_programs(obj->u.p_mp)) : NULL;
++#else
++    (void)env; (void)thiz;
++    return NULL;
++#endif
++}
++
++jint
++Java_org_videolan_libvlc_MediaPlayer_nativeGetProgram(JNIEnv *env, jobject thiz)
++{
++#ifdef LIBVLC_MEDIA_PLAYER_HAS_PROGRAMS
++    vlcjni_object *obj = VLCJniObject_getInstance(env, thiz);
++    return obj ? libvlc_media_player_get_program(obj->u.p_mp) : -1;
++#else
++    (void)env; (void)thiz;
++    return -1;
++#endif
++}
++
++jboolean
++Java_org_videolan_libvlc_MediaPlayer_nativeSetProgram(JNIEnv *env, jobject thiz, jint id)
++{
++#ifdef LIBVLC_MEDIA_PLAYER_HAS_PROGRAMS
++    vlcjni_object *obj = VLCJniObject_getInstance(env, thiz);
++    return obj && libvlc_media_player_set_program(obj->u.p_mp, id) == 0;
++#else
++    (void)env; (void)thiz; (void)id;
++    return false;
++#endif
++}
++
+ jint
+ Java_org_videolan_libvlc_MediaPlayer_nativeGetVideoTracksCount(JNIEnv *env,
+                                                               jobject thiz)
+diff --git a/libvlc/src/org/videolan/libvlc/MediaPlayer.java b/libvlc/src/org/videolan/libvlc/MediaPlayer.java
+index aa1519a..33637fe 100644
+--- a/libvlc/src/org/videolan/libvlc/MediaPlayer.java
++++ b/libvlc/src/org/videolan/libvlc/MediaPlayer.java
+@@ -95,6 +95,7 @@ public class MediaPlayer extends VLCObject<MediaPlayer.Event> {
+ //        public static final int AudioDevice         = 0x11c;
+ //        public static final int ChapterChanged      = 0x11d;
+         public static final int RecordChanged       = 0x11e;
++        public static final int ProgramChanged      = 0x11f;
+ 
+         protected Event(int type) {
+             super(type);
+@@ -1414,6 +1415,7 @@ public class MediaPlayer extends VLCObject<MediaPlayer.Event> {
+             case Event.Opening:
+             case Event.Buffering:
+                 return new Event(eventType, argf1);
++            case Event.ProgramChanged:
+             case Event.Playing:
+             case Event.Paused:
+                 return new Event(eventType);
+@@ -1493,6 +1495,15 @@ public class MediaPlayer extends VLCObject<MediaPlayer.Event> {
+     private native TrackDescription[] nativeGetVideoTracks();
+     private native int nativeGetVideoTrack();
+     private native boolean nativeSetVideoTrack(int index);
++    /** Services in the current TS. Null when unavailable or unsupported. */
++    public TrackDescription[] getPrograms() { return nativeGetPrograms(); }
++    public int getProgram() { return nativeGetProgram(); }
++    /** Acceptance only; ProgramChanged reports the resulting selection. */
++    public boolean setProgram(int id) { return nativeSetProgram(id); }
++    private native TrackDescription[] nativeGetPrograms();
++    private native int nativeGetProgram();
++    private native boolean nativeSetProgram(int id);
++
+     private native int nativeGetAudioTracksCount();
+     private native TrackDescription[] nativeGetAudioTracks();
+     private native int nativeGetAudioTrack();

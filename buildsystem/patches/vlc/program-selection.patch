@@ -1,0 +1,139 @@
+diff --git a/include/vlc/libvlc_events.h b/include/vlc/libvlc_events.h
+index a15389e795..8a5a797f53 100644
+--- a/include/vlc/libvlc_events.h
++++ b/include/vlc/libvlc_events.h
+@@ -95,6 +95,7 @@ enum libvlc_event_e {
+     libvlc_MediaPlayerAudioDevice,
+     libvlc_MediaPlayerChapterChanged,
+     libvlc_MediaPlayerRecordChanged,
++    libvlc_MediaPlayerProgramChanged,
+ 
+     libvlc_MediaListItemAdded=0x200,
+     libvlc_MediaListWillAddItem,
+diff --git a/include/vlc/libvlc_media_player.h b/include/vlc/libvlc_media_player.h
+index f8e78f49ad..5c762f54f1 100644
+--- a/include/vlc/libvlc_media_player.h
++++ b/include/vlc/libvlc_media_player.h
+@@ -966,6 +966,16 @@ LIBVLC_API int libvlc_media_player_is_seekable( libvlc_media_player_t *p_mi );
+  */
+ LIBVLC_API int libvlc_media_player_can_pause( libvlc_media_player_t *p_mi );
+ 
++/** Local VLC 3 extension: program/service selection. Lists use the existing
++ * libvlc_track_description_list_release() ownership convention. */
++#define LIBVLC_MEDIA_PLAYER_HAS_PROGRAMS 1
++LIBVLC_API libvlc_track_description_t *
++libvlc_media_player_get_programs( libvlc_media_player_t *p_mi );
++/** Returns the selected service ID, or -1 if there is no active input. */
++LIBVLC_API int libvlc_media_player_get_program( libvlc_media_player_t *p_mi );
++/** Queue a service change. Zero means accepted, not switch completion. */
++LIBVLC_API int libvlc_media_player_set_program( libvlc_media_player_t *p_mi, int id );
++
+ /**
+  * Check if the current program is scrambled
+  *
+diff --git a/lib/libvlc.sym b/lib/libvlc.sym
+index 02276b6427..dcd5a7aadd 100644
+--- a/lib/libvlc.sym
++++ b/lib/libvlc.sym
+@@ -326,3 +326,7 @@ libvlc_picture_get_time
+ libvlc_picture_list_at
+ libvlc_picture_list_count
+ libvlc_picture_list_destroy
++
++libvlc_media_player_get_programs
++libvlc_media_player_get_program
++libvlc_media_player_set_program
+diff --git a/lib/media_player.c b/lib/media_player.c
+index 0fd04c5c24..1fc31df4e7 100644
+--- a/lib/media_player.c
++++ b/lib/media_player.c
+@@ -447,6 +447,11 @@ input_event_changed( vlc_object_t * p_this, char const * psz_cmd,
+             }
+         }
+     }
++    else if ( newval.i_int == INPUT_EVENT_PROGRAM )
++    {
++        event.type = libvlc_MediaPlayerProgramChanged;
++        libvlc_event_send( &p_mi->event_manager, &event );
++    }
+     else if ( newval.i_int == INPUT_EVENT_RECORD )
+     {
+         bool recording = var_GetBool( p_input, "record" );
+@@ -2112,3 +2117,77 @@ int libvlc_media_player_record( libvlc_media_player_t *p_mi,
+     vlc_object_release( p_input_thread );
+     return VLC_SUCCESS;
+ }
++
++/* Service IDs are program numbers, not audio/video ES IDs. */
++libvlc_track_description_t *
++libvlc_media_player_get_programs( libvlc_media_player_t *mp )
++{
++    input_thread_t *input = libvlc_get_input_thread( mp );
++    if( input == NULL )
++        return NULL;
++    vlc_value_t ids, names;
++    if( var_Change( input, "program", VLC_VAR_GETCHOICES, &ids, &names ) )
++    {
++        vlc_object_release( input );
++        return NULL;
++    }
++    libvlc_track_description_t *head = NULL, **tail = &head;
++    for( int i = 0; i < ids.p_list->i_count; ++i )
++    {
++        libvlc_track_description_t *item = calloc( 1, sizeof(*item) );
++        if( item == NULL )
++            goto error;
++        item->i_id = ids.p_list->p_values[i].i_int;
++        const char *name = names.p_list->p_values[i].psz_string;
++        item->psz_name = strdup( name != NULL ? name : "" );
++        if( item->psz_name == NULL )
++        {
++            free( item );
++            goto error;
++        }
++        *tail = item;
++        tail = &item->p_next;
++    }
++    goto end;
++error:
++    libvlc_track_description_list_release( head );
++    head = NULL;
++end:
++    var_FreeList( &ids, &names );
++    vlc_object_release( input );
++    return head;
++}
++
++int libvlc_media_player_get_program( libvlc_media_player_t *mp )
++{
++    input_thread_t *input = libvlc_get_input_thread( mp );
++    if( input == NULL )
++        return -1;
++    int id = var_GetInteger( input, "program" );
++    vlc_object_release( input );
++    return id;
++}
++
++int libvlc_media_player_set_program( libvlc_media_player_t *mp, int id )
++{
++    if( id <= 0 || id > 65535 )
++        return -1;
++    input_thread_t *input = libvlc_get_input_thread( mp );
++    if( input == NULL )
++        return -1;
++    vlc_value_t ids, names;
++    int result = -1;
++    if( var_Change( input, "program", VLC_VAR_GETCHOICES, &ids, &names ) == VLC_SUCCESS )
++    {
++        for( int i = 0; i < ids.p_list->i_count; ++i )
++            if( ids.p_list->p_values[i].i_int == id )
++            {
++                msg_Dbg( input, "Requesting program %d", id );
++                result = var_SetInteger( input, "program", id );
++                break;
++            }
++        var_FreeList( &ids, &names );
++    }
++    vlc_object_release( input );
++    return result;
++}

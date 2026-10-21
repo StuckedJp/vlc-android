@@ -42,6 +42,17 @@
                 android:orientation="horizontal">
 
 
+            <Button
+                    android:id="@+id/channel_selection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/ts_channels"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             <include
                     android:id="@+id/audio_tracks"
                     layout="@layout/player_overlay_track_item"
@@ -51,7 +62,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/channel_selection" />
 
             <View
                     android:id="@+id/tracks_separator_2"

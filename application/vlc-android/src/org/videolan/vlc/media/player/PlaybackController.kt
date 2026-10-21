@@ -55,6 +55,7 @@ import org.videolan.tools.AUDIO_STOP_AFTER
 import org.videolan.tools.AppScope
 import org.videolan.tools.DAV1D_THREAD_NUMBER
 import org.videolan.tools.HTTP_USER_AGENT
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.isAppStarted
 import org.videolan.tools.putSingle
 import org.videolan.vlc.PlaybackService
@@ -247,8 +248,9 @@ class PlaybackController(
         }
 
         val mw = playQueue.getMedia(playlistManager.currentIndex) ?: return
-        val mediaFromMl = medialibrary.getMedia(mw.uri)
-        if (mediaFromMl != null) mw.time = mediaFromMl.time
+        val resumePosition = PlaybackSessionStore.current.get(mw.uri.toString())
+        mw.time = resumePosition.time
+        mw.position = 0f
 
         val isInCustomPiP: Boolean = service.isInPiPMode.value ?: false
         if (mw.type == MediaWrapper.TYPE_VIDEO && !isAppStarted() && !isInCustomPiP) playlistManager.videoBackground = true
@@ -270,7 +272,7 @@ class PlaybackController(
             if (!playlistManager.isBenchmark && AndroidDevices.isTv && isVideoPlaying) {
                 VideoPlayerActivity.startOpened(ctx, mw.uri, playlistManager.currentIndex)
             }
-            val title = mw.getMetaLong(MediaWrapper.META_TITLE)
+            val title = resumePosition.title.toLong()
             if (title > 0) uri = "$uri#$title".toUri()
 
             val start: Long
@@ -303,7 +305,8 @@ class PlaybackController(
             if (dav1dThreadNumber.isNotEmpty() && dav1dThreadNumber.toInt() >= 1) {
                 media.addOption(":dav1d-thread-frames=$dav1dThreadNumber")
             }
-            media.addOption(":start-time=${start / 1000L}")
+            if (org.videolan.vlc.BuildConfig.DEBUG) Log.d("VLC/PlaybackController", "Process resume point: ${start}ms")
+            media.addOption(":start-time=0")
             media.addOption(":no-sout-chromecast-video")
             VLCOptions.setMediaOptions(media, ctx, flags or mw.flags, PlaybackService.hasRenderer())
 

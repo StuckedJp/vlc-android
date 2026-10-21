@@ -47,6 +47,7 @@ import org.videolan.tools.POSITION_IN_AUDIO_LIST
 import org.videolan.tools.POSITION_IN_MEDIA
 import org.videolan.tools.POSITION_IN_MEDIA_LIST
 import org.videolan.tools.POSITION_IN_SONG
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.Settings
 import org.videolan.tools.VIDEO_PAUSED
 import org.videolan.tools.VIDEO_RESUME_PLAYBACK
@@ -116,7 +117,11 @@ class PlaybackPersistenceManager(
             }
             onShufflingChanged(settings.getBoolean(if (audio) AUDIO_SHUFFLING else MEDIA_SHUFFLING, false))
             val position = max(0, settings.getInt(if (audio) POSITION_IN_AUDIO_LIST else POSITION_IN_MEDIA_LIST, 0))
-            onSavedTimeChanged(settings.getLong(if (audio) POSITION_IN_SONG else POSITION_IN_MEDIA, -1))
+            onSavedTimeChanged(
+                playList.getOrNull(position)?.let {
+                    PlaybackSessionStore.current.get(it.uri.toString()).time
+                } ?: 0L
+            )
             if (!audio && position < playList.size && settings.getBoolean(VIDEO_PAUSED, false)) {
                 playList[position].addFlags(MediaWrapper.MEDIA_PAUSED)
             }
@@ -247,7 +252,8 @@ class PlaybackPersistenceManager(
         media: MediaWrapper,
         player: PlayerController,
         abRepeatOn: MutableLiveData<Boolean>,
-        abRepeat: MutableLiveData<ABRepeat>
+        abRepeat: MutableLiveData<ABRepeat>,
+        allowAbRepeat: Boolean
     ) {
         if (player.canSwitchToVideo()) {
             val savedDelay = media.getMetaLong(MediaWrapper.META_AUDIODELAY)
@@ -257,7 +263,7 @@ class PlaybackPersistenceManager(
             } else if (settings.getBoolean(KEY_SAVE_INDIVIDUAL_AUDIO_DELAY, true)) {
                 player.setAudioDelay(savedDelay)
             }
-            val abStart = if (settings.getBoolean(PLAYBACK_HISTORY, true)) media.getMetaLong(MediaWrapper.META_AB_REPEAT_START) else 0L
+            val abStart = if (allowAbRepeat && settings.getBoolean(PLAYBACK_HISTORY, true)) media.getMetaLong(MediaWrapper.META_AB_REPEAT_START) else 0L
             if (abStart != 0L) {
                 abRepeatOn.value = true
                 val abStop = media.getMetaLong(MediaWrapper.META_AB_REPEAT_STOP)

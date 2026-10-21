@@ -37,6 +37,7 @@ import org.videolan.medialibrary.interfaces.Medialibrary
 import org.videolan.medialibrary.interfaces.media.MediaWrapper
 import org.videolan.resources.AndroidDevices
 import org.videolan.tools.KEY_ALWAYS_FAST_SEEK
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.vlc.BuildConfig
 import org.videolan.vlc.PlaybackService
 import org.videolan.vlc.R
@@ -60,6 +61,10 @@ class PlayerEventHandler(
 ) : IMedia.EventListener, MediaPlayerEventListener {
 
     private var lastTimeMetaSaved = 0L
+
+    override suspend fun onResumePositionChanged(position: Long) {
+        service.onResumePositionChanged(position)
+    }
 
     override fun onEvent(event: IMedia.Event) {
         var update = true
@@ -115,6 +120,11 @@ class PlayerEventHandler(
                 PlaylistManager.playingState.value = true
             }
             MediaPlayer.Event.EndReached -> {
+                playlistManager.getCurrentMedia()?.let { media ->
+                    val store = PlaybackSessionStore.current
+                    store.remember(media.uri.toString(), 0L, completed = true)
+                    playlistManager.entryUrl?.let { store.remember(it, 0L, completed = true) }
+                }
                 playlistManager.clearABRepeat()
                 playlistManager.getCurrentMedia()?.addFlags(MediaWrapper.MEDIA_FROM_START)
                 if (playlistManager.currentIndex != playlistManager.nextIndex) {

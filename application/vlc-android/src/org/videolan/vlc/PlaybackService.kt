@@ -1000,6 +1000,14 @@ class PlaybackService : MediaBrowserServiceCompat(), LifecycleOwner, CoroutineSc
         publishState(time)
     }
 
+    // Deferred startup seeks bypass setTime(), so publish their timeline explicitly.
+    @MainThread
+    override fun onResumePositionChanged(position: Long) {
+        publishState(position)
+        if (isPaused) showNotification()
+        if (BuildConfig.DEBUG) Log.d(TAG, "Resume media session position: ${position}ms")
+    }
+
     fun getTime() = playlistManager.player.getCurrentTime()
 
     override fun onMediaPlayerEvent(event: MediaPlayer.Event) = mediaPlayerListener.onEvent(event)

@@ -33,6 +33,7 @@ import org.videolan.medialibrary.interfaces.media.MediaWrapper
 import org.videolan.resources.PLAYLIST_TYPE_AUDIO
 import org.videolan.tools.AUDIO_STOP_AFTER
 import org.videolan.tools.KEY_AUDIO_FORCE_SHUFFLE
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.SLEEP_TIMER_DEFAULT_INTERVAL
 import org.videolan.tools.SLEEP_TIMER_DEFAULT_RESET_INTERACTION
 import org.videolan.tools.SLEEP_TIMER_DEFAULT_WAIT
@@ -109,7 +110,12 @@ class PlaylistLoader(
 
         if (mlUpdate) {
             service.awaitMedialibraryStarted()
-            playQueue.replaceWith(withContext(Dispatchers.IO) { playQueue.getMediaList().updateWithMLMeta() })
+            val refreshed = withContext(Dispatchers.IO) { playQueue.getMediaList().updateWithMLMeta() }
+            refreshed.forEach {
+                it.time = PlaybackSessionStore.current.get(it.uri.toString()).time
+                it.position = 0f
+            }
+            playQueue.replaceWith(refreshed)
             val currentMedia: MediaWrapper? = playlistManager.getCurrentMedia()
             if (currentMedia != null) playlistManager.refreshTrackMeta(currentMedia)
             if (BuildConfig.BETA) {

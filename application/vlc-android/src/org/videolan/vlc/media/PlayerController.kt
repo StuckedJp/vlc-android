@@ -3,6 +3,7 @@ package org.videolan.vlc.media
 import android.content.Context
 import android.net.Uri
 import android.support.v4.media.session.PlaybackStateCompat
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.core.net.toUri
@@ -76,12 +77,22 @@ class PlayerController(val context: Context) : IVLCVout.Callback, MediaPlayer.Ev
     }
 
     private var mediaplayerEventListener: MediaPlayerEventListener? = null
+    private val deferredResume = DeferredPlaybackResume()
+    val isRestoringPosition: Boolean get() = deferredResume.active
+    private var playbackGeneration = 0L
+    private var observedTime = 0L
+
     internal suspend fun startPlayback(media: IMedia, listener: MediaPlayerEventListener, time: Long) {
         mediaplayerEventListener = listener
-        resetPlaybackState(time, media.duration)
+        val generation = ++playbackGeneration
+        deferredResume.begin(time)
+        observedTime = 0L
+        resetPlaybackState(0L, media.duration)
         mediaplayer.setEventListener(null)
         withContext(Dispatchers.IO) { if (!mediaplayer.isReleased) mediaplayer.media = media.apply { if (hasRenderer) parse() } }
-        mediaplayer.setEventListener(this@PlayerController)
+        mediaplayer.setEventListener { event ->
+            if (event != null) eventChannel.trySend(generation to event)
+        }
         if (!mediaplayer.isReleased) {
             if (Settings.getInstance(context).getBoolean(KEY_EQUALIZER_ENABLED, false)) withContext(Dispatchers.IO) {
                 val repository = EqualizerRepository.getInstance(context)
@@ -95,7 +106,7 @@ class PlayerController(val context: Context) : IVLCVout.Callback, MediaPlayer.Ev
     }
 
     private fun resetPlaybackState(time: Long, duration: Long) {
-        seekable = true
+        seekable = false
         pausable = true
         lastTime = time
         updateProgress(time, duration)
@@ -115,10 +126,12 @@ class PlayerController(val context: Context) : IVLCVout.Callback, MediaPlayer.Ev
     }
 
     fun setPosition(position: Float) {
+        deferredResume.cancel()
         if (seekable && mediaplayer.hasMedia() && !mediaplayer.isReleased) mediaplayer.position = position
     }
 
     fun setTime(time: Long, fast:Boolean = false) {
+        deferredResume.cancel()
         if (seekable && mediaplayer.hasMedia() && !mediaplayer.isReleased) mediaplayer.setTime(time, fast)
     }
 
@@ -327,31 +340,47 @@ class PlayerController(val context: Context) : IVLCVout.Callback, MediaPlayer.Ev
 
     private var lastTime = 0L
     var lastPosition = 0F
-    private val eventChannel = Channel<MediaPlayer.Event>(capacity = Channel.UNLIMITED)
+    private val eventChannel = Channel<Pair<Long, MediaPlayer.Event>>(capacity = Channel.UNLIMITED)
 
     init {
         coroutineContext.job.invokeOnCompletion {
             eventChannel.close()
         }
         launch(Dispatchers.Main.immediate) {
-            for (event in eventChannel) {
+            for ((generation, event) in eventChannel) {
+                if (generation != playbackGeneration) continue
                 when (event.type) {
                     MediaPlayer.Event.Playing -> playbackState = PlaybackStateCompat.STATE_PLAYING
                     MediaPlayer.Event.Paused -> playbackState = PlaybackStateCompat.STATE_PAUSED
                     MediaPlayer.Event.EncounteredError -> setPlaybackStopped()
+                    MediaPlayer.Event.Stopped, MediaPlayer.Event.EndReached -> deferredResume.cancel()
+                    MediaPlayer.Event.Buffering -> deferredResume.buffering(event.buffering)
                     MediaPlayer.Event.PausableChanged -> pausable = event.pausable
                     MediaPlayer.Event.SeekableChanged -> seekable = event.seekable
                     MediaPlayer.Event.LengthChanged -> updateProgress(newLength = event.lengthChanged)
                     MediaPlayer.Event.TimeChanged -> {
                         val time = event.timeChanged
+                        observedTime = time
+                        val resumeConfirmed = deferredResume.observe(time)
                         if ((time - lastTime).absoluteValue > 950L) {
                             updateProgress(newTime = time)
                             lastTime = time
+                        }
+                        if (resumeConfirmed) {
+                            if (BuildConfig.DEBUG) Log.d("VLC/PlayerController", "Deferred resume confirmed: ${time}ms")
+                            mediaplayerEventListener?.onResumePositionChanged(time)
                         }
                     }
                     MediaPlayer.Event.PositionChanged -> {
                         lastPosition = event.positionChanged
                     }
+                }
+                deferredResume.takeReady(seekable, getLength(), observedTime)?.let { target ->
+                    if (!mediaplayer.isReleased && mediaplayer.hasMedia()) {
+                        if (BuildConfig.DEBUG) Log.d("VLC/PlayerController", "Deferred resume seek: ${target}ms")
+                        mediaplayer.setTime(target, false)
+                        mediaplayerEventListener?.onResumePositionChanged(target)
+                    } else deferredResume.cancel()
                 }
                 mediaplayerEventListener?.onEvent(event)
             }
@@ -364,10 +393,13 @@ class PlayerController(val context: Context) : IVLCVout.Callback, MediaPlayer.Ev
     }
 
     override fun onEvent(event: MediaPlayer.Event?) {
-        if (event != null) eventChannel.trySend(event)
+        if (event != null) eventChannel.trySend(playbackGeneration to event)
     }
 
     private fun setPlaybackStopped() {
+        ++playbackGeneration
+        deferredResume.cancel()
+        observedTime = 0L
         playbackState = PlaybackStateCompat.STATE_STOPPED
         updateProgress(0L, 0L)
         lastTime = 0L
@@ -390,6 +422,7 @@ class Progress(var time: Long = 0L, var length: Long = 0L)
 
 internal interface MediaPlayerEventListener {
     suspend fun onEvent(event: MediaPlayer.Event)
+    suspend fun onResumePositionChanged(position: Long) {}
 }
 
 private fun Array<IMedia.Slave>?.contains(item: IMedia.Slave) : Boolean {

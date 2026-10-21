@@ -21,6 +21,7 @@ import org.videolan.tools.KEY_AUDIO_CONFIRM_RESUME
 import org.videolan.tools.KEY_AUDIO_FORCE_SHUFFLE
 import org.videolan.tools.KEY_INCOGNITO
 import org.videolan.tools.KEY_VIDEO_CONFIRM_RESUME
+import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.Settings
 import org.videolan.vlc.BuildConfig
 import org.videolan.vlc.PlaybackService
@@ -232,6 +233,17 @@ class PlaylistManager(val service: PlaybackService) : PlaylistOrchestrator, Medi
     }
 
     override fun saveMediaMeta(end: Boolean): Job {
+        getCurrentMedia()?.let { media ->
+            if (!settings.getBoolean(KEY_INCOGNITO, false) && !player.isRestoringPosition) {
+                rememberSessionPosition(
+                    media,
+                    player.mediaplayer.time,
+                    player.getLength(),
+                    player.getTitleIdx(),
+                    end
+                )
+            }
+        }
         return persistenceManager.saveMediaMeta(
             scope = this,
             end = end,
@@ -256,7 +268,13 @@ class PlaylistManager(val service: PlaybackService) : PlaylistOrchestrator, Medi
     }
 
     override fun loadMediaMeta(mw: MediaWrapper) {
-        persistenceManager.loadMediaMeta(mw, player, abRepeatOn, abRepeat)
+        persistenceManager.loadMediaMeta(
+            mw,
+            player,
+            abRepeatOn,
+            abRepeat,
+            PlaybackSessionStore.current.get(mw.uri.toString()).time > 0L
+        )
         restoreSpeed(mw)
     }
 
@@ -337,20 +355,40 @@ class PlaylistManager(val service: PlaybackService) : PlaylistOrchestrator, Medi
                 mw.removeFlags(MediaWrapper.MEDIA_FROM_START)
                 0L
             }
-            mw.time <= 0L -> when {
-                savedTime > 0L -> savedTime
-                else -> 0L
-            }
-            else -> mw.time
+            savedTime > 0L -> savedTime
+            else -> PlaybackSessionStore.current.get(mw.uri.toString()).time
         }
         savedTime = 0L
         return start
+    }
+
+    private fun rememberSessionPosition(
+        media: MediaWrapper,
+        time: Long,
+        length: Long,
+        title: Int,
+        completed: Boolean = false
+    ) {
+        val store = PlaybackSessionStore.current
+        store.remember(media.uri.toString(), time, length, title, completed)
+        entryUrl?.let { store.remember(it, time, length, title, completed) }
     }
 
     @Synchronized
     override fun savePosition(reset: Boolean, video: Boolean) {
         if (!hasMedia()) return
         if (settings.getBoolean(KEY_INCOGNITO, false)) return
+        if (!player.isRestoringPosition) {
+            getCurrentMedia()?.let {
+                rememberSessionPosition(
+                    it,
+                    if (reset) 0L else player.getCurrentTime(),
+                    player.getLength(),
+                    player.getTitleIdx(),
+                    reset
+                )
+            }
+        }
         persistenceManager.savePosition(
             hasMedia = true,
             isAudioList = isAudioList(),

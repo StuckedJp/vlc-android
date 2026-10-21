@@ -34,5 +34,6 @@ interface PlaybackServiceCallback {
     suspend fun awaitMedialibraryStarted(): Boolean
     fun setSleepTimer(time: Calendar?)
     fun setTime(time: Long, fast: Boolean = false)
+    fun onResumePositionChanged(position: Long)
     fun loadLastAudio()
 }

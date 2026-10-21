@@ -31,6 +31,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import org.videolan.libvlc.MediaPlayer
+import org.videolan.libvlc.interfaces.IMedia
+import org.videolan.vlc.media.ProgramSelection
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -54,21 +59,82 @@ import org.videolan.vlc.gui.helpers.getBitmapFromDrawable
 import org.videolan.vlc.util.isTalkbackIsEnabled
 import org.videolan.vlc.isVLC4
 
-class VideoTracksDialog : VLCBottomSheetDialogFragment() {
+class VideoTracksDialog : VLCBottomSheetDialogFragment(), PlaybackService.Callback {
     override fun getDefaultState(): Int = STATE_EXPANDED
 
     override fun needToManageOrientation(): Boolean = true
 
     private lateinit var binding: PlayerOverlayTracksBinding
 
-    override fun initialFocusedView(): View = binding.subtitleTracks.emptyView
+    override fun initialFocusedView(): View = if (binding.channelSelection.visibility == View.VISIBLE)
+        binding.channelSelection else binding.subtitleTracks.emptyView
 
     override fun allowRemote() = true
 
     lateinit var menuItemListener: (VideoTrackOption) -> Unit
     lateinit var trackSelectionListener: (String, TrackType) -> Unit
 
+    private var boundService: PlaybackService? = null
+    private var channelDialog: AlertDialog? = null
+
+    override fun update() {}
+    override fun onMediaEvent(event: IMedia.Event) {}
+    override fun onMediaPlayerEvent(event: MediaPlayer.Event) {
+        if (view == null) return
+        if (event.type == MediaPlayer.Event.Stopped || event.type == MediaPlayer.Event.MediaChanged) {
+            channelDialog?.dismiss()
+            binding.channelSelection.setGone()
+            return
+        }
+        if (event.type in intArrayOf(ProgramSelection.CHANGED, MediaPlayer.Event.ESAdded,
+                MediaPlayer.Event.ESDeleted, MediaPlayer.Event.ESSelected,
+                MediaPlayer.Event.Playing, MediaPlayer.Event.Stopped, MediaPlayer.Event.MediaChanged)) {
+            view?.post { if (view != null) onServiceChanged(boundService) }
+        }
+    }
+
+    override fun onDestroyView() {
+        boundService?.removeCallback(this)
+        boundService = null
+        channelDialog?.dismiss()
+        channelDialog = null
+        super.onDestroyView()
+    }
+
+    private fun showChannels() {
+        val service = boundService ?: return
+        val media = service.currentMediaWrapper
+        val programs = service.getPrograms()
+        if (programs.size < 2) return
+        val labels = programs.map { getString(R.string.ts_service, it.name.ifBlank { it.id.toString() }, it.id) }
+        channelDialog?.dismiss()
+        channelDialog = AlertDialog.Builder(requireContext())
+            .setTitle(R.string.ts_channels)
+            .setSingleChoiceItems(labels.toTypedArray(), programs.indexOfFirst { it.id == service.getProgram() }) { dialog, position ->
+                if (boundService !== service || service.currentMediaWrapper !== media || !service.setProgram(programs[position].id))
+                    Toast.makeText(requireContext(), R.string.ts_channel_selection_failed, Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        channelDialog?.show()
+    }
+
     private fun onServiceChanged(service: PlaybackService?) {
+        if (boundService !== service) {
+            boundService?.removeCallback(this)
+            channelDialog?.dismiss()
+            boundService = service
+            service?.addCallback(this)
+        }
+        val programs = service?.getPrograms().orEmpty()
+        binding.channelSelection.visibility = if (programs.size > 1 && service?.hasRenderer() == false) View.VISIBLE else View.GONE
+        binding.videoTracks.trackContainer.setVisible()
+        binding.audioTracks.trackContainer.setVisible()
+        binding.tracksSeparator2.setVisible()
+        binding.tracksSeparator3.setVisible()
+        binding.subtitleTracks.emptyView.setGone()
+
         service?.let { playbackService ->
             if ((isVLC4() && playbackService.videoTracksCount < 2) || (!isVLC4() && playbackService.videoTracksCount <= 2)) {
                 binding.videoTracks.trackContainer.setGone()
@@ -136,6 +202,7 @@ class VideoTracksDialog : VLCBottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.channelSelection.setOnClickListener { showChannels() }
         binding.audioTracks.trackTitle.text = getString(R.string.audio)
         binding.videoTracks.trackTitle.text = getString(R.string.video)
         binding.subtitleTracks.trackTitle.text = getString(R.string.subtitles)
@@ -190,7 +257,7 @@ class VideoTracksDialog : VLCBottomSheetDialogFragment() {
             binding.audioTracks.options.collapse()
         }
         super.onViewCreated(view, savedInstanceState)
-        PlaybackService.serviceFlow.onEach { onServiceChanged(it) }.launchIn(lifecycleScope)
+        PlaybackService.serviceFlow.onEach { onServiceChanged(it) }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun generateSeparator(parent: ViewGroup, margin: Boolean = false) {

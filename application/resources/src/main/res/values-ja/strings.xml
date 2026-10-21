@@ -1410,4 +1410,7 @@
     <string name="feedback_email_warning_explanation">フィードバックを簡単に共有する方法は %1$s 機能を利用することです。\nこれを行うためには、設定でリモートアクセスを有効化し、指示に従ってメニュににある %2$s エントリを選択してください。</string>
     <string name="feedback_email_warning_remote_action">設定を開く</string>
     <string name="feedback_email_warning_try_anyway">とにかく実施する</string>
+    <string name="ts_channels">チャンネル</string>
+    <string name="ts_service">%1$s（サービス %2$d）</string>
+    <string name="ts_channel_selection_failed">このチャンネルを選択できませんでした</string>
     </resources>

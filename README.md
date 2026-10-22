@@ -1,3 +1,7 @@
+このリポジトリ固有の機能については、[README.forked.md](README.forked.md) ファイルをご覧ください。
+
+See the [README.forked.md](README.forked.md) file for information about features specific to this repository.
+
 # VLC for Android
 
 This is the official **Android** port of [VLC](https://videolan.org/vlc/).

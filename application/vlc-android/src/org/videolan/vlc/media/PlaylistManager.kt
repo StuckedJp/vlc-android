@@ -388,6 +388,9 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
             }
             videoBackground = videoBackground || (!player.isVideoPlaying() && player.canSwitchToVideo())
         }
+        // Continuous video playback must not resume the next item's saved position.
+        getCurrentMedia()?.takeIf { it.type == MediaWrapper.TYPE_VIDEO }
+                ?.addFlags(MediaWrapper.MEDIA_FROM_START)
         launch { playIndex(currentIndex) }
     }
 

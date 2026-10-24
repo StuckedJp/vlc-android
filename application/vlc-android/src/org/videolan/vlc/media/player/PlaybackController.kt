@@ -126,6 +126,8 @@ class PlaybackController(
             }
             playlistManager.videoBackground = playlistManager.videoBackground || (!player.isVideoPlaying() && player.canSwitchToVideo())
         }
+        playlistManager.getCurrentMedia()?.takeIf { it.type == MediaWrapper.TYPE_VIDEO }
+            ?.addFlags(MediaWrapper.MEDIA_FROM_START)
         playlistManager.launch { playIndex(playlistManager.currentIndex) }
     }
 

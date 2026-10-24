@@ -45,6 +45,7 @@ import android.os.Looper
 import android.os.Message
 import android.os.Parcelable
 import android.os.PowerManager
+import android.support.v4.media.session.PlaybackStateCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.DisplayMetrics
@@ -1209,6 +1210,8 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
 
     open fun exit(resultCode: Int) {
         if (isFinishing) return
+        // Returning to the browser ends repeat; audio and popup playback keep it.
+        if (!switchingView) service?.repeatType = PlaybackStateCompat.REPEAT_MODE_NONE
         val resultIntent = Intent(ACTION_RESULT)
         videoUri?.let { uri ->
             service?.run {
@@ -2422,7 +2425,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
                     setOnKeyListener { dialog, keyCode, _ ->
                         if (keyCode == KeyEvent.KEYCODE_BACK) {
                             dialog.dismiss()
-                            finish()
+                            exitOK()
                             true
                         } else false
                     }

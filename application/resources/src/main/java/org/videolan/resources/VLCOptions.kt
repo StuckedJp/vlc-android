@@ -212,6 +212,9 @@ object VLCOptions {
             }
             options.add("--sout-keep")
 
+            // Keep decoding damaged broadcast recordings across TS packet loss.
+            options.add("--no-ts-cc-check")
+
             val customOptions = pref.getString(KEY_CUSTOM_LIBVLC_OPTIONS, null)
             if (!customOptions.isNullOrEmpty()) {
                 val optionsArray = customOptions.split("\\r?\\n".toRegex()).toTypedArray()

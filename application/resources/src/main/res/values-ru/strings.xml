@@ -833,8 +833,6 @@
     <string name="video_hud_timeout">Период отображения элементов управления видео</string>
     <string name="video_hud_timeout_summary">%sс</string>
     <string name="remove_from_history">Удалить из истории</string>
-    <string name="prefersmbv1">Предпочитать SMB 1</string>
-    <string name="prefersmbv1_summary">Снимите этот флажок, если вы испытываете трудности при обращении к серверу SMB</string>
     <string name="apply_to_all">Применить ко всем видео</string>
     <string name="audio_delay_global">Для всех видео установлена задержка звука %s мс</string>
     <string name="audio_delay_bt">Для Bluetooth-устройства установлена задержка звука %s</string>

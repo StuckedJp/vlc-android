@@ -378,7 +378,6 @@ const val KEY_BLURRED_COVER_BACKGROUND = "blurred_cover_background"
 
 
 //Advanced
-const val KEY_PREFER_SMBV1 = "prefer_smbv1"
 const val KEY_AUDIO_REPLAY_GAIN_ENABLE = "audio-replay-gain-enable"
 const val KEY_AUDIO_REPLAY_GAIN_PEAK_PROTECTION = "audio-replay-gain-peak-protection"
 const val KEY_AUDIO_REPLAY_GAIN_MODE = "audio-replay-gain-mode"

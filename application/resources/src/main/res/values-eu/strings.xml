@@ -953,8 +953,6 @@
     <string name="video_hud_timeout">Bideo-erreproduzitzaileak ezkutatzeko atzerapena kontrolatzen du</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Kendu historiatik</string>
-    <string name="prefersmbv1">Nahiago SMB 1</string>
-    <string name="prefersmbv1_summary">Desmarkatu ezarpen hau zure SMB zerbitzarian arakatzeko zailtasunak badituzu</string>
     <string name="apply_to_all">Aplikatu bideo guztiei</string>
     <string name="audio_delay_global">Audioaren atzerapena %s ms-tan ezarri da bideo guztientzat</string>
     <string name="audio_delay_bt">Audioaren atzerapena %s ms-tan ezarri da bluetooth gailurako</string>

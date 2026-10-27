@@ -66,6 +66,7 @@ import org.videolan.tools.CoroutineContextProvider
 import org.videolan.tools.DependencyProvider
 import org.videolan.tools.Settings
 import org.videolan.tools.livedata.LiveDataset
+import org.videolan.tools.isSmbScheme
 import org.videolan.vlc.R
 import org.videolan.vlc.util.ModelsHelper
 import org.videolan.vlc.util.TextUtils
@@ -247,9 +248,13 @@ abstract class BrowserProvider(val context: Context, val dataset: LiveDataset<Me
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun filesFlow(url: String? = this.url, interact : Boolean = true) = channelFlow<IMedia> {
+        if (url?.toUri()?.scheme.isSmbScheme()) {
+            close()
+            return@channelFlow
+        }
         val listener = object : EventListener {
             override fun onMediaAdded(index: Int, media: IMedia) {
-                if (!isClosedForSend) trySend(media.apply { retain() })
+                if (!media.uri.scheme.isSmbScheme() && !isClosedForSend) trySend(media.apply { retain() })
             }
 
             override fun onBrowseEnd() {

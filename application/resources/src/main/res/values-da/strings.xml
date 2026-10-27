@@ -1050,8 +1050,6 @@
     <string name="video_hud_timeout">Skjuleforsinkelse for videoafspillerkontroller</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Fjern fra historik</string>
-    <string name="prefersmbv1">Foretræk SMB 1</string>
-    <string name="prefersmbv1_summary">Fjern dette flueben hvis du har problemer med at tilgå din SMB server</string>
     <string name="apply_to_all">Anvend på alle videoer</string>
     <string name="audio_delay_global">Lydforsinkelse sat til %s ms for alle videoer</string>
     <string name="audio_delay_bt">Lydforsinkelse sat til %s ms for bluetooth-enheden</string>

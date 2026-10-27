@@ -951,7 +951,6 @@
     <string name="video_hud_timeout">Затрымка знікнення элементаў кіравання ў відэапрайгравальніку</string>
     <string name="video_hud_timeout_summary">%s с</string>
     <string name="remove_from_history">Выдаліць з гісторыі</string>
-    <string name="prefersmbv1">Пажадана SMB 1</string>
     <string name="apply_to_all">Ужыць да ўсіх відэа</string>
     <string name="audio_delay_global">Затрымка гуку для ўсіх відэа зададзена на %s мс</string>
     <string name="audio_delay_bt">Затрымка гуку для прылад bluetooth зададзена на %s мс</string>

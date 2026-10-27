@@ -37,7 +37,7 @@ LibVLC is the Android library embedding VLC engine, which provides a lot of mult
 
 - Play every media file formats, every codec and every streaming protocols
 - Hardware and efficient decoding on every platform, up to 8K
-- Network browsing for distant filesystems (SMB, FTP, SFTP, NFS...) and servers (UPnP, DLNA)
+- Network browsing for distant filesystems (FTP, SFTP, NFS...) and servers (UPnP, DLNA)
 - Playback of Audio CD, DVD and Bluray with menu navigation
 - Support for HDR, including tonemapping for SDR streams
 - Audio passthrough with SPDIF and HDMI, including for Audio HD codecs, like DD+, TrueHD or DTS-HD

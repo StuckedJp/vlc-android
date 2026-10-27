@@ -1069,8 +1069,6 @@ Voit toistaa vain suoratoistoa tai verkkomediaa</string>
     <string name="video_hud_timeout">Video-säätimien piilottamisen viive</string>
     <string name="video_hud_timeout_summary">%s s</string>
     <string name="remove_from_history">Poista historiasta</string>
-    <string name="prefersmbv1">Suosi SMB 1</string>
-    <string name="prefersmbv1_summary">Poista tämä asetus, jos sinulla on ongelmia SMB-palvelimen selaamisessa</string>
     <string name="apply_to_all">Käytä kaikkiin videoihin</string>
     <string name="audio_delay_global">Audioviive %s ms asetettu kaikille videoille</string>
     <string name="audio_delay_bt">Audioviive %s ms on asetettu bluetooth:lle</string>

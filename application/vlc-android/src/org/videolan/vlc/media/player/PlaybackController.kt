@@ -57,6 +57,7 @@ import org.videolan.tools.DAV1D_THREAD_NUMBER
 import org.videolan.tools.HTTP_USER_AGENT
 import org.videolan.tools.PlaybackSessionStore
 import org.videolan.tools.isAppStarted
+import org.videolan.tools.isSmbScheme
 import org.videolan.tools.putSingle
 import org.videolan.vlc.PlaybackService
 import org.videolan.vlc.R
@@ -250,6 +251,11 @@ class PlaybackController(
         }
 
         val mw = playQueue.getMedia(playlistManager.currentIndex) ?: return
+        if (mw.uri.scheme.isSmbScheme()) {
+            service.showToast(service.getString(R.string.invalid_location, mw.uri), Toast.LENGTH_SHORT)
+            stop()
+            return
+        }
         val resumePosition = PlaybackSessionStore.current.get(mw.uri.toString())
         mw.time = resumePosition.time
         mw.position = 0f

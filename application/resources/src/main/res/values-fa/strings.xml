@@ -812,7 +812,6 @@
     <string name="timeout_infinite">بی پایان </string>
     <string name="video_hud_timeout_summary">%sثانیه</string>
     <string name="remove_from_history">حذف از تاریخچه</string>
-    <string name="prefersmbv1">SMB 1 را ترجیح بده</string>
     <string name="apply_to_all">به تمام ویدیوها اعمال کن</string>
     <string name="go_to_folder">مرور بالایی</string>
     <string name="browser_show_missing_media">رسانه‌های گم‌شده را نشان بده</string>

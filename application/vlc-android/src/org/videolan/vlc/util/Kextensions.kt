@@ -61,6 +61,7 @@ import org.videolan.resources.util.getFromMl
 import org.videolan.tools.AppScope
 import org.videolan.tools.isStarted
 import org.videolan.tools.retrieveParent
+import org.videolan.tools.isSmbScheme
 import org.videolan.vlc.R
 import org.videolan.vlc.gui.SecondaryActivity
 import org.videolan.vlc.gui.browser.KEY_JUMP_TO
@@ -77,6 +78,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 fun String.validateLocation(): Boolean {
+    if (toUri().scheme.isSmbScheme()) return false
     var location = this
     /* Check if the MRL contains a scheme */
     if (!location.matches("\\w+://.+".toRegex())) location = "file://$location"

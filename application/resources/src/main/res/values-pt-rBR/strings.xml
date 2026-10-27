@@ -924,8 +924,6 @@
     <string name="video_hud_timeout">Controles do reprodutor de vídeo ocultando o atraso</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Remover do histórico</string>
-    <string name="prefersmbv1">Priorizar SMB 1</string>
-    <string name="prefersmbv1_summary">Desmarque esta configuração se tiver alguma dificuldade em navegar em seu servidor SMB</string>
     <string name="apply_to_all">Aplicar a todos os vídeos</string>
     <string name="audio_delay_global">Definir atraso em %s ms para todos os vídeos</string>
     <string name="audio_delay_bt">Atraso de áudio definido para 1%s ms para o dispositivo bluetooth</string>

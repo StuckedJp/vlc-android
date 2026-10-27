@@ -1037,8 +1037,6 @@
     <string name="video_hud_timeout">ビデオプレイヤーが隠れた遅延をコントロール</string>
     <string name="video_hud_timeout_summary">%s秒</string>
     <string name="remove_from_history">履歴からの削除</string>
-    <string name="prefersmbv1">SMB1を採用</string>
-    <string name="prefersmbv1_summary">SMBサーバーのブラウジングに何らかの問題がある場合は、チェックを外してください</string>
     <string name="apply_to_all">すべてのビデオに適用</string>
     <string name="audio_delay_global">すべてのビデオのオーディオに %s ミリ秒の遅延を適用</string>
     <string name="audio_delay_bt">bluetoothデバイスのオーディオに %s ミリ秒の遅延を適用</string>

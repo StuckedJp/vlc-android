@@ -1051,8 +1051,6 @@
     <string name="video_hud_timeout">Görüntü oynatıcı denetimlerini gizleme gecikmesi</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Geçmişten kaldır</string>
-    <string name="prefersmbv1">SMB 1 yeğlensin</string>
-    <string name="prefersmbv1_summary">SMB sunucunuza erişmekte sorun yaşıyorsanız bu seçeneği kapatın</string>
     <string name="apply_to_all">Tüm görüntülere uygula</string>
     <string name="audio_delay_global">Tüm görüntüler için ses gecikmesi %s ms olarak ayarlandı</string>
     <string name="audio_delay_bt">Bluetooth aygıtı için ses gecikmesi %s ms olarak ayarlandı</string>

@@ -138,7 +138,7 @@
                 vlc:layout_constraintBottom_toBottomOf="@+id/media_cover"
                 android:layout_marginBottom="8dp"
                 tools:visibility="visible"
-                tools:text="smb"
+                tools:text="upnp"
                 vlc:layout_constraintStart_toStartOf="parent"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp" />

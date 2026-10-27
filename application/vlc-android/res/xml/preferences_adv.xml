@@ -18,12 +18,6 @@
             android:summary="@string/network_caching_summary"
             android:title="@string/network_caching"/>
 
-    <CheckBoxPreference
-            app:singleLineTitle="false"
-            android:defaultValue="true"
-            android:key="prefer_smbv1"
-            android:summary="@string/prefersmbv1_summary"
-            android:title="@string/prefersmbv1"/>
 
     <EditTextPreference
             android:defaultValue=""

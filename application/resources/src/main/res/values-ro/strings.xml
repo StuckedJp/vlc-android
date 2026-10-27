@@ -1063,8 +1063,6 @@
     <string name="video_hud_timeout">Video player controlează ascunderea întârzierii</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Eliminați din istoric</string>
-    <string name="prefersmbv1">Preferați SMB 1</string>
-    <string name="prefersmbv1_summary">Debifați această setare dacă întâmpinați dificultăți în navigarea pe serverul SMB</string>
     <string name="apply_to_all">Se aplică la toate videoclipurile</string>
     <string name="audio_delay_global">Întârzierea audio setată la %s ms pentru toate videoclipurile</string>
     <string name="audio_delay_bt">întârzierea audio stabilită la %s ms pentru dispozitivul bluetooth</string>

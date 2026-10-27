@@ -589,7 +589,6 @@
     <string name="next">Następny</string>
     <string name="skip">Pomiń</string>
     <string name="next_step">Dalej</string>
-    <string name="download">Pobierz</string>
     <string name="ctx_player_video_track">Wybierz ścieżkę wideo</string>
     <string name="ctx_player_audio_track">Ścieżka dźwiękowa</string>
     <string name="ctx_player_subs_track">Ścieżka napisów</string>
@@ -824,7 +823,6 @@
     <string name="discovery_failed">Odkrycie nie powiodło się dla: %s</string>
     <string name="lock_use_sensor_title">Zablokuj czujnik</string>
     <string name="lock_use_sensor_summary">Gdy orientacja jest zablokowana, użyj czujnika, aby umożliwić odwrotną orientację</string>
-    <string name="start">Start</string>
     <string name="permission">Uprawnienie</string>
     <string name="customize">Dostosuj</string>
     <string name="official_website">Oficjalna strona internetowa</string>
@@ -876,9 +874,6 @@
     <string name="downloaded">Pobrano</string>
     <string name="not_downloaded">Nie pobrano</string>
     <string name="downloading">Pobieranie</string>
-    <string name="ra_send_files">Wyślij pliki</string>
-    <string name="ra_file">Plik</string>
-    <string name="ra_disable">Wyłącz</string>
     <!-- car screens -->
     <string name="help">Pomoc</string>
     </resources>

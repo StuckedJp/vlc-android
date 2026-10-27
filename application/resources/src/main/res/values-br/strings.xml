@@ -330,7 +330,6 @@
     <string name="screen_orientation_landscape_sensor">Gweledva (kaptor)</string>
     <string name="screen_orientation_last_locked">Tuadur diwezhañ morailhet</string>
     <string name="enable_black_theme">Tem du</string>
-    <string name="dark_theme">Tem teñval</string>
     <string name="theme_auto">Tem aoto</string>
     <string name="subtitle_text_encoding">Enkodañ testenn an istitloù</string>
     <string name="subtitle_preferred_language">Yezh an istitloù gwellañ</string>
@@ -452,10 +451,6 @@
     <string name="aout">Ezvont aodio</string>
     <string name="audio_ducking_title">Izelaat live-son VLC da vare ar c\'hemennoù</string>
     <string name="casting_category">Skignañ</string>
-    <string name="remote_access">Haeziñ a-bell</string>
-    <string name="remote_access_version_title">Stumm an haeziñ a-bell</string>
-    <string name="remote_access_links">Liammoù</string>
-    <string name="remote_access_active">Haeziñ a-bell oberiant</string>
     <string name="casting_switch_title">Strewiñ diorjal</string>
     <string name="casting_passthrough_title">Treuzell aodio</string>
     <string name="casting_passthrough_summary">Lezit ho TV merañ ar rentañ aodio</string>
@@ -665,7 +660,6 @@
     <string name="delete_the_selected">Dilemel an diuzadenn</string>
     <string name="download_the_selected">Pellgargañ an diuzadenn</string>
     <string name="next">War-lerc\'h</string>
-    <string name="download">Pellgargañ</string>
     <string name="ctx_player_video_track">Diuzañ ur roudenn video</string>
     <string name="ctx_player_audio_track">Roudenn aodio</string>
     <string name="ctx_player_subs_track">Diuzañ ur roudenn istitloù</string>
@@ -863,7 +857,6 @@
     <string name="add_new_only_button">Ouzhpennañ ar re nevez hepken</string>
     <string name="discovery_failed">An dizoloiñ a zo c\'hwitet evit: %s</string>
     <string name="lock_use_sensor_title">Morailhañ gant ar c\'haptorioù</string>
-    <string name="start">Loc\'hañ</string>
     <string name="permission">Aotre</string>
     <string name="customize">Personelaat</string>
     <string name="disabled">Lazhet</string>

@@ -513,7 +513,6 @@
     <string name="delete_the_selected">Obriši označeno</string>
     <string name="download_the_selected">Preuzmi označeno</string>
     <string name="next">Sljedeće</string>
-    <string name="download">Preuzmi</string>
     <string name="ctx_player_video_track">Označi video zapis</string>
     <string name="ctx_player_audio_track">Zvučni zapis</string>
     <string name="ctx_player_subs_track">Zapis podnaslova</string>

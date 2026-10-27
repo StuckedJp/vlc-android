@@ -210,8 +210,6 @@
     <string name="wait_before_sleep">Aguarde primeiro a mídia atual terminar</string>
     <string name="reset_on_interaction">Reiniciar em qualquer interação</string>
     <string name="default_sleep_timer_summary">%1$s, aguardar até o término da mídia: %2$s, reiniciar em interações: %3$s</string>
-    <string name="video_player_remote">Reprodutor de vídeo remoto</string>
-    <string name="remote_keyboard_navigation">Navegação por teclado</string>
 
     <string name="server_add_title">Adicionar um novo servidor aos favoritos</string>
     <string name="server_folder_hint">Caminho da pasta (opcional)</string>
@@ -323,7 +321,6 @@
     <string name="screen_orientation_landscape_sensor">Paisagem (sensor)</string>
     <string name="screen_orientation_last_locked">Última orientação travada</string>
     <string name="enable_black_theme">Tema escuro</string>
-    <string name="dark_theme">Tema escuro</string>
     <string name="theme_auto">Tema automático</string>
     <string name="subtitle_text_encoding">Codificação de texto de legenda</string>
     <string name="subtitle_preferred_language">Idioma preferido para a legenda</string>
@@ -452,29 +449,6 @@
     <string name="audio_ducking_title">Reduzir o volume do VLC em notificações</string>
     <string name="audio_ducking_summary">Ajuda a ouvir notificações de áudio, instruções de navegação ou assistência por voz</string>
     <string name="casting_category">Conversão</string>
-    <string name="remote_access">Acesso remoto</string>
-    <string name="remote_access_version_title">Versão do acesso remoto</string>
-    <string name="remote_access_hash_title">Código hash do acesso remoto</string>
-    <string name="remote_access_status">Status do servidor</string>
-    <string name="remote_access_status_summary">Toque para ver o status do servidor</string>
-    <string name="remote_access_connections">Conexões</string>
-    <string name="remote_access_links">Links</string>
-    <string name="remote_access_active">Acesso remoto ativo</string>
-    <string name="remote_access_notification">Acesso remoto ativo em %s</string>
-    <string name="remote_access_notification_stopped">Acesso remoto inativo</string>
-    <string name="remote_access_notification_connecting">Acesso remoto conectando</string>
-    <string name="remote_access_notification_error">Erro no acesso remoto</string>
-    <string name="remote_access_notification_stopping">Acesso remoto parando</string>
-    <string name="remote_access_notification_not_init">Acesso remoto iniciando</string>
-    <string name="enable_remote_access">Habilitar o acesso remoto</string>
-    <string name="remote_access_info">Informação do acesso remoto</string>
-    <string name="remote_access_content">Conteúdo</string>
-    <string name="remote_access_medialibrary_content">Conteúdo da biblioteca de mídias</string>
-    <string name="remote_access_medialibrary_content_summary">Habilitados: %1$s\nDesabilitados: %2$s</string>
-    <string name="remote_access_file_browser_content">Explorador de arquivos</string>
-    <string name="remote_access_network_browser_content">Explorador de rede</string>
-    <string name="remote_access_playback_control">Controlar a reprodução</string>
-    <string name="remote_access_logs">Compartilhar arquivos de registro</string>
     <string name="casting_switch_title">Conversão sem fio</string>
     <string name="casting_passthrough_title">Passagem Direta de Áudio</string>
     <string name="casting_passthrough_summary">Permite à sua TV gerenciar a geração de áudio</string>
@@ -594,8 +568,6 @@
     <string name="search_global">Procurar em toda a biblioteca de mídias</string>
     <string name="playlist_save">Salvar Lista de Reprodução</string>
     <string name="playlist_name_hint">Nome da Lista de Reprodução</string>
-    <string name="chapters">Capítulos</string>
-    <string name="notset">Não definido</string>
     <string name="go_to_chapter">Ir ao capítulo...</string>
     <string name="current_chapter">Capítulo: %s</string>
     <string name="confirm_resume">Continuar a reprodução da última posição?</string>
@@ -760,7 +732,6 @@
     <string name="download_the_selected">Baixar seleção</string>
     <string name="next">Próximo</string>
     <string name="next_step">Próximo</string>
-    <string name="download">Download</string>
     <string name="ctx_player_video_track">Selecionar trilha de vídeo</string>
     <string name="ctx_player_audio_track">Trilha de áudio</string>
     <string name="ctx_player_subs_track">Trilha de legenda</string>
@@ -999,7 +970,6 @@
     <string name="discovery_failed">Falha na descoberta de: %s</string>
     <string name="lock_use_sensor_title">Travar com sensor</string>
     <string name="lock_use_sensor_summary">Quando a orientação está travada, usa o sensor para permitir a orientação reversa</string>
-    <string name="start">Iniciar</string>
     <string name="permission">Permissão</string>
     <string name="customize">Personalizar</string>
     <string name="selection_count">%d selecionado</string>

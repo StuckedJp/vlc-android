@@ -28,8 +28,6 @@ include(
     ":application:live-plot-graph",
     ":application:television",
     ":application:donations",
-    ":application:remote-access-server",
     ":application:vlc-android",
-    ":application:moviepedia",
-    ":application:remote-access-client"
+    ":application:moviepedia"
 )

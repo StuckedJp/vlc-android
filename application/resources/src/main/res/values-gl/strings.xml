@@ -351,10 +351,6 @@
     <string name="audio_ducking_title">Baixar o volume do VLC nas notificacións</string>
     <string name="audio_ducking_summary">Axuda na escoita de notificacións de son, instrucións de navegación e para falar co asistente</string>
     <string name="casting_category">Emisión</string>
-    <string name="remote_access">Acceso remoto</string>
-    <string name="remote_access_connections">Conexións</string>
-    <string name="remote_access_links">Ligazóns</string>
-    <string name="remote_access_content">Contido</string>
     <string name="casting_switch_title">Emisión sen fíos</string>
     <string name="casting_passthrough_title">Audio Passthrough</string>
     <string name="casting_passthrough_summary">Permitir que a TV xestione o procesamento do son</string>
@@ -454,7 +450,6 @@
     <string name="search_global">Buscar na biblioteca multimedia global</string>
     <string name="playlist_save">Gardar lista de reprodución</string>
     <string name="playlist_name_hint">Nome da lista de reprodución</string>
-    <string name="chapters">Capítulos</string>
     <string name="go_to_chapter">Ir ao capítulo...</string>
     <string name="current_chapter">Capítulo: %s</string>
     <string name="confirm_resume">Quere continuar desde a última posición?</string>
@@ -606,7 +601,6 @@
     <string name="download_the_selected">Descargar selección</string>
     <string name="next">Seguinte</string>
     <string name="next_step">Seguinte</string>
-    <string name="download">Descargar</string>
     <string name="ctx_player_video_track">Seleccionar pista de vídeo</string>
     <string name="ctx_player_audio_track">Pista de son</string>
     <string name="ctx_player_subs_track">Pista dos subtítulos</string>
@@ -843,7 +837,6 @@
     <string name="discovery_failed">Fallou a detección de: %s</string>
     <string name="lock_use_sensor_title">Bloqueo con sensor</string>
     <string name="lock_use_sensor_summary">Cando a orientación estea bloqueada, usar o sensor para permitir a orientación inversa</string>
-    <string name="start">Iniciar</string>
     <string name="permission">Permiso</string>
     <string name="permissions">Permisos</string>
     <string name="customize">Personalizar</string>
@@ -866,14 +859,10 @@
     <string name="talkback_minutes">minutos</string>
     <string name="talkback_seconds">segundos</string>
     <string name="downloading">Descargando</string>
-    <string name="ra_remote_access">Acceso remoto</string>
-    <string name="ra_new_code">Enviar un código novo</string>
-    <string name="ra_onboarding_otp_title">Autenticación</string>
     <!-- car screens -->
     <string name="help">Axuda</string>
     <string name="network" >Rede</string>
     <string name="device">Dispositivo</string>
-    <string name="model">Modelo do dispositivo</string>
     <string name="subject">Asunto</string>
     <string name="body">Mensaxe</string>
     </resources>

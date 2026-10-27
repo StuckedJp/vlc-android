@@ -68,7 +68,7 @@ NO_BUILD_IMPACT_PATTERNS=(
     '(^|/)\.gitignore$'              # Never read by Gradle.
     '^\.gitlab-ci\.yml$' '^\.gitlab/' # CI configuration, only used by the CI.
     '^buildsystem/.*\.sh$'          # Scripts: Gradle never runs them. Other buildsystem files
-                                    # (publish.gradle, remoteaccess.properties) are read by Gradle.
+                                    # (publish.gradle) is read by Gradle.
     # Test sources: assembleDebug doesn't compile them.
     '^(application/[^/]+|medialibrary)/(src/test|src/androidTest|test|androidTest|test-common)/'
 )

@@ -13,16 +13,10 @@ plugins {
 val vlcMajorVersionVal = if (providers.gradleProperty("forceVlc4").orNull?.toBoolean() == true) 4 else 3
 val versionCodeVal = 3070200
 
-// Remote Access release tags, shared with buildsystem/compile-remoteaccess.sh
-val remoteAccessVersions = Properties().apply {
-    file("buildsystem/remoteaccess.properties").inputStream().use { load(it) }
-}
-
 extra["appId"] = "org.videolan.vlc"
 extra["versionCode"] = versionCodeVal
 extra["vlcMajorVersion"] = vlcMajorVersionVal
 extra["versionName"] = if (vlcMajorVersionVal == 3) "3.7.2" else "4.0.0-preview - $versionCodeVal"
-extra["remoteAccessVersion"] = remoteAccessVersions.getProperty(if (vlcMajorVersionVal == 3) "remoteAccessVersionVlc3" else "remoteAccessVersionVlc4")
 extra["libvlcVersion"] = if (vlcMajorVersionVal == 3) "3.7.8" else "4.0.0-eap29"
 extra["medialibraryVersion"] = if (vlcMajorVersionVal == 3) "0.13.25" else "0.13.22-vlc4"
 
@@ -74,7 +68,6 @@ extra["junitExtVersion"] = ver("junit-ext")
 extra["mockito"] = ver("mockito")
 extra["retrofit"] = ver("retrofit")
 extra["moshi"] = ver("moshi")
-extra["ktorVersion"] = ver("ktor")
 extra["powerMock"] = ver("powermock")
 extra["espressoVersion"] = ver("espresso")
 extra["livedataTest"] = ver("livedata-testing")

@@ -222,7 +222,6 @@
     <string name="wait_before_sleep">Itxaron uneko multimedia amaitu arte</string>
     <string name="reset_on_interaction">Berrezarri edozein interakziotan</string>
     <string name="default_sleep_timer_summary">%1$s, itxaron multimediaren bukaera: %2$s, berrezarri interakzioan:%3$s</string>
-    <string name="remote_keyboard_navigation">Teklatu bidezko nabigazioa</string>
 
     <string name="server_add_title">Gehitu zerbitzari berri bat gogokoetara</string>
     <string name="server_folder_hint">Karpetarako bidea (aukerakoa)</string>
@@ -333,7 +332,6 @@
     <string name="screen_orientation_landscape_sensor">Paisaia (sentsorea)</string>
     <string name="screen_orientation_last_locked">Blokeatutako azken orientazioa</string>
     <string name="enable_black_theme">Itxura beltza</string>
-    <string name="dark_theme">Itxura iluna</string>
     <string name="theme_auto">Itxura automatikoa</string>
     <string name="subtitle_text_encoding">Azpitituluen testu-kodeketa</string>
     <string name="subtitle_preferred_language">Azpitituluen hizkuntza hobetsia</string>
@@ -462,26 +460,6 @@
     <string name="audio_ducking_title">Jaitsi VLC bolumena jakinarazpenekin</string>
     <string name="audio_ducking_summary">Audio jakinarazpenak, nabigazio jarraibideak eta mintzodun morroiak entzuten laguntzen du</string>
     <string name="casting_category">Igortzea</string>
-    <string name="remote_access">Urruneko sarbidea</string>
-    <string name="remote_access_status">Zerbitzariaren egoera</string>
-    <string name="remote_access_status_summary">Ukitu zerbitzariaren egoera ikusteko</string>
-    <string name="remote_access_connections">Konexioak</string>
-    <string name="remote_access_links">Estekak</string>
-    <string name="remote_access_active">Urruneko sarbidea aktiboa</string>
-    <string name="remote_access_notification">Urruneko sarbidea aktiboa %s-n</string>
-    <string name="remote_access_notification_stopped">Urruneko sarbidea gelditu da</string>
-    <string name="remote_access_notification_connecting">Urruneko sarbidea konektatzen</string>
-    <string name="remote_access_notification_error">Urruneko sarbidearen errorea</string>
-    <string name="remote_access_notification_stopping">Urruneko sarbidea gelditzen</string>
-    <string name="remote_access_notification_not_init">Urruneko sarbidea hasieratzen</string>
-    <string name="enable_remote_access">Gaitu urruneko sarbidea</string>
-    <string name="remote_access_info">Urruneko sarbidearen informazioa</string>
-    <string name="remote_access_content">Edukia</string>
-    <string name="remote_access_medialibrary_content_summary">Gaituta: %1$s\nDesgaituta: %2$s</string>
-    <string name="remote_access_file_browser_content">Fitxategien arakatzailea</string>
-    <string name="remote_access_network_browser_content">Sareko nabigatzailea</string>
-    <string name="remote_access_playback_control">Erreprodukzio-kontrola</string>
-    <string name="remote_access_logs">Partekatu erregistro fitxategiak</string>
     <string name="casting_switch_title">Hari gabeko igortzea</string>
     <string name="casting_passthrough_title">Audio igarobidea</string>
     <string name="casting_passthrough_summary">Utzi zure telebistari audioa errendatzen</string>
@@ -594,8 +572,6 @@
     <string name="search_global">Bilatu multimedia-liburutegi osoan</string>
     <string name="playlist_save">Gorde erreprodukzio-zerrenda</string>
     <string name="playlist_name_hint">Erreprodukzio-zerrendaren izena</string>
-    <string name="chapters">Kapituluak</string>
-    <string name="notset">Ezarri gabe</string>
     <string name="go_to_chapter">Joan kapitulura…</string>
     <string name="current_chapter">Kapitulua: %s</string>
     <string name="confirm_resume">Azken posiziotik berrekin?</string>
@@ -779,7 +755,6 @@
     <string name="next">Hurrengoa</string>
     <string name="skip">Saltatu</string>
     <string name="next_step">Hurrengoa</string>
-    <string name="download">Deskargatu</string>
     <string name="ctx_player_video_track">Aukeratu bideo-pista</string>
     <string name="ctx_player_audio_track">Audio-pista</string>
     <string name="ctx_player_subs_track">Azpitituluen pista</string>
@@ -1031,7 +1006,6 @@
     <string name="discovery_failed">Aurkikuntzak huts egin du: %s</string>
     <string name="lock_use_sensor_title">Sentsorearekin blokeoa</string>
     <string name="lock_use_sensor_summary">Orientazioa blokeatuta dagoenean, erabili sentsorea alderantzizko orientazioa baimentzeko</string>
-    <string name="start">Hasi</string>
     <string name="notification_permission">Jakinarazpen-baimena</string>
     <string name="notification_permission_explanation">VLC-k zure baimena behar du jakinarazpenak bidaltzeko.\nAplikazioak zure multimedia eskaneatzen duzunean edo bideoa Irudia Irudian moduan erabiltzean soilik jakinaraziko dizu.\nHau ukatuz gero, ez du VLC-k funtzionatzea eragotziko, baina jakinarazpenak ezkutatu egingo dira.</string>
     <string name="permission">Baimena</string>

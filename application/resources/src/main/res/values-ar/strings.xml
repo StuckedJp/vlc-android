@@ -231,8 +231,6 @@
     <string name="subtitle_select">اختر ملف ترجمة</string>
     <string name="wait_before_sleep">انتظر حتى انتهاء عنصر الوسائط الحالي أولاً</string>
     <string name="reset_on_interaction">إعادة الضبط على أي تفاعل</string>
-    <string name="video_player_remote">مشغل الفيديو عن بعد</string>
-    <string name="remote_keyboard_navigation">التنقل عبر لوحة المفاتيح</string>
 
     <string name="server_add_title">أضِف خادوما جديدا إلى المفضلة</string>
     <string name="server_folder_hint">مسار المجلد (اختياري)</string>
@@ -335,7 +333,6 @@
     <string name="screen_orientation_landscape_reverse">عرضي معكوس</string>
     <string name="screen_orientation_last_locked">آخر اتجاه مغلق</string>
     <string name="enable_black_theme">الثيم الأسود</string>
-    <string name="dark_theme">السمة الداكنة</string>
     <string name="theme_auto">السمة التلقائية</string>
     <string name="subtitle_text_encoding">ترميز نص التّرجمة</string>
     <string name="subtitle_preferred_language">لغة الترجمة المفضلة</string>
@@ -432,21 +429,6 @@
     <string name="audio_ducking_title">قلل درجة صوت في حالة الإشعارات</string>
     <string name="audio_ducking_summary">يساعد في سماع الإشعارات الصوتية أو تعليمات التنقل أو حديث المساعد</string>
     <string name="casting_category">يتم الآن التحويل</string>
-    <string name="remote_access">الوصول عن بعد</string>
-    <string name="remote_access_version_title">إصدار الوصول عن بعد</string>
-    <string name="remote_access_hash_title">تجزئة الوصول عن بعد</string>
-    <string name="remote_access_status">حالة الخادم</string>
-    <string name="remote_access_connections">الاتصالات</string>
-    <string name="remote_access_links">روابط</string>
-    <string name="remote_access_notification_error">خطأ في الوصول عن بعد</string>
-    <string name="remote_access_notification_stopping">إيقاف الوصول عن بعد</string>
-    <string name="remote_access_notification_not_init">تهيئة الوصول عن بعد</string>
-    <string name="enable_remote_access">تمكين الوصول عن بعد</string>
-    <string name="remote_access_info">معلومات الوصول عن بعد</string>
-    <string name="remote_access_content">المحتوى</string>
-    <string name="remote_access_file_browser_content">متصفح الملفات</string>
-    <string name="remote_access_network_browser_content">متصفح الشبكة</string>
-    <string name="remote_access_playback_control">التحكم في التشغيل</string>
     <string name="casting_switch_title">التحويل عن بعد</string>
     <string name="casting_passthrough_title">ممر عبور الصوت</string>
     <string name="casting_passthrough_summary">اعتمد على التلفاز في إدارة بث الصوت</string>
@@ -722,7 +704,6 @@
     <string name="next">التالي</string>
     <string name="skip">تخطي</string>
     <string name="next_step">التالي</string>
-    <string name="download">نزّل</string>
     <string name="ctx_player_video_track">حدد مسار الفيديو</string>
     <string name="ctx_player_audio_track">مسار الصوت</string>
     <string name="ctx_player_subs_track">مسار الترجمات النصية</string>
@@ -980,7 +961,6 @@
     <string name="discovery_failed">فشل الاكتشاف لـ: %s</string>
     <string name="lock_use_sensor_title">قفل مع جهاز الاستشعار</string>
     <string name="lock_use_sensor_summary">عندما يكون الاتجاه مغلقًا ، استخدم المستشعر للسماح بالاتجاه العكسي</string>
-    <string name="start">إبدأ</string>
     <string name="notification_permission_explanation">يحتاج VLC إلى إذنك لإرسال الإشعارات.\nسوف يقوم التطبيق بإعلامك فقط عند مسح الوسائط الخاصة بك أو استخدام صورة داخل صورة مخصصة للفيديو.\nلن يؤدي رفض الإذن إلى منع VLC من العمل، ومع ذلك سيتم إخفاء الإشعارات.</string>
     <string name="permission">الإذن</string>
     <string name="customize">خصّص</string>
@@ -1029,25 +1009,6 @@
     <string name="show_only_favs">إظهار المفضلات فقط</string>
     <string name="replace_playlist">استبدل قائمة التشغيل</string>
 
-    <string name="ra_remote_access">الوصول عن بعد</string>
-    <string name="ra_log_file">ملفات السجل</string>
-    <string name="ra_log_type">نوع السجل</string>
-    <string name="ra_send_files">إرسال الملفات</string>
-    <string name="ra_not_in_foreground">التطبيق ليس في المقدمة. لا يمكن تشغيل الفيديو.</string>
-    <string name="ra_file">ملف</string>
-    <string name="ra_upload_all">تحميل الكل</string>
-    <string name="ra_drop_files_tip">أفلت الملفات في أي مكان لإرسالها إلى جهازك</string>
-    <string name="ra_prepare_download">جار تحضير التنزيل</string>
-    <string name="ra_ssl_explanation_title">الاتصال غير الآمن</string>
-    <string name="ra_new_code">أرسل رمزًا جديدًا</string>
-    <string name="ra_code">أدخل هذا الرمز: %s</string>
-    <string name="ra_otp_not_me">ليس أنا</string>
-    <string name="ra_onboarding_how_title">السيطرة على جهازك</string>
-    <string name="ra_onboarding_otp_title">المصادقة</string>
-    <string name="ra_onboarding_content_desc">اختر ما يمكن الوصول إليه وما لا يمكن الوصول إليه</string>
-    <string name="ra_log_web">سجل الوصول عن بعد</string>
-    <string name="ra_invalid_login">تحتاج إلى تسجيل الدخول على جهازك</string>
-    <string name="learn_more">تعلّم المزيد</string>
 
     <!-- car screens -->
     <string name="help">المُساعدة</string>
@@ -1056,8 +1017,6 @@
     <string name="metered_connection_stopped">تم إيقاف الوسائط لأن الاتصال مقيد</string>
     <string name="metered_connection_warning">اتصالك مقيد برسوم. قد يتم تطبيق رسوم.</string>
     <string name="device">جهاز</string>
-    <string name="connected_device">الجهاز المتصل</string>
-    <string name="model">طراز الجهاز</string>
     <string name="prefs_app_data">بيانات التطبيق</string>
     <string name="export_settings">إعدادات التصدير</string>
     <string name="restore_settings">استعادة الإعدادات</string>

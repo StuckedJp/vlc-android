@@ -33,8 +33,6 @@ VLC for Android は Kotlin/Java と XML UI を中心にした Android マルチ�
 | `application/tools` | 共通ユーティリティ、設定キー、ネットワーク監視、共有 coroutine scope 等 |
 | `application/mediadb` | Room の `MediaDatabase`、DAO、Entity、Converter、Migration。ネイティブのメディア索引 DB とは別のアプリ用 DB |
 | `application/moviepedia` | メタデータ取得、API、Repository、独立した Room DB、関連画面 |
-| `application/remote-access-server` | Ktor ベースのリモート操作サーバー、認証、TLS、ルート、WebSocket、導入画面 |
-| `application/remote-access-client` | Web クライアントの配布用 Android ライブラリ。別途取得した `remoteaccess/dist` を `assets/dist` へコピー |
 | `application/live-plot-graph` | グラフ描画用 View |
 | `application/donations` | 寄付関連のコードとリソース。組み込み方は依存設定を確認 |
 | `medialibrary` | Android 向け Java API、実装、stub、テストと JNI。`jni/CMakeLists.txt` は C/C++17 の `mla` を構築 |
@@ -86,9 +84,6 @@ VLC 3 の minSdk は 17、VLC 4 は 23 です。NDK は `local.properties` の�
 
 # medialibrary の構築
 ./buildsystem/compile.sh -ml -a arm64-v8a -r
-
-# リモート操作用 Web クライアントの取得・構築
-./buildsystem/compile-remoteaccess.sh
 ```
 
 - `Debug`/`Release` のアプリ依存は公開された LibVLC/medialibrary を使用し、`Dev` はローカルプロジェクトを使用します。ネイティブの修正を `assembleDebug` だけで検証できるとは限りません。
@@ -154,11 +149,10 @@ VLC 3 の minSdk は 17、VLC 4 は 23 です。NDK は `local.properties` の�
 - LibVLC オブジェクトの `retain`/`release`、JNI の参照と配列の解放を保ち、所有権を確認してください。
 - DB の Entity/DAO を変更するときは、バージョン、migration、既存ユーザーデータの互換性を併せて扱ってください。
 - ユーザー向け文字列は該当モジュールのリソースへ追加してください。共有文字列は `application/resources` を確認し、プレースホルダーと複数形を維持してください。翻訳は Transifex 経由の運用です。
-- UI 変更は共通画面、スマートフォン、TV のどこに属するかを確認してください。共通 API の変更では TV、車載、ウィジェット、リモート操作の呼び出し元も検索してください。
-- リモート操作の変更では、既存の認証、セッション、TLS、WebSocket のメッセージ形式と Web クライアントとの互換性を確認してください。
+- UI 変更は共通画面、スマートフォン、TV のどこに属するかを確認してください。共通 API の変更では TV、車載、ウィジェットの呼び出し元も検索してください。
 - `BuildConfig`、Data Binding、Room/KSP 等の生成コード、`build/`、`.gradle/`、`.dbg/`、JNI の `obj/`/`libs/` は直接修正しないでください。
 - SDK/NDK の絶対パス、署名鍵、パスワードなどのローカル設定をコミットしないでください。
-- `libvlcjni` や取得した medialibrary/Web ソースは独立したリポジトリです。親の `git diff` に現れない変更があるため、編集したリポジトリごとに差分を確認してください。継続利用する外部修正は対応するパッチ運用も確認してください。
+- `libvlcjni` や取得した medialibrary ソースは独立したリポジトリです。親の `git diff` に現れない変更があるため、編集したリポジトリごとに差分を確認してください。継続利用する外部修正は対応するパッチ運用も確認してください。
 - このフォークの `origin` は GitHub、`upstream` は VideoLAN GitLab です。提出先は依頼に合わせて判断してください。上流への Merge Request は VideoLAN GitLab に提出し、説明の形式は `.gitlab/merge_request_templates/merge_request.md` を参考にし、変更理由と検証結果を記載してください。
 
 ## このチェックアウトで確認したビルド上の注意

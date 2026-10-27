@@ -40,7 +40,6 @@ material = "1.11.0"
 sqlite-jdbc = "3.36.0"
 retrofit = "2.7.1"
 moshi = "1.8.0"
-ktor = "2.3.7"
 okhttp = "4.2.1"
 
 # Utility Third Party

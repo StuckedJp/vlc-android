@@ -30,7 +30,6 @@ import android.graphics.Bitmap.CompressFormat
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
 import android.net.Uri
 import android.os.Binder
 import android.os.Build
@@ -38,7 +37,6 @@ import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.util.LruCache
-import androidx.annotation.DrawableRes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.videolan.libvlc.FactoryManager
@@ -121,23 +119,18 @@ class ArtworkProvider : ContentProvider() {
                 Log.d(TAG, "openFile() Time: ${getTimestamp()} URI: $uri " +
                         "Thread: ${Thread.currentThread().name} Caller: $callingPackage")
             }
-            val bigVariant = uri.getQueryParameter(BIG_VARIANT)  == "1"
-            val remoteAccess = uri.getQueryParameter(REMOTE_ACCESS)  == "1"
             //retrieve thumbnails.
             when (uriSegments[0]) {
                 HISTORY -> getPFDFromByteArray(getHistory(ctx))
                 LAST_ADDED -> getPFDFromByteArray(getLastAdded(ctx))
                 SHUFFLE_ALL -> getPFDFromByteArray(getShuffleAll(ctx))
-                VIDEO -> if (remoteAccess)
-                    getMediaImage(ctx, ContentUris.parseId(uri), false, fallbackIcon =  if (bigVariant) R.drawable.ic_remote_video_unknown_big else R.drawable.ic_remote_video_unknown, isLarge = true)
-                else
-                    getMediaImage(ctx, ContentUris.parseId(uri), false)
-                MEDIA -> getMediaImage(ctx, ContentUris.parseId(uri), fallbackIcon = if (remoteAccess) if (bigVariant) R.drawable.ic_remote_song_unknown_big else R.drawable.ic_remote_song_unknown else null)
-                ALBUM -> getCategoryImage(ctx, ALBUM, ContentUris.parseId(uri), remoteAccess, bigVariant)
-                ARTIST -> getCategoryImage(ctx, ARTIST, ContentUris.parseId(uri), remoteAccess, bigVariant)
+                VIDEO -> getMediaImage(ctx, ContentUris.parseId(uri), false)
+                MEDIA -> getMediaImage(ctx, ContentUris.parseId(uri))
+                ALBUM -> getCategoryImage(ctx, ALBUM, ContentUris.parseId(uri))
+                ARTIST -> getCategoryImage(ctx, ARTIST, ContentUris.parseId(uri))
                 REMOTE -> getRemoteImage(ctx, uri.getQueryParameter(PATH))
-                GENRE -> if (remoteAccess) getGenreImage(ctx, ContentUris.parseId(uri), fallbackIcon = if (bigVariant) R.drawable.ic_remote_genre_unknown_big else R.drawable.ic_remote_genre_unknown) else getGenreImage(ctx, ContentUris.parseId(uri))
-                PLAYLIST -> if (remoteAccess) getPlaylistImage(ctx, ContentUris.parseId(uri), fallbackIcon = if (bigVariant) R.drawable.ic_remote_playlist_unknown_big else R.drawable.ic_remote_playlist_unknown) else getPlaylistImage(ctx, ContentUris.parseId(uri))
+                GENRE -> getGenreImage(ctx, ContentUris.parseId(uri))
+                PLAYLIST -> getPlaylistImage(ctx, ContentUris.parseId(uri))
                 PLAY_ALL -> getPlayAllImage(ctx, uriSegments[1], ContentUris.parseId(uri),
                         uri.getBooleanQueryParameter(SHUFFLE, false))
                 else -> throw FileNotFoundException("Uri is not supported: $uri")
@@ -176,7 +169,7 @@ class ArtworkProvider : ContentProvider() {
      * getMediaImage in that results are not cached since AA is the only consumer and Glide within
      * AA performs caching.
      */
-    private fun getCategoryImage(context: Context, category: String, id: Long, forRemote:Boolean = false, bigVariant:Boolean = true): ParcelFileDescriptor {
+    private fun getCategoryImage(context: Context, category: String, id: Long): ParcelFileDescriptor {
         val mw: MediaLibraryItem? = runBlocking(Dispatchers.IO) {
             when (category) {
                 ALBUM -> context.getFromMl { getAlbum(id) }
@@ -199,8 +192,8 @@ class ArtworkProvider : ContentProvider() {
             }?.let { return@getCategoryImage getPFDFromByteArray(it) }
         }
         val unknownIcon = when (category) {
-            ALBUM -> if (forRemote) if (bigVariant) R.drawable.ic_remote_album_unknown_big else R.drawable.ic_remote_album_unknown else R.drawable.ic_auto_album_unknown
-            ARTIST -> if (forRemote) if (bigVariant) R.drawable.ic_remote_artist_unknown_big else R.drawable.ic_remote_artist_unknown else R.drawable.ic_auto_artist_unknown
+            ALBUM -> R.drawable.ic_auto_album_unknown
+            ARTIST -> R.drawable.ic_auto_artist_unknown
             else -> R.drawable.ic_auto_nothumb
         }
         return getPFDFromBitmap(context.getBitmapFromDrawable(unknownIcon))
@@ -224,14 +217,10 @@ class ArtworkProvider : ContentProvider() {
      * @param ctx the context used to retrieve drawables
      * @param mediaId the media ID
      * @param padSquare if true, make the image sqaure
-     * @param fallbackIcon if set, the fallback icon will use this resource
-     * @param isLarge if true, a 16:9 ratio will be used (540x960)
      * @return
      */
-    private fun getMediaImage(ctx: Context, mediaId: Long, padSquare:Boolean = true, @DrawableRes fallbackIcon: Int? = null, isLarge:Boolean = false): ParcelFileDescriptor {
+    private fun getMediaImage(ctx: Context, mediaId: Long, padSquare:Boolean = true): ParcelFileDescriptor {
         val width = 512
-        val height169 = 540
-        val width169 = 960
         val mw: MediaLibraryItem? = runBlocking(Dispatchers.IO) { ctx.getFromMl { getMedia(mediaId) } }
         mw?.let {
             if (!mw.artworkMrl.isNullOrEmpty()) {
@@ -245,22 +234,13 @@ class ArtworkProvider : ContentProvider() {
         var key = mw?.artworkMrl ?: "$mediaId"
         val nonTransparent = (Build.VERSION.SDK_INT == 33) && ("com.android.systemui" == callingPackage)
         if (nonTransparent) key += "_nonTransparent"
-        if (fallbackIcon != null) key += fallbackIcon.toString()
         val image = getOrPutImage(key) {
             runBlocking(Dispatchers.IO) {
                 var bitmap = if (mw != null) ThumbnailsProvider.obtainBitmap(mw, width) else null
                 if (bitmap == null) bitmap = readEmbeddedArtwork(mw, width)
                 if (padSquare && bitmap != null) bitmap = padSquare(bitmap)
                 if (bitmap == null) {
-                    bitmap = ctx.getBitmapFromDrawable(fallbackIcon
-                            ?: R.drawable.ic_no_media, width, width)
-                    if (isLarge && bitmap != null) {
-                        val paint = Paint()
-                        val bmp = Bitmap.createBitmap(width169, height169, Bitmap.Config.ARGB_8888)
-                        val canvas = Canvas(bmp)
-                        canvas.drawBitmap(bitmap, 224F, 0F, paint)
-                        bitmap = bmp
-                    }
+                    bitmap = ctx.getBitmapFromDrawable(R.drawable.ic_no_media, width, width)
                 }
                 if (nonTransparent) bitmap = removeTransparency(bitmap)
                 return@runBlocking BitmapUtil.encodeImage(bitmap, ENABLE_TRACING) {
@@ -276,10 +256,9 @@ class ArtworkProvider : ContentProvider() {
      *
      * @param ctx the context
      * @param id the genre id
-     * @param fallbackIcon if set, the fallback icon will use this resource
      * @return a ParcelFileDescriptor containing the genre image
      */
-    private fun getGenreImage(ctx: Context, id: Long, @DrawableRes fallbackIcon: Int? = null): ParcelFileDescriptor? {
+    private fun getGenreImage(ctx: Context, id: Long): ParcelFileDescriptor? {
         val bitmap = runBlocking(Dispatchers.IO) {
             val tracks = ctx.getFromMl { getGenre(id)?.albums?.flatMap { it.tracks.toList() } }
             val cover = tracks?.let {
@@ -288,7 +267,7 @@ class ArtworkProvider : ContentProvider() {
             }
             return@runBlocking when {
                 cover != null -> cover
-                else -> ctx.getBitmapFromDrawable(fallbackIcon ?: R.drawable.ic_auto_genre)
+                else -> ctx.getBitmapFromDrawable(R.drawable.ic_auto_genre)
             }
         }
         return getPFDFromBitmap(bitmap)
@@ -299,10 +278,9 @@ class ArtworkProvider : ContentProvider() {
      *
      * @param ctx the context
      * @param id the playlist id
-     * @param fallbackIcon if set, the fallback icon will use this resource
      * @return a ParcelFileDescriptor containing the playlist image
      */
-    private fun getPlaylistImage(ctx: Context, id: Long, @DrawableRes fallbackIcon: Int? = null): ParcelFileDescriptor? {
+    private fun getPlaylistImage(ctx: Context, id: Long): ParcelFileDescriptor? {
         val bitmap = runBlocking(Dispatchers.IO) {
             val tracks = ctx.getFromMl { getPlaylist(id, true, false)?.tracks?.toList() }
             val cover = tracks?.let {
@@ -311,7 +289,7 @@ class ArtworkProvider : ContentProvider() {
             }
             return@runBlocking when {
                 cover != null -> cover
-                else -> ctx.getBitmapFromDrawable(fallbackIcon ?: R.drawable.ic_auto_playlist)
+                else -> ctx.getBitmapFromDrawable(R.drawable.ic_auto_playlist)
             }
         }
         return getPFDFromBitmap(bitmap)
@@ -535,8 +513,6 @@ class ArtworkProvider : ContentProvider() {
     companion object {
 
         const val PATH = "path"
-        const val BIG_VARIANT = "big_variant"
-        const val REMOTE_ACCESS = "remote_access"
         const val ALBUM = "album"
         const val GENRE = "genre"
         const val VIDEO = "video"

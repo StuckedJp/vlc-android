@@ -250,8 +250,6 @@
     <string name="wait_before_sleep">להמתין לסיום פריט המדיה הנוכחי</string>
     <string name="reset_on_interaction">איפוס עם כל מחוות תפעול</string>
     <string name="default_sleep_timer_summary">%1$s, המתנה לסיום המדיה: %2$s, איפוס עם תפעול: %3$s</string>
-    <string name="video_player_remote">שלט לנגן הווידאו</string>
-    <string name="remote_keyboard_navigation">ניווט עם מקלדת</string>
 
     <string name="server_add_title">הוספת שרת חדש למועדפים</string>
     <string name="server_domain_hint">כתובת השרת (שם מארח או כתובת IP)</string>
@@ -374,7 +372,6 @@
     <string name="screen_orientation_landscape_sensor">אופקי (חיישן)</string>
     <string name="screen_orientation_last_locked">הכיוון האחרון שננעל</string>
     <string name="enable_black_theme">ערכת נושא שחורה</string>
-    <string name="dark_theme">ערכת עיצוב כהה</string>
     <string name="theme_auto">ערכת עיצוב אוטומטית</string>
     <string name="subtitle_text_encoding">קידוד טקסט הכתוביות</string>
     <string name="subtitle_preferred_language">שפת הכתוביות המועדפת</string>
@@ -519,29 +516,6 @@
     <string name="audio_ducking_title">הנמכת עצמת השמע של VLC כשמתקבלות התרעות</string>
     <string name="audio_ducking_summary">מסייע בהאזנה לצלילי התרעה, הנחיות ניווט או דיבור של יישומון סיוע</string>
     <string name="casting_category">שידור</string>
-    <string name="remote_access">גישה מרחוק</string>
-    <string name="remote_access_version_title">גרסת גישה מרחוק</string>
-    <string name="remote_access_hash_title">גיבוב גישה מרחוק</string>
-    <string name="remote_access_status">מצב שרת</string>
-    <string name="remote_access_status_summary">נא לגעת כדי לצפות במצב השרת</string>
-    <string name="remote_access_connections">חיבורים</string>
-    <string name="remote_access_links">קישורים</string>
-    <string name="remote_access_active">גישה מרחוק פעילה</string>
-    <string name="remote_access_notification">גישה מרחוק פעילה על %s</string>
-    <string name="remote_access_notification_stopped">גישה מרחוק נעצרה</string>
-    <string name="remote_access_notification_connecting">גישה מרחוק מתחברת</string>
-    <string name="remote_access_notification_error">שגיאת גישה מרחוק</string>
-    <string name="remote_access_notification_stopping">גישה מרחוק נעצרת</string>
-    <string name="remote_access_notification_not_init">גישה מרחוק מופעלת</string>
-    <string name="enable_remote_access">הפעלת גישה מרחוק</string>
-    <string name="remote_access_info">פרטי גישה מרחוק</string>
-    <string name="remote_access_content">תוכן</string>
-    <string name="remote_access_medialibrary_content">תוכן ספריית מדיה</string>
-    <string name="remote_access_medialibrary_content_summary">מופעל: %1$s\nמושבת: %2$s</string>
-    <string name="remote_access_file_browser_content">דפדפן קבצים</string>
-    <string name="remote_access_network_browser_content">דפדפן רשת</string>
-    <string name="remote_access_playback_control">שליטה בנגינה</string>
-    <string name="remote_access_logs">שיתוף קובצי יומנים</string>
     <string name="casting_switch_title">שידור אלחוטי</string>
     <string name="casting_passthrough_title">מעקף שמע</string>
     <string name="casting_passthrough_summary">לאפשר לטלוויזיה לנהל עיבוד שמע</string>
@@ -671,8 +645,6 @@
     <string name="search_global">חיפוש בכל ספריית המדיה</string>
     <string name="playlist_save">שמירת רשימת הנגינה</string>
     <string name="playlist_name_hint">שם רשימת הנגינה</string>
-    <string name="chapters">פרקים</string>
-    <string name="notset">לא הוגדר</string>
     <string name="go_to_chapter">מעבר לפרק…</string>
     <string name="current_chapter">פרק: %s</string>
     <string name="confirm_resume">להמשיך מהמיקום האחרון?</string>
@@ -883,7 +855,6 @@
     <string name="next">הבא</string>
     <string name="skip">דילוג</string>
     <string name="next_step">הבא</string>
-    <string name="download">הורדה</string>
     <string name="ctx_player_video_track">בחירת רצועת וידאו</string>
     <string name="ctx_player_audio_track">בחירת רצועת שמע</string>
     <string name="ctx_player_subs_track">רצועת כתוביות</string>
@@ -1181,7 +1152,6 @@
     <string name="discovery_failed">הגילוי נכשל עבור: %s</string>
     <string name="lock_use_sensor_title">נעילה עם חיישן</string>
     <string name="lock_use_sensor_summary">כאשר כיוון ההטיה נעול, יש להשתמש בחיישן כדי להפוך את הכיוון</string>
-    <string name="start">הפעלה</string>
     <string name="notification_permission">הרשאה להתראות</string>
     <string name="notification_permission_explanation">ל־VLC דרושה הרשאתך לשלוח התראות.\nהיישומון יודיע לך רק כאשר המדיה שלך נסרקת או שנעשה שימוש בסרטון מותאם עם תמונה בתוך תמונה.\nסירוב להרשאה לא ימנע מ־VLC לעבוד אך ההתראות תוסתרנה.</string>
     <string name="permission">הרשאה</string>
@@ -1323,65 +1293,7 @@
     <string name="ignore_headset_media_button_presses_summary">שימוש, למשל, אם יש לך אוזניות עם כפתורים פיזיים מקולקלים</string>
     <string name="replace_playlist">החלפת רשימת נגינה</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">גישה מרחוק פעילה</string>
-    <string name="ra_remote_access">גישה מרחוק</string>
-    <string name="ra_remote_access_description">הודעה על מצב גישה מרחוק</string>
-    <string name="ra_log_file">קובצי יומנים</string>
-    <string name="ra_log_type">סוג יומן</string>
-    <string name="ra_send_files">שליחת קבצים</string>
-    <string name="ra_not_in_foreground">היישומון לא בחזית. אי אפשר לנגן סרטון.</string>
-    <string name="ra_disconnected">מנותק מהמכשיר</string>
-    <string name="ra_file">קובץ</string>
-    <string name="ra_upload_remaining">נשלחים %s קבצים</string>
-    <string name="ra_upload_all">להעלות הכול</string>
-    <string name="ra_drop_files_tip">יש להשליך קבצים בכל מקום כדי לשלוח אותם למכשיר שלך</string>
-    <string name="ra_prepare_download">ההורדה שלך בהכנה</string>
-    <string name="ra_forbidden">התוכן הושבת בהגדרות</string>
-    <string name="ra_playback_forbidden">בקרת נגינה מושבתת בהגדרות</string>
-    <string name="ra_logs_forbidden">שיתוף יומנים מושבת בהגדרות</string>
-    <string name="ra_code_requested_explanation">כדי להגן על השרת שלך, הגישה מוגנת.\nנא למלא את הקוד שמופיע בהתראות שלך</string>
-    <string name="ra_ssl_explanation_title">חיבור לא מאובטח</string>
-    <string name="ra_ssl_explanation">החיבור שלך לא מאובטח.</string>
-    <string name="ra_ssl_explanation_browser">עקב מימוש אבטחה בדפדפן שלך, תישלח אזהרת אבטחת מידע בעמוד הבא.</string>
-    <string name="ra_ssl_explanation_accept">נא לוודא שהסכמת לאישור כדי שתהיה לך אפשרות להשתמש בגישה מרחוק</string>
-    <string name="ra_ssl_button">להשתמש בחיבור מאובטח</string>
-    <string name="ra_new_code">שליחת קוד חדש</string>
-    <string name="home">בית</string>
-    <string name="ra_code">נא למלא את הקוד הזה: %s</string>
-    <string name="ra_send_logs">שמירת יומני גישה מרחוק במכשיר</string>
-    <string name="ra_otp">סיסמה חד־פעמית לגישה מרחוק</string>
-    <string name="ra_otp_description">בקשות גישה לגישה מרחוק</string>
-    <string name="ra_otp_title">ניסיון כניסה לגישה מרחוק</string>
-    <string name="ra_otp_subtitle">אם זה ניסיון שלך, נא למלא את הקוד הזה במכשיר השני</string>
-    <string name="ra_otp_not_me">זה לא אני</string>
-    <string name="ra_output">פלט שמע</string>
-    <string name="ra_play_on_browser">לנגן בדפדפן</string>
-    <string name="ra_play_on_device">לנגן במכשיר</string>
-    <string name="ra_browser_audio_not_found">המדיה לא נמצאה או שלא ניתן לנגן אותה בדפדפן</string>
-    <string name="ra_browser_audio_unsupported_format">תסדיר השמע הזה לא נתמך על ידי הדפדפן שלך</string>
-    <string name="ra_upload_subtitle">העלאת כתוביות</string>
 
-    <string name="ra_onboarding_welcome_desc">ברוך בואך לגישה המרוחקת ל־VLC ל־Android\nהפעלת היכולת תאפשר לך לשלוט בנגינה במכשיר הזה אך לא רק</string>
-    <string name="ra_onboarding_how_title">שליטה במכשיר שלך</string>
-    <string name="ra_onboarding_how_desc">שליטה בנגינה במכשיר שלך, שליחה או קבלת קבצים ועוד</string>
-    <string name="ra_onboarding_ssl_title">הצפנת נתונים</string>
-    <string name="ra_onboarding_ssl_desc">הגישה מרחוק מוצפנת כדי למנוע את דליפת הנתונים שלך</string>
-    <string name="ra_onboarding_otp_title">אימות</string>
-    <string name="ra_onboarding_otp_desc">עם אימות בעזרת סיסמה חד־פעמית, נמנעת גישה לא מורשית לנתונים שלך</string>
-    <string name="ra_onboarding_content_title">גישה לתוכן</string>
-    <string name="ra_onboarding_content_desc">ניתן לבחור למה אפשר לגשת ולמה לא</string>
-    <string name="ra_onboarding_content_ml">גישה לתוכן ספריית מדיה</string>
-    <string name="ra_onboarding_content_files">דפדפן קבצים</string>
-    <string name="ra_onboarding_content_playback">בקרת נגינה</string>
-    <string name="ra_disable">השבתה</string>
-    <string name="ra_log_web">יומן גישה מרחוק</string>
-    <string name="ra_log_crash">יומן קריסות</string>
-    <string name="ra_log_mobile">יומן מכשיר</string>
-    <string name="ra_log_current">יומנים מקומיים נוכחיים</string>
-    <string name="ra_invalid_login">עליך להיכנס למכשיר שלך</string>
-    <string name="ra_invalid_otp">הקוד שסופק שגוי</string>
-    <string name="learn_more">מידע נוסף</string>
 
     <!-- car screens -->
     <string name="help">עזרה</string>
@@ -1397,11 +1309,7 @@
     <string name="metered_warn">להזהיר אותי (בנגינת שמע יכול להיות שהאזהרה תתפספס)</string>
     <string name="metered_connection_stopped">המדיה נעצרה כי החיבור מוגבל או מדוד</string>
     <string name="metered_connection_warning">החיבור שלך מוגבל או מדוד. עלולות לחול עלויות נוספות.</string>
-    <string name="adding">מתווסף</string>
-    <string name="to">אל</string>
     <string name="device">מכשיר</string>
-    <string name="connected_device">מכשיר מחובר</string>
-    <string name="model">דגם מכשיר</string>
     <string name="prefs_app_data">נתוני יישום</string>
     <string name="export_settings_summary">ייצוא ההגדרות שלך לקובץ כדי לייבא אותם בהמשך</string>
     <string name="export_settings">ייצוא הגדרות</string>
@@ -1437,13 +1345,6 @@
     <string name="generating_logs">היומנים נוצרים. נא להמתין.</string>
     <string name="default_playback_action">פעולת נגינה</string>
     <string name="files">קבצים</string>
-    <string name="remote_access_feedback_generate">יצירת דוח</string>
-    <string name="remote_access_feedback_generated">דוח המשוב שלך נוצר</string>
-    <string name="remote_access_feedback_generated_explanation">יש לגעת בכפתור להלן כדי לשלוח אותו באמצעות לקוח הדוא״ל שלך כברירת מחדל. אם נתקלת בתקלות כלשהן ניתן להעתיק ולהדביק את השדות שלהלן ולשלוח את הודעת הדוא״ל בעצמך.</string>
-    <string name="remote_access_feedback_file_explanation">הרגע הורדת את הקובץ הנחוץ. נא לזכור לצרף אותו להודעת הדוא״ל שלך.</string>
-    <string name="generic_copied_to_clipboard">הועתק ללוח הגזירים</string>
     <string name="feedback_email_warning">לא מותקן לקוח דוא״ל</string>
-    <string name="feedback_email_warning_explanation">הדרך הקלה ביותר לשתף את המשוב שלך היא להשתמש ביכולת %1$s.\nכדי לעשות זאת, יש להפעיל את הגישה מרחוק בהגדרות, לעקוב אחר ההנחיות ולבחור ברשומה %2$s בתפריט.</string>
-    <string name="feedback_email_warning_remote_action">פתיחת ההגדרות</string>
     <string name="feedback_email_warning_try_anyway">לנסות בכל זאת</string>
     </resources>

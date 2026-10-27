@@ -135,9 +135,7 @@ android {
 dependencies {
     implementation(project(":application:vlc-android"))
     implementation(project(":application:television"))
-    implementation(project(":application:remote-access-server"))
     testImplementation(project(":application:television"))
-    testImplementation(project(":application:remote-access-server"))
 
     androidTestImplementation(libs.androidx.test.espresso.contrib)
     androidTestImplementation(libs.androidx.test.espresso.core)

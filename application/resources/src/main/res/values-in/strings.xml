@@ -643,7 +643,6 @@
     <string name="next">Selanjutya</string>
     <string name="skip">Lewati</string>
     <string name="next_step">Selanjutnya</string>
-    <string name="download">Unduh</string>
     <string name="ctx_player_video_track">Pilih trek video</string>
     <string name="ctx_player_audio_track">Trek audio</string>
     <string name="ctx_player_subs_track">Trek terjemahan</string>
@@ -888,7 +887,6 @@
     <string name="discovery_failed">Penemuan gagal untuk: %s</string>
     <string name="lock_use_sensor_title">Kunci dengan sensor</string>
     <string name="lock_use_sensor_summary">Saat orientasi dikunci, gunakan sensor untuk memungkinkan orientasi sebaliknya</string>
-    <string name="start">Mulai</string>
     <string name="permission">Izin</string>
     <string name="customize">Kustomisasi</string>
     <string name="selection_count">%d terpilih </string>

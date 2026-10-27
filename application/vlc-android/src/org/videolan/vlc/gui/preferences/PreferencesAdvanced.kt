@@ -75,7 +75,6 @@ import org.videolan.tools.KEY_MEDIA_LAST_PLAYLIST
 import org.videolan.tools.KEY_MEDIA_LAST_PLAYLIST_RESUME
 import org.videolan.tools.KEY_NETWORK_CACHING_VALUE
 import org.videolan.tools.KEY_OPENGL
-import org.videolan.tools.KEY_PREFER_SMBV1
 import org.videolan.tools.KEY_QUICK_PLAY
 import org.videolan.tools.KEY_QUICK_PLAY_DEFAULT
 import org.videolan.tools.POPUP_FORCE_LEGACY
@@ -465,10 +464,6 @@ class PreferencesAdvanced : BasePreferenceFragment(), SharedPreferences.OnShared
             }
             KEY_OPENGL, KEY_DEBLOCKING, KEY_ENABLE_FRAME_SKIP, KEY_ENABLE_TIME_STRETCHING_AUDIO, KEY_ENABLE_VERBOSE_MODE -> {
                 lifecycleScope.launch { restartLibVLC() }
-            }
-            KEY_PREFER_SMBV1 -> {
-                lifecycleScope.launch { VLCInstance.restart() }
-                UiTools.restartDialog(requireActivity())
             }
         }
     }

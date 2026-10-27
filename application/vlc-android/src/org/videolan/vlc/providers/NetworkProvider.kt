@@ -35,6 +35,7 @@ import org.videolan.tools.KEY_BROWSE_NETWORK
 import org.videolan.tools.NetworkMonitor
 import org.videolan.tools.Settings
 import org.videolan.tools.livedata.LiveDataset
+import org.videolan.tools.isSmbScheme
 import org.videolan.vlc.R
 
 class NetworkProvider(context: Context, dataset: LiveDataset<MediaLibraryItem>, url: String? = null, val mocked: ArrayList<MediaLibraryItem>? = null): BrowserProvider(context, dataset, url, Medialibrary.SORT_FILENAME, false), Observer<List<MediaWrapper>> {
@@ -48,7 +49,7 @@ class NetworkProvider(context: Context, dataset: LiveDataset<MediaLibraryItem>, 
         dataset.clear()
         dataset.value = mutableListOf()
         if (mocked!= null)
-            dataset.value = mocked.toMutableList()
+            dataset.value = mocked.filterNot { (it as? MediaWrapper)?.uri?.scheme.isSmbScheme() }.toMutableList()
         else
             if (NetworkMonitor.getInstance(context).lanAllowed) browse()
     }
@@ -105,7 +106,8 @@ class NetworkProvider(context: Context, dataset: LiveDataset<MediaLibraryItem>, 
         dataset.value = data.apply { getFavoritesList(favs)?.let { addAll(0, it) } }
     }
 
-    private fun getFavoritesList(favs: List<MediaWrapper>?): MutableList<MediaLibraryItem>? {
+    private fun getFavoritesList(favorites: List<MediaWrapper>?): MutableList<MediaLibraryItem>? {
+        val favs = favorites?.filterNot { it.uri.scheme.isSmbScheme() }
         if (favs?.isNotEmpty() == true) {
             val list = mutableListOf<MediaLibraryItem>()
             list.add(0, DummyItem(context.getString(R.string.network_favorites)))

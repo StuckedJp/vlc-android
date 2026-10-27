@@ -84,6 +84,7 @@ import org.videolan.tools.VIDEO_RESUME_PLAYBACK
 import org.videolan.tools.VIDEO_SPEED
 import org.videolan.tools.isAppStarted
 import org.videolan.tools.putSingle
+import org.videolan.tools.isSmbScheme
 import org.videolan.vlc.BuildConfig
 import org.videolan.vlc.PlaybackService
 import org.videolan.vlc.R
@@ -513,6 +514,11 @@ class PlaylistManager(val service: PlaybackService) : MediaWrapperList.EventList
         }
 
         val mw = mediaList.getMedia(index) ?: return
+        if (mw.uri.scheme.isSmbScheme()) {
+            service.showToast(service.getString(R.string.invalid_location, mw.uri), Toast.LENGTH_SHORT)
+            stop()
+            return
+        }
         // Persistent ML progress may belong to an earlier process.
         mw.time = PlaybackSessionStore.current.get(mw.uri.toString()).time
         mw.position = 0f

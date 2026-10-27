@@ -684,8 +684,6 @@
     <string name="timeout_infinite">ไม่จำกัด</string>
     <string name="video_hud_timeout">การหน่วงเวลาการซ่อนส่วนควบคุมตัวเล่นวิดีโอ</string>
     <string name="remove_from_history">เอาออกจากประวัติ</string>
-    <string name="prefersmbv1">ต้องการ SMB 1</string>
-    <string name="prefersmbv1_summary">เลิกกาเครื่องหมายกล่องการตั้งค่านี้หากคุณมีปัญหาบางอย่างในการเรียกดูเซิร์ฟเวอร์ SMB ของคุณ</string>
     <string name="apply_to_all">นำไปใช้กับวิดีโอทั้งหมด</string>
     <string name="audio_delay_global">การหน่วงเวลาเสียงถูกตั้งเป็น %s ms สำหรับวิดีโอทั้งหมด</string>
     <string name="go_to_folder">เรียกดูตำแหน่งหลัก</string>

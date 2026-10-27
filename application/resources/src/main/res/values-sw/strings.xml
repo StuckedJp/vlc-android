@@ -859,8 +859,6 @@
     <string name="video_hud_timeout">Vidhibiti vya kichezaji video vya kuficha kawizo</string>
     <string name="video_hud_timeout_summary">%s</string>
     <string name="remove_from_history">Ondoa kutoka historia</string>
-    <string name="prefersmbv1">Pendelea SMB 1</string>
-    <string name="prefersmbv1_summary">Usichague mpangilio huu ikiwa una matatizo unapovinjari seva yako ya SMB</string>
     <string name="apply_to_all">Tekeleza kwa video zote</string>
     <string name="audio_delay_global">Kawizo la usikiko limewekwa %sms kwa video zote</string>
     <string name="audio_delay_bt">Kawizo la usikiko limewekwa %sms kwa kifaa cha bluetooth</string>

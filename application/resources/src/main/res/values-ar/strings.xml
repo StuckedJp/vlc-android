@@ -906,8 +906,6 @@
     <string name="video_hud_timeout">مشغل الفيديو يتحكم في إخفاء التأخير</string>
     <string name="video_hud_timeout_summary">ث%s</string>
     <string name="remove_from_history">أزِل من التاريخ</string>
-    <string name="prefersmbv1">تفضل SMB 1</string>
-    <string name="prefersmbv1_summary">قم بإلغاء تحديد هذا الإعداد إذا واجهت بعض الصعوبات في تصفح خادم SMB الخاص بك</string>
     <string name="apply_to_all">طبق على كل الفيديوهات</string>
     <string name="audio_delay_global">تم ضبط تأخير الصوت على %s مللي ثانية لكل الفيديوهات</string>
     <string name="audio_delay_bt">تم ضبط تأخير الصوت على %s مللي ثانية لجهاز البلوتوث</string>

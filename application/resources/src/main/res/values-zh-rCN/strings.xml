@@ -1037,8 +1037,6 @@
     <string name="video_hud_timeout">视频播放器控件隐藏延迟</string>
     <string name="video_hud_timeout_summary">%s 秒</string>
     <string name="remove_from_history">从历史记录中删除</string>
-    <string name="prefersmbv1">优先使用 SMB v1 协议</string>
-    <string name="prefersmbv1_summary">如果浏览 SMB 服务器时出现困难，请尝试取消勾选此设置</string>
     <string name="apply_to_all">应用到所有视频</string>
     <string name="audio_delay_global">所有视频的音频延迟设置为 %s ms</string>
     <string name="audio_delay_bt">已将蓝牙设备的音频延时设为 %s ms</string>

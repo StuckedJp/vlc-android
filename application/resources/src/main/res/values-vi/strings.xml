@@ -912,8 +912,6 @@ Bạn có thể phải nhấn vào \"Hiển thị thẻ nhớ SD\" trước tron
     <string name="video_hud_timeout">Thời gian ẩn giao diện điều khiển của trình phát video</string>
     <string name="video_hud_timeout_summary">%s giây</string>
     <string name="remove_from_history">Xóa khỏi lịch sử</string>
-    <string name="prefersmbv1">Ưu tiên SMB 1</string>
-    <string name="prefersmbv1_summary">Bỏ chọn cài đặt này nếu bạn gặp khó khăn khi duyệt máy chủ SMB của bạn</string>
     <string name="apply_to_all">Áp dụng với toàn bộ video</string>
     <string name="audio_delay_global">Đã đặt độ trễ âm thanh là %s ms cho tất cả video</string>
     <string name="audio_delay_bt">Đã đặt độ trễ âm thanh là %s ms cho thiết bị bluetooth</string>

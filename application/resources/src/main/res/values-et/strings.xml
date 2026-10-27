@@ -1052,8 +1052,6 @@
     <string name="video_hud_timeout">Viivitus videomängija nuppude peitmisel</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Eemalda ajaloost</string>
-    <string name="prefersmbv1">Eelista SMB 1 protokolli</string>
-    <string name="prefersmbv1_summary">Kui sinu SMB serveri sirvimisel tekib vigu, siis eemalda see eelistus</string>
     <string name="apply_to_all">Rakenda kõikidele videotele</string>
     <string name="audio_delay_global">Heli viivitus kõikidel videotel: %s ms</string>
     <string name="audio_delay_bt">Heli viivitus Bluetooth seadmel: %s ms</string>

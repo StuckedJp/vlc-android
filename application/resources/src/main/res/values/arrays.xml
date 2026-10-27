@@ -7,7 +7,6 @@
         <item>SFTP</item>
         <!--<item>HTTP</item>-->
         <!--<item>HTTPS</item>-->
-        <item>SMB</item>
         <item>NFS</item>
     </string-array>
 

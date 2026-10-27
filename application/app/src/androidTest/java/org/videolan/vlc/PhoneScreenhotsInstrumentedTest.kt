@@ -174,7 +174,7 @@ class PhoneScreenhotsInstrumentedTest : BaseUITest() {
                     ),
                     MLServiceLocator.getAbstractMediaWrapper(
                         Uri.parse("upnp://test/mock"), 0L, 0F, 0L, MediaWrapper.TYPE_ALL,
-                        null, "My SMB server", -1, -1, "",
+                        null, "My UPnP server", -1, -1, "",
                         "", -1, "", "",
                         0, 0, "/storage/emulated/0/Download/upnp1.png",
                         0, 0, 0,

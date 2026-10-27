@@ -1049,8 +1049,6 @@
     <string name="video_hud_timeout">Retard per amagar els controls de vídeo</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Suprimeix de l\'historial</string>
-    <string name="prefersmbv1">Preferit SMB 1</string>
-    <string name="prefersmbv1_summary">Desmarqueu aquesta opció si teniu problemes en accedir al servidor SMB</string>
     <string name="apply_to_all">Aplica a tots els vídeos</string>
     <string name="audio_delay_global">El retard d\'àudio s\'ha definit a %sms per a tots els vídeos</string>
     <string name="audio_delay_bt">El retard d\'àudio s\'ha definit a %s ms per al dispositiu bluetooth</string>

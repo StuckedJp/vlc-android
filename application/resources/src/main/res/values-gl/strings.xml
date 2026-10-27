@@ -792,8 +792,6 @@
     <string name="video_hud_timeout">Atraso no ocultamento dos controis do reprodutor</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Retirar do historial</string>
-    <string name="prefersmbv1">Preferir SMB 1</string>
-    <string name="prefersmbv1_summary">Desmarcar este axuste se ten dificultades para navegar polo servidor SMB</string>
     <string name="apply_to_all">Aplicar a todos os vídeos</string>
     <string name="audio_delay_global">Atraso automático de %s ms para todos os vídeos.</string>
     <string name="audio_delay_bt">O atraso do son dos dispositivo bluetooth estabeleceuse en %s ms.</string>

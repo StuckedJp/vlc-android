@@ -22,6 +22,7 @@ import org.videolan.resources.AppContextProvider
 import org.videolan.resources.VLCInstance
 import org.videolan.resources.util.getFromMl
 import org.videolan.tools.getContextWithLocale
+import org.videolan.tools.isSmbScheme
 import org.videolan.vlc.media.MediaPlayerEventListener
 import org.videolan.vlc.media.PlayerController
 import org.videolan.vlc.util.FontCache
@@ -61,7 +62,7 @@ class PreviewVideoInputService : TvInputService(), CoroutineScope by MainScope()
             val id = uri.lastPathSegment?.toLong() ?: return false
             launch {
                 val mw = getFromMl { getMedia(id) }
-                if (mw == null) {
+                if (mw == null || mw.uri.scheme.isSmbScheme()) {
                     Log.w(TAG, "Could not find video $id")
                     notifyVideoUnavailable(TvInputManager.VIDEO_UNAVAILABLE_REASON_UNKNOWN)
                     return@launch

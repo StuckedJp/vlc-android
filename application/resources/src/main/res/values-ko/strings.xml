@@ -1035,8 +1035,6 @@
     <string name="video_hud_timeout">동영상 컨트롤 숨기기 지연 시간</string>
     <string name="video_hud_timeout_summary">%s초</string>
     <string name="remove_from_history">히스토리에서 제거하기</string>
-    <string name="prefersmbv1">SMBv1 선호</string>
-    <string name="prefersmbv1_summary">SMB 서버를 탐색하는 데 문제가 있다면 이 설정을 해제하세요</string>
     <string name="apply_to_all">모든 동영상에 적용</string>
     <string name="audio_delay_global">모든 동영상에 대해 오디오 지연이 %s밀리초로 설정되었습니다</string>
     <string name="audio_delay_bt">블루투스 기기의 오디오 지연이 %sms로 설정되었습니다</string>

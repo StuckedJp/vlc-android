@@ -1049,8 +1049,6 @@
     <string name="video_hud_timeout">ვიდეოდამკვრელის სამართავის დამალვის დაყოვნება</string>
     <string name="video_hud_timeout_summary">%sწმ</string>
     <string name="remove_from_history">ისტორიიდან მოცილება</string>
-    <string name="prefersmbv1">ამჯობინოს SMB 1</string>
-    <string name="prefersmbv1_summary">მოხსენით მონიშვნა ამ პარამეტრზე თუ გაქვთ შეფერხებები SMB-სერვერის მოძიებისას.</string>
     <string name="apply_to_all">ყველა ვიდეოზე ასახვა</string>
     <string name="audio_delay_global">ხმის დაყოვნებად მითითებულია %s მწმ ყველა ვიდეოსთვის</string>
     <string name="audio_delay_bt">ხმის დაყოვნებად მითითებულია %s მწმ Bluetooth-მოწყობილობისთვის</string>

@@ -1077,8 +1077,6 @@
     <string name="video_hud_timeout">Zpoždění skrytí ovladačů přehrávače videa</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Odstranit z Historie</string>
-    <string name="prefersmbv1">Povolit SMB 1</string>
-    <string name="prefersmbv1_summary">Zakázat, pokud jsou potíže s procházením serveru SMB.</string>
     <string name="apply_to_all">Použít na všechna videa</string>
     <string name="audio_delay_global">Zpoždění zvuku u všech videí nastaveno na %s ms</string>
     <string name="audio_delay_bt">Zpoždění zvuku pro zařízení Bluetooth nastaveno na %s ms</string>

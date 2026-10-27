@@ -51,7 +51,6 @@ import org.videolan.tools.KEY_HARDWARE_ACCELERATION
 import org.videolan.tools.KEY_NETWORK_CACHING_VALUE
 import org.videolan.tools.KEY_OPENGL
 import org.videolan.tools.KEY_PREFERRED_RESOLUTION
-import org.videolan.tools.KEY_PREFER_SMBV1
 import org.videolan.tools.KEY_SUBTITLES_AUTOLOAD
 import org.videolan.tools.KEY_SUBTITLES_BACKGROUND
 import org.videolan.tools.KEY_SUBTITLES_BACKGROUND_COLOR
@@ -220,8 +219,6 @@ object VLCOptions {
                 val optionsArray = customOptions.split("\\r?\\n".toRegex()).toTypedArray()
                 if (!optionsArray.isNullOrEmpty()) Collections.addAll(options, *optionsArray)
             }
-            if (pref.getBoolean(KEY_PREFER_SMBV1, true))
-                options.add("--smb-force-v1")
             if (!Settings.showTvUi) {
                 //Ambisonic
                 val hstfDir = context.getDir("vlc", Context.MODE_PRIVATE)

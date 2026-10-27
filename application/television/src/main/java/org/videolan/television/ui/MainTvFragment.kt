@@ -67,7 +67,6 @@ import org.videolan.resources.HEADER_RECENTLY_ADDED
 import org.videolan.resources.HEADER_RECENTLY_PLAYED
 import org.videolan.resources.HEADER_VIDEO
 import org.videolan.resources.ID_ABOUT_TV
-import org.videolan.resources.ID_PIN_LOCK
 import org.videolan.resources.ID_REFRESH
 import org.videolan.resources.ID_SETTINGS
 import org.videolan.resources.ID_SPONSOR
@@ -85,7 +84,6 @@ import org.videolan.vlc.PlaybackService
 import org.videolan.vlc.R
 import org.videolan.vlc.RecommendationsService
 import org.videolan.vlc.gui.helpers.UiTools.showDonations
-import org.videolan.vlc.gui.helpers.hf.PinCodeDelegate
 import org.videolan.vlc.gui.video.VideoPlayerActivity
 import org.videolan.vlc.reloadLibrary
 import org.videolan.vlc.util.Permissions
@@ -223,8 +221,6 @@ class MainTvFragment : BrowseSupportFragment(), OnItemViewSelectedListener, OnIt
         otherAdapter = ArrayObjectAdapter(GenericCardPresenter(ctx))
         val miscHeader = HeaderItem(HEADER_MISC, getString(R.string.other))
 
-        val lockItem = GenericCardItem(ID_PIN_LOCK, getString(R.string.lock_with_pin_short), "", R.drawable.ic_pin_lock_big, R.color.tv_card_content_dark)
-        if (PinCodeDelegate.pinUnlocked.value == true) otherAdapter.add(lockItem)
         otherAdapter.add(GenericCardItem(ID_SETTINGS, getString(R.string.preferences), "", R.drawable.ic_settings_big, R.color.tv_card_content_dark))
         if (Permissions.canReadStorage(requireActivity())) otherAdapter.add(GenericCardItem(ID_REFRESH, getString(R.string.refresh), "", R.drawable.ic_scan_big, R.color.tv_card_content_dark))
         otherAdapter.add(GenericCardItem(ID_ABOUT_TV, getString(R.string.about), "${getString(R.string.app_name_full)} ${BuildConfig.VLC_VERSION_NAME}", R.drawable.ic_info_big, R.color.tv_card_content_dark))
@@ -234,17 +230,6 @@ class MainTvFragment : BrowseSupportFragment(), OnItemViewSelectedListener, OnIt
 //            manageDonationVisibility(donateCard)
 //        }
 
-        PinCodeDelegate.pinUnlocked.observe(requireActivity()) {
-            if (it) {
-                if ((otherAdapter.get(0) as GenericCardItem).id != ID_PIN_LOCK) {
-                    otherAdapter.add(0, lockItem)
-                }
-            } else {
-                if ((otherAdapter.get(0) as GenericCardItem).id == ID_PIN_LOCK) {
-                    otherAdapter.removeItems(0, 1)
-                }
-            }
-        }
         manageDonationVisibility(donateCard)
         miscRow = ListRow(miscHeader, otherAdapter)
         rowsAdapter.add(miscRow)
@@ -408,7 +393,6 @@ class MainTvFragment : BrowseSupportFragment(), OnItemViewSelectedListener, OnIt
                     }
                     ID_ABOUT_TV -> activity.startActivity(Intent(activity, AboutActivity::class.java))
                     ID_SPONSOR -> activity.showDonations()
-                    ID_PIN_LOCK -> PinCodeDelegate.pinUnlocked.postValue(false)
 
                 }
             }

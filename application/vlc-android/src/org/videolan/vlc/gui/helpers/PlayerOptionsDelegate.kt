@@ -16,7 +16,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.widget.BrowseFrameLayout
 import androidx.leanback.widget.BrowseFrameLayout.OnFocusSearchListener
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.window.layout.FoldingFeature
@@ -44,8 +43,6 @@ import org.videolan.vlc.gui.dialogs.SleepTimerDialog
 import org.videolan.vlc.gui.dialogs.VLCBottomSheetDialogFragment
 import org.videolan.vlc.gui.dialogs.VideoControlsSettingsDialog
 import org.videolan.vlc.gui.helpers.UiTools.addToPlaylist
-import org.videolan.vlc.gui.helpers.hf.PinCodeDelegate
-import org.videolan.vlc.gui.helpers.hf.checkPIN
 import org.videolan.vlc.gui.video.VideoPlayerActivity
 import org.videolan.vlc.media.PlayerController
 import org.videolan.vlc.util.TextUtils
@@ -77,8 +74,6 @@ private const val ID_SHOW_AUDIO_TIPS = 17L
 private const val ID_SHOW_PLAYLIST_TIPS = 18L
 private const val ID_VIDEO_CONTROL_SETTING = 19L
 private const val ID_AUDIO_CONTROL_SETTING = 20L
-private const val ID_SAFE_MODE_LOCK = 21L
-private const val ID_SAFE_MODE_UNLOCK = 22L
 private const val ID_SHARE = 23L
 @SuppressLint("ShowToast")
 class PlayerOptionsDelegate(val activity: FragmentActivity, val service: PlaybackService, private val showABReapeat:Boolean = true)  {
@@ -129,8 +124,6 @@ class PlayerOptionsDelegate(val activity: FragmentActivity, val service: Playbac
             options.add(PlayerOption(ID_PASSTHROUGH, R.drawable.ic_passthrough, res.getString(R.string.audio_digital_title)))
 
         if (video) {
-            if (PinCodeDelegate.pinUnlocked.value == true) options.add(PlayerOption(ID_SAFE_MODE_LOCK, R.drawable.ic_pin_lock, res.getString(R.string.lock_with_pin)))
-            if (Settings.safeMode && PinCodeDelegate.pinUnlocked.value == false) options.add(PlayerOption(ID_SAFE_MODE_UNLOCK, R.drawable.ic_pin_unlock, res.getString(R.string.unlock_with_pin)))
             options.add(PlayerOption(ID_VIDEO_CONTROL_SETTING, R.drawable.ic_video_controls, res.getString(R.string.control_setting)))
         } else if (!Settings.showTvUi) {
             options.add(PlayerOption(ID_SHARE, R.drawable.ic_share, res.getString(R.string.share_track_info)))
@@ -291,17 +284,7 @@ class PlayerOptionsDelegate(val activity: FragmentActivity, val service: Playbac
                 val audioControlsSettingsDialog = AudioControlsSettingsDialog()
                 audioControlsSettingsDialog.show(activity.supportFragmentManager, "fragment_audio_controls_settings")
             }
-            ID_SAFE_MODE_LOCK -> {
-                hide()
-                PinCodeDelegate.pinUnlocked.postValue(false)
-                (activity as? VideoPlayerActivity)?.overlayDelegate?.showOverlay()
-                UiTools.snacker(activity, R.string.safe_mode_enabled)
-            }
 
-            ID_SAFE_MODE_UNLOCK -> {
-                hide()
-                activity.lifecycleScope.launch { activity.checkPIN(true) }
-            }
             else -> showFragment(option.id)
         }
     }

@@ -208,7 +208,6 @@ import org.videolan.vlc.gui.helpers.PlayerKeyListenerDelegate
 import org.videolan.vlc.gui.helpers.PlayerOptionsDelegate
 import org.videolan.vlc.gui.helpers.UiTools
 import org.videolan.vlc.gui.helpers.UiTools.addToPlaylist
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.gui.helpers.hf.StoragePermissionsDelegate
 import org.videolan.vlc.interfaces.IPlaybackSettingsController
 import org.videolan.vlc.media.NO_LENGTH_PROGRESS_MAX
@@ -331,7 +330,6 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
 
     private val dialogsDelegate = DialogDelegate()
     private var baseContextWrappingDelegate: AppCompatDelegate? = null
-    var waitingForPin = false
 
     /**
      * Flag to indicate whether the media should be paused once loaded
@@ -754,7 +752,6 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
         overridePendingTransition(0, 0)
         super.onResume()
         isShowingDialog = false
-        waitingForPin = false
 
         /*
          * Set listeners here to avoid NPE when activity is closing
@@ -1099,7 +1096,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
             if (!isFinishing) {
                 currentAudioTrack = audioTrack
                 currentSpuTrack = spuTrack
-                if (tv && !waitingForPin) finish() // Leave player on TV, restauration can be difficult
+                if (tv) finish() // Leave player on TV, restauration can be difficult
             }
 
             if (isMute) mute(false)
@@ -1513,7 +1510,7 @@ open class VideoPlayerActivity : AppCompatActivity(), PlaybackService.Callback, 
         if (optionsDelegate == null) service?.let {
             optionsDelegate = PlayerOptionsDelegate(this, it)
             optionsDelegate!!.setBookmarkClickedListener {
-                lifecycleScope.launch { if (!showPinIfNeeded()) overlayDelegate.showBookmarks() else overlayDelegate.showOverlay() }
+                lifecycleScope.launch { overlayDelegate.showBookmarks() }
             }
         }
         optionsDelegate?.show()

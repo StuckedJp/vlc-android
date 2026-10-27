@@ -692,13 +692,6 @@
     <string name="apply_to_all">Cuir seo i bhfeidhm ar gach físeán</string>
     <string name="enqueuing">Tá do chuid meáin á luchtú</string>
     <string name="browser_show_missing_media">Taispeáin an meán atá in easnamh</string>
-    <string name="safe_mode_pin">Cuir isteach do UAP</string>
-    <string name="safe_mode_new_pin">Cuir isteach do UAP nua</string>
-    <string name="safe_mode_re_pin">Cuir isteach arís do UAP</string>
-    <string name="safe_mode_no_match">Ní hionann na huimhreacha aitheantais pearsanta</string>
-    <string name="safe_mode_invalid_pin">UAP mhícheart</string>
-    <string name="restricted_access">Rochtain shrianta</string>
-    <string name="unlock">Bain an glas de</string>
     <string name="search_prefs">Socruithe cuardaigh</string>
     <string name="preferred_resolution">An fís-theimhneach is fearr leat</string>
     <string name="pref_resolution_best_available">An ceann is fearr ar fáil</string>

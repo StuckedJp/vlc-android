@@ -30,7 +30,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import kotlinx.coroutines.launch
@@ -46,7 +45,6 @@ import org.videolan.tools.DependencyProvider
 import org.videolan.vlc.R
 import org.videolan.vlc.databinding.DialogAddToGroupBinding
 import org.videolan.vlc.gui.SimpleAdapter
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.viewmodels.mobile.VideoGroupingType
 import org.videolan.vlc.viewmodels.mobile.VideosViewModel
 import java.util.LinkedList
@@ -80,7 +78,6 @@ class AddToGroupDialog : VLCBottomSheetDialogFragment(), SimpleAdapter.ClickHand
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        lifecycleScope.launch { if (requireActivity().showPinIfNeeded()) dismiss() }
         super.onCreate(savedInstanceState)
         medialibrary = Medialibrary.getInstance()
         adapter = SimpleAdapter(this)

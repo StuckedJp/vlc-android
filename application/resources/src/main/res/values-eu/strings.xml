@@ -967,8 +967,6 @@
     <string name="missing_media_snack">Euskarria falta da. Falta diren euskarri guztiak ezkutatu?</string>
     <string name="browser_show_missing_media">Erakutsi falta diren multimediak</string>
     <string name="browser_show_missing_media_summary">Erakutsi urrutiko komunikabideak ez egon arren</string>
-    <string name="parental_control">Gurasoen kontrola</string>
-    <string name="safe_mode">Modu segurua</string>
     <string name="search_prefs">Bilaketa ezarpenak</string>
     <string name="video_match_frame_rate_title">Lotu bistaratzeko fotograma-abiadura</string>
     <string name="video_match_frame_rate_summary">Lotu pantailaren freskatze-abiadura multimediako fotograma-abiadurarekin. Adibidez, 24p-ko film bat 24p-n erreproduzitu behar da</string>

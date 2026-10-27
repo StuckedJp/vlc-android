@@ -234,8 +234,6 @@
     <string name="wait_before_sleep">Vänta på att nuvarande mediaobjekt slutförs först</string>
     <string name="reset_on_interaction">Återställ vid interaktion</string>
     <string name="default_sleep_timer_summary">%1$s, vänta på att media ska sluta: %2$s, återställ vid interaktion: %3$s</string>
-    <string name="video_player_remote">Fjärrkontroll för videospelare</string>
-    <string name="remote_keyboard_navigation">Tangentbordsnavigering</string>
 
     <string name="server_add_title">Lägg till en ny server i favoriter</string>
     <string name="server_domain_hint">Serveradress</string>
@@ -359,7 +357,6 @@
     <string name="screen_orientation_landscape_sensor">Liggande (sensor)</string>
     <string name="screen_orientation_last_locked">Senast låsta orientering</string>
     <string name="enable_black_theme">Mörkt tema</string>
-    <string name="dark_theme">Mörkt tema</string>
     <string name="theme_auto">Automatiskt tema</string>
     <string name="subtitle_text_encoding">Textkodning för undertexter</string>
     <string name="subtitle_preferred_language">Föredraget språk för undertexter</string>
@@ -504,29 +501,6 @@
     <string name="audio_ducking_title">Sänk VLC:s volym vid meddelande</string>
     <string name="audio_ducking_summary">Hjälper till att höra ljudmeddelanden, navigeringsinstruktioner eller assistenttal</string>
     <string name="casting_category">Casta</string>
-    <string name="remote_access">Fjärråtkomst</string>
-    <string name="remote_access_version_title">Version för fjärråtkomst</string>
-    <string name="remote_access_hash_title">Hash för fjärråtkomst</string>
-    <string name="remote_access_status">Serverstatus</string>
-    <string name="remote_access_status_summary">Tryck för att se serverstatusen</string>
-    <string name="remote_access_connections">Anslutningar</string>
-    <string name="remote_access_links">Länkar</string>
-    <string name="remote_access_active">Fjärråtkomst aktiv</string>
-    <string name="remote_access_notification">Fjärråtkomst aktiv på %s</string>
-    <string name="remote_access_notification_stopped">Fjärråtkomst stoppades</string>
-    <string name="remote_access_notification_connecting">Fjärråtkomst ansluter</string>
-    <string name="remote_access_notification_error">Fel vid fjärråtkomst</string>
-    <string name="remote_access_notification_stopping">Fjärråtkomst stoppar</string>
-    <string name="remote_access_notification_not_init">Fjärråtkomst initierar</string>
-    <string name="enable_remote_access">Aktivera fjärråtkomst</string>
-    <string name="remote_access_info">Info om fjärråtkomst</string>
-    <string name="remote_access_content">Innehåll</string>
-    <string name="remote_access_medialibrary_content">Innehåll i mediabiblioteket</string>
-    <string name="remote_access_medialibrary_content_summary">Aktiverad: %1$s\nInaktiverad: %2$s</string>
-    <string name="remote_access_file_browser_content">Filväljare</string>
-    <string name="remote_access_network_browser_content">Nätverksväljare</string>
-    <string name="remote_access_playback_control">Styr uppspelning</string>
-    <string name="remote_access_logs">Dela loggfiler</string>
     <string name="casting_switch_title">Trådlös casting</string>
     <string name="casting_passthrough_title">Passthrough för ljud</string>
     <string name="casting_passthrough_summary">Låt din TV hantera ljudrendering</string>
@@ -656,8 +630,6 @@
     <string name="search_global">Sök i alla mediabibliotek</string>
     <string name="playlist_save">Spara spellista</string>
     <string name="playlist_name_hint">Spellistans namn</string>
-    <string name="chapters">Kapitel</string>
-    <string name="notset">Inte angivet</string>
     <string name="go_to_chapter">Gå till kapitel…</string>
     <string name="current_chapter">Kapitel: %s</string>
     <string name="confirm_resume">Återuppta från senaste position?</string>
@@ -868,7 +840,6 @@
     <string name="next">Nästa</string>
     <string name="skip">Hoppa över</string>
     <string name="next_step">Nästa</string>
-    <string name="download">Ladda ned</string>
     <string name="ctx_player_video_track">Välj videospår</string>
     <string name="ctx_player_audio_track">Ljudspår</string>
     <string name="ctx_player_subs_track">Undertextspår</string>
@@ -1164,7 +1135,6 @@
     <string name="discovery_failed">Misslycklades att upptäcka för: %s</string>
     <string name="lock_use_sensor_title">Lås med sensor</string>
     <string name="lock_use_sensor_summary">Använd sensorn för att tillåta omvänd orientering när orienteringen är låst</string>
-    <string name="start">Starta</string>
     <string name="notification_permission">Aviseringsbehörighet</string>
     <string name="notification_permission_explanation">VLC behöver din tillåtelse att skicka aviseringar.\nAppen aviserar dig endast när den söker efter media eller använder anpassad bild-i-bild för videor.\nDetta förhindrar inte VLC från att fungera om du nekar, men aviseringarna kommer inte att visas.</string>
     <string name="permission">Behörighet</string>
@@ -1302,65 +1272,7 @@
     <string name="ignore_headset_media_button_presses_summary">Användbart om du t.ex. använder ett headset med fysiska knappar som är trasiga</string>
     <string name="replace_playlist">Ersätt spellista</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">Fjärråtkomst aktiv</string>
-    <string name="ra_remote_access">Fjärråtkomst</string>
-    <string name="ra_remote_access_description">Tillståndsavisering av fjärråtkomst</string>
-    <string name="ra_log_file">Loggfiler</string>
-    <string name="ra_log_type">Loggtyp</string>
-    <string name="ra_send_files">Skicka filer</string>
-    <string name="ra_not_in_foreground">Applikationen är inte i förgrunden. Kan inte starta video.</string>
-    <string name="ra_disconnected">Enheten har kopplats från</string>
-    <string name="ra_file">Fil</string>
-    <string name="ra_upload_remaining">Laddar upp %s filer</string>
-    <string name="ra_upload_all">Ladda upp alla</string>
-    <string name="ra_drop_files_tip">Släpp filer var som helst för att skicka till din enhet</string>
-    <string name="ra_prepare_download">Förbereder din nedladdning</string>
-    <string name="ra_forbidden">Innehållet har inaktiverats i inställningarna</string>
-    <string name="ra_playback_forbidden">Uppspelningskontroll har inaktiverats i inställningarna</string>
-    <string name="ra_logs_forbidden">Delning av loggar har inaktiverats i inställningarna</string>
-    <string name="ra_code_requested_explanation">För att skydda din server är åtkomst skyddad.\nAnge koden som visas i dina aviseringar</string>
-    <string name="ra_ssl_explanation_title">Osäker anslutning</string>
-    <string name="ra_ssl_explanation">Din anslutning är inte säker</string>
-    <string name="ra_ssl_explanation_browser">På grund av webbläsarens säkerhetsimplementering kommer du få en säkerhetsvarning på nästa sida.</string>
-    <string name="ra_ssl_explanation_accept">Se till att acceptera certifikatet för att kunna använda fjärråtkomst</string>
-    <string name="ra_ssl_button">Använd en säker anslutning</string>
-    <string name="ra_new_code">Skicka en ny kod</string>
-    <string name="home">Hem</string>
-    <string name="ra_code">Ange denna kod: %s</string>
-    <string name="ra_send_logs">Spara fjärråtkomstens loggar på enheten</string>
-    <string name="ra_otp">Engångslösenord för fjärråtkomst</string>
-    <string name="ra_otp_description">Åtkomstbegäran för fjärråtkomst</string>
-    <string name="ra_otp_title">Inloggningsförsök för fjärråtkomst</string>
-    <string name="ra_otp_subtitle">Ange denna kod på den andra enheten om detta är du</string>
-    <string name="ra_otp_not_me">Det är inte jag</string>
-    <string name="ra_output">Ljudutmatning</string>
-    <string name="ra_play_on_browser">Spela upp i webbläsare</string>
-    <string name="ra_play_on_device">Spela upp på enhet</string>
-    <string name="ra_browser_audio_not_found">Mediafil hittades inte eller kan inte spelas upp i webbläsare</string>
-    <string name="ra_browser_audio_unsupported_format">Detta ljudformat stöds inte av din webbläsare</string>
-    <string name="ra_upload_subtitle">Ladda upp undertext</string>
 
-    <string name="ra_onboarding_welcome_desc">Välkommen till fjärråtkomst i VLC for Android\nGenom att aktivera detta kommer du kunna styra uppspelningen på denna enhet och mer</string>
-    <string name="ra_onboarding_how_title">Styr denna enhet</string>
-    <string name="ra_onboarding_how_desc">Styr uppspelningen på din enhet, skicka eller ta emot filer och mer</string>
-    <string name="ra_onboarding_ssl_title">Datakryptering</string>
-    <string name="ra_onboarding_ssl_desc">Fjärråtkomst krypteras för att förhindra dataläckage</string>
-    <string name="ra_onboarding_otp_title">Autentisering</string>
-    <string name="ra_onboarding_otp_desc">Autentisering med engångslösenord kan förhindra oönskad åtkomst till din data</string>
-    <string name="ra_onboarding_content_title">Innehållsåtkomst</string>
-    <string name="ra_onboarding_content_desc">Välj vad som kan och inte kan kommas åt</string>
-    <string name="ra_onboarding_content_ml">Innehållsåtkomst till mediabiblioteket</string>
-    <string name="ra_onboarding_content_files">Filväljare</string>
-    <string name="ra_onboarding_content_playback">Uppspelningskontroll</string>
-    <string name="ra_disable">Inaktivera</string>
-    <string name="ra_log_web">Fjärråtkomstlogg</string>
-    <string name="ra_log_crash">Kraschlogg</string>
-    <string name="ra_log_mobile">Enhetslogg</string>
-    <string name="ra_log_current">Nuvarande lokala loggar</string>
-    <string name="ra_invalid_login">Du måste logga in på din enhet</string>
-    <string name="ra_invalid_otp">Ogiltig kod har angetts</string>
-    <string name="learn_more">Läs mer</string>
 
     <!-- car screens -->
     <string name="help">Hjälp</string>
@@ -1376,11 +1288,7 @@
     <string name="metered_warn">Varna mig (under ljuduppspelning kan man missa varningen)</string>
     <string name="metered_connection_stopped">Media stoppades på grund av anslutning med datapriser</string>
     <string name="metered_connection_warning">Du har en anslutning med datapriser. Avgifter kan tillkomma.</string>
-    <string name="adding">Lägger till</string>
-    <string name="to">i</string>
     <string name="device">Enhet</string>
-    <string name="connected_device">Enhet som är ansluten</string>
-    <string name="model">Enhetsmodell</string>
     <string name="prefs_app_data">Applikationsdata</string>
     <string name="export_settings_summary">Exportera dina inställningar till en fil för att importera dem senare</string>
     <string name="export_settings">Exportera inställningar</string>
@@ -1416,13 +1324,6 @@
     <string name="generating_logs">Loggar genereras. Var god vänta.</string>
     <string name="default_playback_action">Uppspelningsåtgärd</string>
     <string name="files">Filer</string>
-    <string name="remote_access_feedback_generate">Generera rapport</string>
-    <string name="remote_access_feedback_generated">Din återkopplingsrapport har genererats</string>
-    <string name="remote_access_feedback_generated_explanation">Tryck på knappen nedan för att skicka den med din standardklient för e-post. Om fel uppstår kan du kopiera och klistra in i fälten nedan och själv skicka e-postmeddelandet.</string>
-    <string name="remote_access_feedback_file_explanation">Du laddade precis ned den nödvändiga filen. Kom ihåg att bifoga den i ditt e-postmeddelande.</string>
-    <string name="generic_copied_to_clipboard">Kopierades till urklipp</string>
     <string name="feedback_email_warning">Ingen e-postklient är installerad</string>
-    <string name="feedback_email_warning_explanation">Det enklaste sättet att dela din återkoppling är att använda funktionen %1$s.\nAktivera fjärråtkomst i inställningarna, följ instruktionerna och välj alternativet %2$s i menyn.</string>
-    <string name="feedback_email_warning_remote_action">Öppna inställningarna</string>
     <string name="feedback_email_warning_try_anyway">Försök igen</string>
     </resources>

@@ -152,9 +152,6 @@ object VersionMigration {
             migrateToVersion16(settings)
         }
 
-        if (lastVersion < 17) {
-            migrateToVersion17(settings)
-        }
 
         //Major version upgrade
         if (lastMajorVersion == 3 && currentMajorVersion == 4) {
@@ -469,32 +466,6 @@ object VersionMigration {
                     ?.toInt()
                     ?.coerceInOrDefault(11, 80, 20)
                     ?: 20)
-            }
-        }
-    }
-
-    /**
-     * Migrate the wrongly typed remote_access_medialibrary_content setting
-     *
-     */
-    private fun migrateToVersion17(settings: SharedPreferences) {
-        Log.i(this::class.java.simpleName, "Migrate to version 17: Migrate the wrongly typed remote_access_medialibrary_content setting")
-        if (settings.contains("remote_access_medialibrary_content")) {
-            try {
-                settings.getString("remote_access_medialibrary_content", "")?.let {  oldValue ->
-                    settings.edit(true) {
-                        putStringSet(
-                            "remote_access_medialibrary_content",
-                            oldValue
-                                .split(",")
-                                .map { it.filter(Char::isDigit) }
-                                .toSet()
-                        )
-                    }
-                }
-
-            } catch (_: ClassCastException) {
-                //Not a string. Safe to keep
             }
         }
     }

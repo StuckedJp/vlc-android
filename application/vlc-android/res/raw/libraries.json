@@ -51,11 +51,6 @@
       "license"  : "isc"
     },
     {
-      "title"    : "Ktor",
-      "copyright": "Copyright © 2014-2019 JetBrains s.r.o and contributors",
-      "license"  : "apache2.0"
-    },
-    {
       "title"    : "liba52",
       "copyright": "Copyright © 1999-2004 Aaron Holtzman, Michel Lespinasse et al.",
       "license"  : "gpl2"
@@ -219,11 +214,6 @@
       "title"    : "ORC",
       "copyright": "Copyright © 2002-2009 David A. Schleef",
       "license"  : "isc"
-    },
-    {
-      "title"    : "RemoteAccess",
-      "copyright": "Copyright © 2015 VLC authors, VideoLAN, and VideoLabs",
-      "license"  : "lgpl2.1"
     },
     {
       "title"    : "Retrofit",

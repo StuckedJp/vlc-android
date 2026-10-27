@@ -234,8 +234,6 @@
     <string name="wait_before_sleep">Espereu que acabi primer l\'actual element multimèdia</string>
     <string name="reset_on_interaction">Restableix en qualsevol interacció</string>
     <string name="default_sleep_timer_summary">%1$s, espera el final del multimèdia: %2$s, restableix en interacció: %3$s</string>
-    <string name="video_player_remote">Reproductor de vídeo remot</string>
-    <string name="remote_keyboard_navigation">Navegació amb teclat</string>
 
     <string name="server_add_title">Afegeix un servidor als preferits</string>
     <string name="server_domain_hint">Adreça del servidor (nom d\'amfitrió o adreça IP)</string>
@@ -358,7 +356,6 @@
     <string name="screen_orientation_landscape_sensor">Horitzontal (sensor)</string>
     <string name="screen_orientation_last_locked">Darrera orientació bloquejada</string>
     <string name="enable_black_theme">Tema negre</string>
-    <string name="dark_theme">Tema fosc</string>
     <string name="theme_auto">Tema automàtic</string>
     <string name="subtitle_text_encoding">Codificació del text del subtítol</string>
     <string name="subtitle_preferred_language">Idioma preferit per als subtítols</string>
@@ -503,29 +500,6 @@
     <string name="audio_ducking_title">Baixa el volum del VLC a les notificacions</string>
     <string name="audio_ducking_summary">Ajuda a sentir les notificacions d\'àudio, instruccions de navegació o la veu de l\'assistent</string>
     <string name="casting_category">Difusió</string>
-    <string name="remote_access">Accés remot</string>
-    <string name="remote_access_version_title">Versió d\'accés remot</string>
-    <string name="remote_access_hash_title">Hash d\'accés remot</string>
-    <string name="remote_access_status">Estat del servidor</string>
-    <string name="remote_access_status_summary">Toqueu per veure l\'estat del servidor</string>
-    <string name="remote_access_connections">Connexions</string>
-    <string name="remote_access_links">Enllaços</string>
-    <string name="remote_access_active">Accés remot actiu</string>
-    <string name="remote_access_notification">Accés remot actiu a %s</string>
-    <string name="remote_access_notification_stopped">Accés remot aturat</string>
-    <string name="remote_access_notification_connecting">Connectant l\'accés remot</string>
-    <string name="remote_access_notification_error">Error d\'accés remot</string>
-    <string name="remote_access_notification_stopping">Aturant l\'accés remot</string>
-    <string name="remote_access_notification_not_init">Inicialitzant l\'accés remot</string>
-    <string name="enable_remote_access">Habilita l\'accés remot</string>
-    <string name="remote_access_info">Informació d\'accés remot</string>
-    <string name="remote_access_content">Contingut</string>
-    <string name="remote_access_medialibrary_content">Contingut de la mediateca</string>
-    <string name="remote_access_medialibrary_content_summary">Habilitat: %1$s\nInhabilitat: %2$s</string>
-    <string name="remote_access_file_browser_content">Explorador de fitxers</string>
-    <string name="remote_access_network_browser_content">Navegador de xarxa</string>
-    <string name="remote_access_playback_control">Controla la reproducció</string>
-    <string name="remote_access_logs">Compartir els fitxers de registre</string>
     <string name="casting_switch_title">Difusió sense fils</string>
     <string name="casting_passthrough_title">Pas directe d\'àudio</string>
     <string name="casting_passthrough_summary">Deixa que la tele gestioni el renderitzat de l\'àudio</string>
@@ -655,8 +629,6 @@
     <string name="search_global">Cerca a tota la mediateca</string>
     <string name="playlist_save">Desa la llista de reproducció</string>
     <string name="playlist_name_hint">Nom de la llista de reproducció</string>
-    <string name="chapters">Capítols</string>
-    <string name="notset">No definit</string>
     <string name="go_to_chapter">Vés al capítol…</string>
     <string name="current_chapter">Capítol: %s</string>
     <string name="confirm_resume">Reprèn des de l\'última posició?</string>
@@ -867,7 +839,6 @@
     <string name="next">Endavant</string>
     <string name="skip">Omet</string>
     <string name="next_step">Següent</string>
-    <string name="download">Baixa</string>
     <string name="ctx_player_video_track">Tria la pista de vídeo</string>
     <string name="ctx_player_audio_track">Pista d\'àudio</string>
     <string name="ctx_player_subs_track">Pista de subtítols</string>
@@ -1163,7 +1134,6 @@
     <string name="discovery_failed">Ha fallat el descobriment de: %s</string>
     <string name="lock_use_sensor_title">Bloqueja amb el sensor</string>
     <string name="lock_use_sensor_summary">Quan l\'orientació està bloquejada, usar el sensor per permetre l\'orientació inversa</string>
-    <string name="start">Inicia</string>
     <string name="notification_permission">Permís de notificació</string>
     <string name="notification_permission_explanation">Al VLC li cal el vostre permís per enviar notificacions.\nL\'app només us notificarà quan escanegi els vostres multimèdia o quan utilitzi el vídeo personalitzat a Imatges.\nEncara que es refusi, el VLC seguirà treballant, però les notificacions quedaran amagades.</string>
     <string name="permission">Permís</string>
@@ -1301,65 +1271,7 @@
     <string name="ignore_headset_media_button_presses_summary">Útil si, per exemple, utilitzeu un auricular amb els botons físics espatllats.</string>
     <string name="replace_playlist">Substitueix la llista de reproducció</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">Accés remot actiu</string>
-    <string name="ra_remote_access">Accés remot</string>
-    <string name="ra_remote_access_description">Notificació d\'estat d\'accés remot</string>
-    <string name="ra_log_file">Fitxers de registre</string>
-    <string name="ra_log_type">Tipus de registre</string>
-    <string name="ra_send_files">Envia fitxers</string>
-    <string name="ra_not_in_foreground">L\'aplicació no està en primer pla. No es pot iniciar el vídeo.</string>
-    <string name="ra_disconnected">Desconnectat del dispositiu</string>
-    <string name="ra_file">Fitxer</string>
-    <string name="ra_upload_remaining">Pujant %s fitxers</string>
-    <string name="ra_upload_all">Pujar-ho tot</string>
-    <string name="ra_drop_files_tip">Deixa caure fitxers en qualsevol lloc per enviar-los al teu dispositiu.</string>
-    <string name="ra_prepare_download">Preparant la vostra descàrrega</string>
-    <string name="ra_forbidden">Contingut desactivat a la configuració</string>
-    <string name="ra_playback_forbidden">Control de reproducció desactivat a la configuració</string>
-    <string name="ra_logs_forbidden">Compartició de registres desactivada a la configuració</string>
-    <string name="ra_code_requested_explanation">Per protegir el vostre servidor, l\'accés està protegit.\nSi us plau, introduïu el codi que apareix a les vostres notificacions</string>
-    <string name="ra_ssl_explanation_title">Connexió no segura</string>
-    <string name="ra_ssl_explanation">La vostra connexió no és segura.</string>
-    <string name="ra_ssl_explanation_browser">A causa de la implementació de seguretat del navegador, rebreu un avís de seguretat a la pàgina següent.</string>
-    <string name="ra_ssl_explanation_accept">Assegureu-vos d\'acceptar el certificat per poder utilitzar l\'accés remot</string>
-    <string name="ra_ssl_button">Utilitza una connexió segura</string>
-    <string name="ra_new_code">Envia un nou codi</string>
-    <string name="home">Inici</string>
-    <string name="ra_code">Introduïu aquest codi: %s</string>
-    <string name="ra_send_logs">Desar els registres d\'accés remot al dispositiu</string>
-    <string name="ra_otp">Contrasenya d\'accés remot d\'una sola vegada</string>
-    <string name="ra_otp_description">Sol·licituds d\'accés per a l\'accés remot</string>
-    <string name="ra_otp_title">Intent d\'inici de sessió d\'accés remot</string>
-    <string name="ra_otp_subtitle">Si ets tu, introdueix aquest codi a l\'altre dispositiu</string>
-    <string name="ra_otp_not_me">No sóc jo</string>
-    <string name="ra_output">Sortida d\'àudio</string>
-    <string name="ra_play_on_browser">Reprodueix al navegador</string>
-    <string name="ra_play_on_device">Reprodueix al dispositiu</string>
-    <string name="ra_browser_audio_not_found">No s\'ha trobat el contingut multimèdia o no es pot reproduir al navegador</string>
-    <string name="ra_browser_audio_unsupported_format">Aquest format d\'àudio no és compatible amb el vostre navegador</string>
-    <string name="ra_upload_subtitle">Puja el subtítol</string>
 
-    <string name="ra_onboarding_welcome_desc">Benvingut a l\'accés remot del VLC per a Android\nEn habilitar-lo, podreu controlar la reproducció d\'aquest dispositiu i més</string>
-    <string name="ra_onboarding_how_title">Controla el vostre dispositiu</string>
-    <string name="ra_onboarding_how_desc">Controla la reproducció del vostre dispositiu, envia o recupera fitxers i més</string>
-    <string name="ra_onboarding_ssl_title">Encriptatge de dades</string>
-    <string name="ra_onboarding_ssl_desc">L\'accés remot està encriptat per evitar que les teves dades es filtrin</string>
-    <string name="ra_onboarding_otp_title">Autenticació</string>
-    <string name="ra_onboarding_otp_desc">Amb l\'autenticació de contrasenya d\'un sol ús, eviteu l\'accés no desitjat a les vostres dades</string>
-    <string name="ra_onboarding_content_title">Accés al contingut</string>
-    <string name="ra_onboarding_content_desc">Trieu què es pot accedir i què no es pot accedir</string>
-    <string name="ra_onboarding_content_ml">Accés al contingut de la mediateca</string>
-    <string name="ra_onboarding_content_files">Explorador de fitxers</string>
-    <string name="ra_onboarding_content_playback">Control de reproducció</string>
-    <string name="ra_disable">Desactiva</string>
-    <string name="ra_log_web">Registre d\'accés remot</string>
-    <string name="ra_log_crash">Registre de la fallada</string>
-    <string name="ra_log_mobile">Registre del dispositiu</string>
-    <string name="ra_log_current">Registres locals actuals</string>
-    <string name="ra_invalid_login">Heu d\'iniciar sessió al vostre dispositiu</string>
-    <string name="ra_invalid_otp">El codi proporcionat no és vàlid</string>
-    <string name="learn_more">Per saber-ne més</string>
 
     <!-- car screens -->
     <string name="help">Ajuda</string>
@@ -1375,11 +1287,7 @@
     <string name="metered_warn">Avisa\'m (es pot perdre l\'avís per a la reproducció d\'àudio)</string>
     <string name="metered_connection_stopped">El multimèdia s\'ha aturat perquè es mesura la connexió</string>
     <string name="metered_connection_warning">La vostra connexió està mesurada. Es poden aplicar tarifes.</string>
-    <string name="adding">Afegint</string>
-    <string name="to">a</string>
     <string name="device">Dispositiu</string>
-    <string name="connected_device">Dispositiu connectat</string>
-    <string name="model">Model de dispositiu</string>
     <string name="prefs_app_data">Dades de l\'aplicació</string>
     <string name="export_settings_summary">Exporteu la vostra configuració a un fitxer per importar-la més tard</string>
     <string name="export_settings">Exportar configuració</string>
@@ -1415,13 +1323,6 @@
     <string name="generating_logs">Generant els registres. Espereu.</string>
     <string name="default_playback_action">Acció de reproducció</string>
     <string name="files">Fitxers</string>
-    <string name="remote_access_feedback_generate">Generar informe</string>
-    <string name="remote_access_feedback_generated">S\'ha generat el vostre informe de comentaris</string>
-    <string name="remote_access_feedback_generated_explanation">Toqueu el botó següent per enviar-lo mitjançant el vostre client de correu electrònic predeterminat. Si trobeu algun problema, podeu copiar i enganxar els camps següents i enviar el correu electrònic vosaltres mateixos.</string>
-    <string name="remote_access_feedback_file_explanation">Acabeu de descarregar el fitxer necessari. Recordeu adjuntar-lo al vostre correu electrònic.</string>
-    <string name="generic_copied_to_clipboard">Copiat al porta-retalls</string>
     <string name="feedback_email_warning">No hi ha cap client de correu electrònic instal·lat</string>
-    <string name="feedback_email_warning_explanation">La manera més senzilla de compartir els vostres comentaris és utilitzar la funció %1$s.\nPer fer-ho, activeu l\'accés remot a la configuració, seguiu les instruccions i trieu l\'entrada %2$s al menú.</string>
-    <string name="feedback_email_warning_remote_action">Obrir la configuració</string>
     <string name="feedback_email_warning_try_anyway">Prova-ho de totes maneres</string>
     </resources>

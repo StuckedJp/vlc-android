@@ -548,7 +548,6 @@
     <string name="delete_the_selected">ᱥᱮᱞᱮᱫᱟᱜ ᱚᱪᱚᱫ</string>
     <string name="download_the_selected">ᱥᱮᱞᱮᱫᱟᱜ ᱰᱟᱣᱩᱱᱞᱚᱰ</string>
     <string name="next">ᱤᱱᱟ ᱛᱟᱭᱚᱢ</string>
-    <string name="download">ᱰᱟᱩᱱᱞᱳᱰ</string>
     <string name="ctx_player_video_track">ᱣᱤᱰᱤᱭᱚ ᱴᱨᱮᱠ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="ctx_player_audio_track">ᱚᱰᱤᱭᱚ ᱴᱨᱮᱠ</string>
     <string name="ctx_player_subs_track">ᱥᱟᱹᱵᱽᱴᱟᱭᱴᱟᱹᱞ ᱴᱨᱟᱠ</string>
@@ -690,7 +689,6 @@
     <string name="add_button">ᱥᱮᱞᱮᱫᱽ ᱢᱮ</string>
     <string name="add_all_button">ᱡᱚᱛᱚ ᱥᱮᱞᱮᱫᱽ ᱢᱮ</string>
     <string name="add_new_only_button">ᱱᱟᱶᱟᱱᱟᱜ ᱠᱷᱟᱹᱞᱤ ᱥᱮᱞᱮᱫ ᱢᱮ</string>
-    <string name="start">ᱮᱦᱚᱵ</string>
     <string name="customize">ᱠᱩᱥᱤᱭᱟᱜ</string>
     <string name="controls_setting">ᱠᱚᱵᱡᱟ ᱨᱮᱭᱟᱜ ᱥᱟᱡᱟᱣ ᱠᱚ</string> <string name="view_online">ᱚᱱᱞᱟᱭᱤᱱ ᱫᱮᱠᱷᱟᱣ ᱢᱮ</string>
     </resources>

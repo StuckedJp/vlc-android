@@ -542,7 +542,6 @@
     <string name="download_the_selected">छनौट डाउनलोड गर्नुहोस्</string>
     <string name="next">पछिल्लो</string>
     <string name="next_step">अर्को</string>
-    <string name="download">डाउनलोड</string>
     <string name="ctx_player_video_track">भिडियो ट्रायाक चयन गर्नुहोस्</string>
     <string name="ctx_player_audio_track">अडियो ट्र्याक</string>
     <string name="ctx_player_subs_track">उपशीर्षक ट्रयाक</string>

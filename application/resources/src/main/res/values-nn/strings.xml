@@ -673,12 +673,6 @@
     <string name="go_to_folder">Bla gjennom overordna mappe</string>
     <string name="missing_media_snack">Medium manglar. Gøyma alle manglande media?</string>
     <string name="browser_show_missing_media">Vis manglande medium</string>
-    <string name="parental_control">Foreldrekontroll</string>
-    <string name="safe_mode">Trygg modus</string>
-    <string name="safe_mode_new_pin">Skriv inn ny PIN</string>
-    <string name="safe_mode_invalid_pin">Feil PIN</string>
-    <string name="safe_mode_enabled">Trygg modus aktivert</string>
-    <string name="restrict_settings">Avgrens tilgang til innstillingar</string>
     <string name="search_prefs">Søk i innstillingar</string>
     <string name="bookmarks_title">Bokmerke</string>
     <string name="show">Vis</string>

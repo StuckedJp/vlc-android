@@ -23,12 +23,10 @@
 
 package org.videolan.vlc.gui.preferences
 
-import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.CheckBoxPreference
@@ -50,12 +48,9 @@ import org.videolan.tools.KEY_MEDIA_LAST_PLAYLIST_RESUME
 import org.videolan.tools.PLAYBACK_HISTORY
 import org.videolan.tools.RESULT_RESTART
 import org.videolan.tools.Settings
-import org.videolan.tools.Settings.isPinCodeSet
 import org.videolan.tools.VIDEO_RESUME_PLAYBACK
 import org.videolan.vlc.R
 import org.videolan.vlc.gui.EqualizerSettingsActivity
-import org.videolan.vlc.gui.PinCodeActivity
-import org.videolan.vlc.gui.PinCodeReason
 import org.videolan.vlc.gui.SecondaryActivity
 import org.videolan.vlc.gui.dialogs.CONFIRM_PREFERENCE_CHANGE_DIALOG_RESULT
 import org.videolan.vlc.gui.dialogs.ConfirmPreferenceChangeDialog
@@ -68,11 +63,6 @@ import org.videolan.vlc.util.Permissions
 class PreferencesFragment : BasePreferenceFragment(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     private lateinit var audioResumePref: CheckBoxPreference
-    var pinCodeResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            loadFragment(PreferencesParentalControl())
-        }
-    }
 
     override fun getXml() = R.xml.preferences
 
@@ -164,14 +154,6 @@ class PreferencesFragment : BasePreferenceFragment(), SharedPreferences.OnShared
             "equalizer" -> startActivity(Intent(requireActivity().applicationContext, EqualizerSettingsActivity::class.java))
             "adv_category" -> loadFragment(PreferencesAdvanced())
             "casting_category" -> loadFragment(PreferencesCasting())
-            "parental_control" -> {
-                if (requireActivity().isPinCodeSet())
-                    loadFragment(PreferencesParentalControl())
-                else {
-                    val intent = PinCodeActivity.getIntent(requireActivity(), PinCodeReason.FIRST_CREATION)
-                    pinCodeResult.launch(intent)
-                }
-            }
             "permissions" -> {
                 PermissionListDialog.newInstance().show(requireActivity().supportFragmentManager, "PermissionListDialog")
 

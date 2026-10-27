@@ -114,12 +114,6 @@
                 android:icon="@drawable/ic_renderer"
                 android:key="casting_category"/>
 
-        <PreferenceScreen
-                android:key="parental_control"
-                android:singleLine="false"
-                android:fragment="org.videolan.television.ui.preferences.PreferencesParentalControl"
-                android:icon="@drawable/ic_pref_parental_control"
-                android:title="@string/parental_control"/>
         <Preference
             android:title="@string/android_auto"
             android:key="android_auto_category"

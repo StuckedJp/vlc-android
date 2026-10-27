@@ -845,9 +845,6 @@
     <string name="no_sub_renderer">Ekki er enn stuðningur við skjátexta við casting-sendingar</string>
     <string name="soundfont">MIDI SoundFont</string>
     <string name="soundfont_summary">Veldu SoundFont-skrá til að spila midi-hljóðspor</string>
-    <string name="safe_mode">Öryggishamur</string>
-    <string name="restricted_access">Aðgangur takmarkaður</string>
-    <string name="unlock">Aflæsa</string>
     <string name="search_prefs">Leitarstillingar</string>
     <string name="preferred_resolution">Kjörupplausn myndmerkis</string>
     <string name="preferred_resolution_summary">Hámarksgæði myndmerkis í streymi, ef slíkt er í boði: %s</string>

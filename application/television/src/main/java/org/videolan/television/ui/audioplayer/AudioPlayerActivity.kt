@@ -78,7 +78,6 @@ import org.videolan.vlc.gui.helpers.PlayerKeyListenerDelegate
 import org.videolan.vlc.gui.helpers.PlayerOptionsDelegate
 import org.videolan.vlc.gui.helpers.PlayerOptionsDelegateCallback
 import org.videolan.vlc.gui.helpers.UiTools
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.gui.video.VideoPlayerActivity
 import org.videolan.vlc.media.MediaUtils
 import org.videolan.vlc.media.PlaylistManager
@@ -371,7 +370,7 @@ class AudioPlayerActivity : BaseTvActivity(),KeycodeListener, PlaybackService.Ca
             val service = model.service ?: return
             optionsDelegate = PlayerOptionsDelegate(this, service, false)
             optionsDelegate?.setBookmarkClickedListener {
-                lifecycleScope.launch { if (!showPinIfNeeded()) showBookmarks() }
+                lifecycleScope.launch { showBookmarks() }
             }
         }
         optionsDelegate?.show()

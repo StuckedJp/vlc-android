@@ -55,7 +55,6 @@ import org.videolan.vlc.R
 import org.videolan.vlc.databinding.DialogDisplaySettingsBinding
 import org.videolan.vlc.databinding.SortDisplaySettingBinding
 import org.videolan.vlc.gui.helpers.DefaultPlaybackAction
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.viewmodels.DisplaySettingsViewModel
 import org.videolan.vlc.viewmodels.mobile.VideoGroupingType
 import org.videolan.vlc.viewmodels.mobile.VideosViewModel
@@ -126,7 +125,6 @@ class DisplaySettingsDialog : VLCBottomSheetDialogFragment() {
     override fun initialFocusedView(): View = binding.title
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        lifecycleScope.launch { if (requireActivity().showPinIfNeeded()) dismiss() }
         super.onCreate(savedInstanceState)
         displayInCards =if (arguments?.containsKey(DISPLAY_IN_CARDS) == true)  arguments?.getBoolean(DISPLAY_IN_CARDS) else null
         onlyFavs = if (arguments?.containsKey(ONLY_FAVS) == true) arguments?.getBoolean(ONLY_FAVS) else null

@@ -63,7 +63,6 @@ import org.videolan.vlc.gui.dialogs.DuplicationWarningDialog.Companion.NO_OPTION
 import org.videolan.vlc.gui.dialogs.DuplicationWarningDialog.Companion.OPTION_KEY
 import org.videolan.vlc.gui.dialogs.DuplicationWarningDialog.Companion.REQUEST_KEY
 import org.videolan.vlc.gui.helpers.UiTools
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.providers.FileBrowserProvider
 import org.videolan.vlc.util.isSchemeStreaming
 import org.videolan.vlc.util.onAnyChange
@@ -116,7 +115,6 @@ class SavePlaylistDialog : VLCBottomSheetDialogFragment(), View.OnClickListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launch { if (requireActivity().showPinIfNeeded()) dismiss() }
         medialibrary = Medialibrary.getInstance()
         adapter = SimpleAdapter(this)
         dataObserver = adapter.onAnyChange {

@@ -24,7 +24,6 @@
 package org.videolan.television.ui.preferences
 
 import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
@@ -32,7 +31,6 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceScreen
 import org.videolan.medialibrary.interfaces.Medialibrary
 import org.videolan.tools.AUDIO_RESUME_PLAYBACK
 import org.videolan.tools.KEY_AUDIO_LAST_PLAYLIST
@@ -47,12 +45,9 @@ import org.videolan.tools.KEY_MEDIA_LAST_PLAYLIST_RESUME
 import org.videolan.tools.PLAYBACK_HISTORY
 import org.videolan.tools.RESULT_RESTART
 import org.videolan.tools.Settings
-import org.videolan.tools.Settings.isPinCodeSet
 import org.videolan.tools.VIDEO_RESUME_PLAYBACK
 import org.videolan.vlc.R
 import org.videolan.vlc.gui.EqualizerSettingsActivity
-import org.videolan.vlc.gui.PinCodeActivity
-import org.videolan.vlc.gui.PinCodeReason
 import org.videolan.vlc.gui.SecondaryActivity
 import org.videolan.vlc.gui.dialogs.ConfirmPreferenceChangeDialog
 import org.videolan.vlc.gui.dialogs.PermissionListDialog
@@ -67,19 +62,6 @@ class PreferencesFragment : BasePreferenceFragment(), SharedPreferences.OnShared
     override fun onStart() {
         super.onStart()
         preferenceScreen.sharedPreferences!!.registerOnSharedPreferenceChangeListener(this)
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                0 -> {
-                    val preferenceScreen: PreferenceScreen? = findPreference("parental_control") as PreferenceScreen?
-                    onPreferenceTreeClick(preferenceScreen!!)
-                }
-            }
-        }
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
@@ -99,13 +81,6 @@ class PreferencesFragment : BasePreferenceFragment(), SharedPreferences.OnShared
                     activity.setResult(RESULT_RESTART)
                 }
                 true
-            }
-            "parental_control" -> {
-                if (!activity.isPinCodeSet()) {
-                    val intent = PinCodeActivity.getIntent(activity, PinCodeReason.FIRST_CREATION)
-                    startActivityForResult(intent, 0)
-                    true
-                } else super.onPreferenceTreeClick(preference)
             }
             "equalizer" -> {
                 startActivity(Intent(context.applicationContext, EqualizerSettingsActivity::class.java))

@@ -234,8 +234,6 @@
     <string name="wait_before_sleep">Palun oota, et praegune meediaesitus esmalt lõpetaks</string>
     <string name="reset_on_interaction">Lähtesta igal juhtumil</string>
     <string name="default_sleep_timer_summary">%1$s, ootame meedia lõppemist: %2$s, lähtestame: %3$s</string>
-    <string name="video_player_remote">Videomängija kaugjuhtimispult</string>
-    <string name="remote_keyboard_navigation">Liikumine klahvistikuga</string>
 
     <string name="server_add_title">Lisa uus server lemmikutesse</string>
     <string name="server_domain_hint">Serveri aadress (hosti nimi või IP-aadress)</string>
@@ -359,7 +357,6 @@
     <string name="screen_orientation_landscape_sensor">Rõhtasetus (anduriga)</string>
     <string name="screen_orientation_last_locked">Viimati fikseeritud paigutus</string>
     <string name="enable_black_theme">Süsimust kujundus</string>
-    <string name="dark_theme">Tume kujundus</string>
     <string name="theme_auto">Automaatne kujundus</string>
     <string name="subtitle_text_encoding">Subtiitrite teksti kodeering</string>
     <string name="subtitle_preferred_language">Subtiitrite eelistatud keel</string>
@@ -504,29 +501,6 @@
     <string name="audio_ducking_title">Vähenda teavituste ajal VLC helivaljust</string>
     <string name="audio_ducking_summary">Aitab kuulda audio märguandeid, teekonna näitamise juhiseid või kõneabi teenust</string>
     <string name="casting_category">Edastamine</string>
-    <string name="remote_access">Kaugligipääs</string>
-    <string name="remote_access_version_title">Kaugjuhtimispuldi versioon</string>
-    <string name="remote_access_hash_title">Kaugjuhtimispuldi ligipääsuräsi</string>
-    <string name="remote_access_status">Serveri olek</string>
-    <string name="remote_access_status_summary">Serveri oleku nägemiseks klõpsi</string>
-    <string name="remote_access_connections">Ühendused</string>
-    <string name="remote_access_links">Lingid</string>
-    <string name="remote_access_active">Kaugligipääs on kasutusel</string>
-    <string name="remote_access_notification">Kaugligipääs on kasutusel: %s</string>
-    <string name="remote_access_notification_stopped">Kaugligipääs on peatatud</string>
-    <string name="remote_access_notification_connecting">Kaugligipääsu ühendus on loomisel</string>
-    <string name="remote_access_notification_error">Kaugligipääsu viga</string>
-    <string name="remote_access_notification_stopping">Kaugligipääs on peatamisel</string>
-    <string name="remote_access_notification_not_init">Kaugligipääs on käivitamisel</string>
-    <string name="enable_remote_access">Luba kaugligipääs</string>
-    <string name="remote_access_info">Kaugligipääsu teave</string>
-    <string name="remote_access_content">Sisu</string>
-    <string name="remote_access_medialibrary_content">Meediakogu sisu</string>
-    <string name="remote_access_medialibrary_content_summary">Kasutusel: %1$s\nPole kasutusel: %2$s</string>
-    <string name="remote_access_file_browser_content">Failide sirvija</string>
-    <string name="remote_access_network_browser_content">Võrgusirvija</string>
-    <string name="remote_access_playback_control">Kontrolli taasesitust</string>
-    <string name="remote_access_logs">Jaga logifaile</string>
     <string name="casting_switch_title">Kaablivaba edastamine</string>
     <string name="casting_passthrough_title">Heli töötlemata läbivoog</string>
     <string name="casting_passthrough_summary">Lase oma teleril juhtida heli renderdust</string>
@@ -656,8 +630,6 @@
     <string name="search_global">Otsi tervest meediakogust</string>
     <string name="playlist_save">Salvesta esitusloend</string>
     <string name="playlist_name_hint">Esitusloendi nimi</string>
-    <string name="chapters">Peatükid</string>
-    <string name="notset">Pole määratud</string>
     <string name="go_to_chapter">Liigu peatõkile...</string>
     <string name="current_chapter">Peatükk %s</string>
     <string name="confirm_resume">Kas jätkata viimasest kohast?</string>
@@ -870,7 +842,6 @@
     <string name="next">Järgmine</string>
     <string name="skip">Jäta vahele</string>
     <string name="next_step">Järgmine</string>
-    <string name="download">Laasi alla</string>
     <string name="ctx_player_video_track">Vali videoriba</string>
     <string name="ctx_player_audio_track">Heliriba</string>
     <string name="ctx_player_subs_track">Subtiitrite riba</string>
@@ -1167,7 +1138,6 @@
     <string name="discovery_failed">Tuvastamine ei õnnestunud: %s</string>
     <string name="lock_use_sensor_title">Lukusta sensoriga</string>
     <string name="lock_use_sensor_summary">Kui paigutus on lukustatud, siis kasuta pööratud paigutuse jaoks kasuta andurit</string>
-    <string name="start">Alustame</string>
     <string name="notification_permission">Teavitustega seotud õigused</string>
     <string name="notification_permission_explanation">VLC vajab teavituste saatmiseks sinu luba\nRakendus teavitab sind vaid meedia tuvastamisel või kohendatud Pilt-Pildis vaate puhul\nKui sa luba ei anna, siis VLC toimib ilusti edasi, lihtsalt mõned teavitused saavad olema peidetud.</string>
     <string name="permission">Õigused</string>
@@ -1305,65 +1275,7 @@
     <string name="ignore_headset_media_button_presses_summary">Sobilik kasutamiseks näiteks siis, kui sinu kõrvaklappide juhtnupud on katki</string>
     <string name="replace_playlist">Asenda esitusloend</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">Kaugligipääs on kasutusel</string>
-    <string name="ra_remote_access">Kaugligipääs</string>
-    <string name="ra_remote_access_description">Kaugligipääsu olekuteavitus</string>
-    <string name="ra_log_file">Logifailid</string>
-    <string name="ra_log_type">Logi tüüp</string>
-    <string name="ra_send_files">Saada faile</string>
-    <string name="ra_not_in_foreground">Rakendus pole esiplaanil. Video käivitamine ei õnnestu.</string>
-    <string name="ra_disconnected">Ühendus seadmega on katkenud</string>
-    <string name="ra_file">Fail</string>
-    <string name="ra_upload_remaining">Üleslaadime %s faili</string>
-    <string name="ra_upload_all">Laadi kõik üles</string>
-    <string name="ra_drop_files_tip">Oma seadmesse saatmiseks lohista failid kuhugile siia</string>
-    <string name="ra_prepare_download">Valmistame ette sinu allalaadimist</string>
-    <string name="ra_forbidden">Sisu on seadistustest keelatud</string>
-    <string name="ra_playback_forbidden">Taasesituse juhtimine on seadistustest keelatud</string>
-    <string name="ra_logs_forbidden">Logide jagamine on seadistustest välja lülitatud</string>
-    <string name="ra_code_requested_explanation">Serveri turvamiseks ligipääs ei ole avalik\nPalun sisesta teavitustes kuvatud kood</string>
-    <string name="ra_ssl_explanation_title">Ebaturvaline ühendus</string>
-    <string name="ra_ssl_explanation">Sinu kasutatav ühendus pole turvaline.</string>
-    <string name="ra_ssl_explanation_browser">Brauseri turvaloogika tõttu saad järgmisel lehel hoiatava teate.</string>
-    <string name="ra_ssl_explanation_accept">Kaugligipääsu kasutamiseks palun kindlasti nõustu konkreetse sertifikaadiga</string>
-    <string name="ra_ssl_button">Kasuta turvalist ühendust</string>
-    <string name="ra_new_code">Saada uus kood</string>
-    <string name="home">Avavaade</string>
-    <string name="ra_code">Sisesta see kood: %s</string>
-    <string name="ra_send_logs">Salvesta kaugligipääsu logid selles nutiseadmes</string>
-    <string name="ra_otp">Üks kord kasutatav salasõna kaugühenduse jaoks</string>
-    <string name="ra_otp_description">Kaugligipääsu päringud</string>
-    <string name="ra_otp_title">Kaugligipääsu sisselogimiskate</string>
-    <string name="ra_otp_subtitle">Kui see oled sina, siis sisesta see kood teises seadmes</string>
-    <string name="ra_otp_not_me">See pole mina</string>
-    <string name="ra_output">Heliväljund</string>
-    <string name="ra_play_on_browser">Esita veebibrauseris</string>
-    <string name="ra_play_on_device">Esita seadmes</string>
-    <string name="ra_browser_audio_not_found">Meediumi kas ei leidu või pole veebibrauseris esitatav</string>
-    <string name="ra_browser_audio_unsupported_format">See helivorming pole sinu veebibrauseris toetatud</string>
-    <string name="ra_upload_subtitle">Laadi subtiitrid üles</string>
 
-    <string name="ra_onboarding_welcome_desc">Tere tulemast kasutama VLC Androidiversiooni kaughaldust ja kaugligipääsu\nSelle sisselülitamisel sa võid hallata taasesitust selles seadmes ning teha muud põnevat</string>
-    <string name="ra_onboarding_how_title">Juhi oma nutiseadet</string>
-    <string name="ra_onboarding_how_desc">Juhi taasesitust oma nutiseadmes, saada ja võta vastu faile ning tee muud huvitavat</string>
-    <string name="ra_onboarding_ssl_title">Andmete krüptimine</string>
-    <string name="ra_onboarding_ssl_desc">Vältimaks, et sinu andmed on kolmandatele osapooltele nähtavad, on kaugligipääsu ühendus krüptitud</string>
-    <string name="ra_onboarding_otp_title">Autentimine</string>
-    <string name="ra_onboarding_otp_desc">Üks kord kasutatava salasõnaga hoiad ära ebasoovitud ligipääsu sinu andmetele</string>
-    <string name="ra_onboarding_content_title">Ligipääs sisule</string>
-    <string name="ra_onboarding_content_desc">Vali, millele soovid ligipääsu ja millele mitte</string>
-    <string name="ra_onboarding_content_ml">Ligipääs meediakogu sisule</string>
-    <string name="ra_onboarding_content_files">Failide sirvija</string>
-    <string name="ra_onboarding_content_playback">Taasesituse juhtimine</string>
-    <string name="ra_disable">Lülita välja</string>
-    <string name="ra_log_web">Kaugligipääsu logi</string>
-    <string name="ra_log_crash">Krahhilogi</string>
-    <string name="ra_log_mobile">Seadmelogi</string>
-    <string name="ra_log_current">Kohaliku seadme logid</string>
-    <string name="ra_invalid_login">Sa pead oma nutiseadmesse sisse logima</string>
-    <string name="ra_invalid_otp">Sisestasid vigase koodi</string>
-    <string name="learn_more">Lisateave</string>
 
     <!-- car screens -->
     <string name="help">Abiteave</string>
@@ -1379,11 +1291,7 @@
     <string name="metered_warn">Hoiata mind (heli taasesitamisel võib hoiatus jääda märkamata)</string>
     <string name="metered_connection_stopped">Kuna kasutad mahupõhist võrguühendust, siis meedia taasesitus on peatunud</string>
     <string name="metered_connection_warning">Sinu nutiseade võrguühendus on mahupõhine. Järgnevad toimingud võrgus võivad olla seotud kuludega.</string>
-    <string name="adding">Lisame</string>
-    <string name="to">:</string>
     <string name="device">Seade</string>
-    <string name="connected_device">Ühendatud seade</string>
-    <string name="model">Seadme mudel</string>
     <string name="prefs_app_data">Rakenduse andmed</string>
     <string name="export_settings_summary">Eksportides sinu loodud seadistused faili, saad need hiljem mõnes muus VLC instantsis importida</string>
     <string name="export_settings">Ekspordi seadistused</string>
@@ -1419,13 +1327,6 @@
     <string name="generating_logs">Koondame logisid. Palun oota.</string>
     <string name="default_playback_action">Tegevus taasesitusel</string>
     <string name="files">Failid</string>
-    <string name="remote_access_feedback_generate">Koosta aruanne</string>
-    <string name="remote_access_feedback_generated">Aruanne tagasiside jaoks on loodud</string>
-    <string name="remote_access_feedback_generated_explanation">Saatmaks seda oma vaikimisi e-postirakendusega klõpsi alljärgnevat nuppu. Kui tekib vigu, siis saad välju ka ükshaaval kopeerida ja koostada ning saada e-kirja ka ise.</string>
-    <string name="remote_access_feedback_file_explanation">Sa just laadisid alla vajaliku faili. Kindlasti palun lisa ta manusena oma e-kirjale.</string>
-    <string name="generic_copied_to_clipboard">Kopeeritud lõikelauale</string>
     <string name="feedback_email_warning">E-posti klient on paigaldamata</string>
-    <string name="feedback_email_warning_explanation">Kõige lihtsam viis meile tagasiside jagamiseks - %1$s\nSelleks lülita kaughaldus seadistustest sisse, jälgi juhendit ja vali menüüst „%2$s“.</string>
-    <string name="feedback_email_warning_remote_action">Ava seadistused</string>
     <string name="feedback_email_warning_try_anyway">Proovi ikkagi</string>
     </resources>

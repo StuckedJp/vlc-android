@@ -531,7 +531,6 @@
     <string name="delete_the_selected">Dileu\'r dewis</string>
     <string name="download_the_selected">Lawrlwytho\'r dewis</string>
     <string name="next">Nesaf</string>
-    <string name="download">Lawrlwytho</string>
     <string name="ctx_player_video_track">Dewisa trac fideo</string>
     <string name="ctx_player_audio_track">Trac sain</string>
     <string name="ctx_player_subs_track">Trac isdeitlau</string>

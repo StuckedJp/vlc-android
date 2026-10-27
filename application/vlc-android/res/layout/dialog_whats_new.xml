@@ -66,7 +66,7 @@
                     tools:text="@string/whats_new_title" />
 
             <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/webserver_card"
+                    android:id="@+id/equalizer_card"
                     style="@style/VLCCardView.NoShadow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                     android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/webserver_card">
+                    app:layout_constraintTop_toBottomOf="@+id/equalizer_card">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"

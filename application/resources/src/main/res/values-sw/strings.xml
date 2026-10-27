@@ -667,7 +667,6 @@
     <string name="next">Kinachofuata</string>
     <string name="skip">Ruka</string>
     <string name="next_step">Kinachofuata</string>
-    <string name="download">Pakua</string>
     <string name="ctx_player_video_track">Chagua nakala ya video</string>
     <string name="ctx_player_audio_track">Nakala ya usikiko</string>
     <string name="ctx_player_subs_track">Nakala ya manukuu</string>
@@ -908,7 +907,6 @@
     <string name="discovery_failed">Ugunduzi haukuwezekana kwa: %s</string>
     <string name="lock_use_sensor_title">Funga kwa kihisi</string>
     <string name="lock_use_sensor_summary">Mwelekeo unapofungwa, tumia kihisi ili uwezeshe mwelekeo pindu</string>
-    <string name="start">Anza</string>
     <string name="notification_permission">Ruhusa ya arifa</string>
     <string name="notification_permission_explanation">VLC inahitaji ruhusa yako ili itume arifa.\nProgramu itakuarifu inaposkani midia au inapotumia video tanafsifu ya picha ndani ya picha.\nKuikataza hakutazuia utendakazi wa VLC, lakini arifa zitafichwa.</string>
     <string name="permission">Ruhusa</string>

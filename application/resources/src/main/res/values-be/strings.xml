@@ -249,7 +249,6 @@
     <string name="sleep_in">Заснуць праз</string>
     <string name="jump_to_time">Пераход да часу</string>
     <string name="subtitle_select">Выбраць файл субтытраў</string>
-    <string name="video_player_remote">Аддаленая кіраванне відэаплэерам</string>
     <string name="server_add_title">Дадаць у Абраныя сервер</string>
     <string name="server_domain_hint">Адрас сервера (даменнае імя або IP-адрас)</string>
     <string name="server_share_hint">Адрас сервера (даменнае імя або IP-адрас)</string>
@@ -364,7 +363,6 @@
     <string name="screen_orientation_landscape_sensor">Альбомная (датчык)</string>
     <string name="screen_orientation_last_locked">Апошняя заблакіраваная арыентацыя</string>
     <string name="enable_black_theme">Чорная тэма</string>
-    <string name="dark_theme">Цёмная тэма</string>
     <string name="theme_auto">Аўтаматычна</string>
     <string name="subtitle_text_encoding">Кадзіроўка субтытраў</string>
     <string name="subtitle_preferred_language">Пажаданая мова субтытраў</string>
@@ -495,28 +493,6 @@
     <string name="audio_ducking_title">Памяншаць гучнасць VLC пры апавяшчэннях</string>
     <string name="audio_ducking_summary">Дазваляе лепш чуць гукавыя апавяшчэнні, інструкцыі навігатара, голас памочніка</string>
     <string name="casting_category">Трансляванне</string>
-    <string name="remote_access">Аддалены доступ</string>
-    <string name="remote_access_version_title">Версія аддаленага доступу</string>
-    <string name="remote_access_hash_title">Кантрольная сума аддаленага доступу</string>
-    <string name="remote_access_status">Стан сервера</string>
-    <string name="remote_access_status_summary">Націсніце, каб паглядзець стан сервера</string>
-    <string name="remote_access_connections">Злучэнні</string>
-    <string name="remote_access_links">Спасылкі</string>
-    <string name="remote_access_active">Аддалены доступ задзейнічаны</string>
-    <string name="remote_access_notification">Аддалены доступ задзейнічаны на %s</string>
-    <string name="remote_access_notification_stopped">Аддалены доступ спынены</string>
-    <string name="remote_access_notification_connecting">Падлучэнне аддаленага доступу</string>
-    <string name="remote_access_notification_error">Памылка аддаленага доступу</string>
-    <string name="remote_access_notification_stopping">Спыненне аддаленага доступу</string>
-    <string name="remote_access_notification_not_init">Запуск аддаленага доступу</string>
-    <string name="enable_remote_access">Уключыць аддалены доступ</string>
-    <string name="remote_access_content">Змесціва</string>
-    <string name="remote_access_medialibrary_content">Змесціва медыятэкі</string>
-    <string name="remote_access_medialibrary_content_summary">Уключана: %1$s\nАдключана: %2$s</string>
-    <string name="remote_access_file_browser_content">Файлавы менеджар</string>
-    <string name="remote_access_network_browser_content">Сеткавы агляд</string>
-    <string name="remote_access_playback_control">Кіраванне прайграваннем</string>
-    <string name="remote_access_logs">Доступ да файлаў журнала</string>
     <string name="casting_switch_title">Бесправадное трансляванне</string>
     <string name="casting_audio_only">Толькі гук</string>
     <string name="casting_audio_only_summary">Толькі гук, без відэа</string>
@@ -639,7 +615,6 @@
     <string name="search_global">Пошук ва ўсёй медыятэцы</string>
     <string name="playlist_save">Захаваць плэйліст</string>
     <string name="playlist_name_hint">Назва плэйліста</string>
-    <string name="chapters">Раздзелы</string>
     <string name="go_to_chapter">Перайсці да раздзела…</string>
     <string name="current_chapter">Раздзел: %s</string>
     <string name="confirm_resume">Узнавіць прайграванне з апошняй пазіцыі?</string>
@@ -815,7 +790,6 @@
     <string name="next">Далей</string>
     <string name="skip">Прапусціць</string>
     <string name="next_step">Далей</string>
-    <string name="download">Спампаваць</string>
     <string name="ctx_player_video_track">Відэадарожка</string>
     <string name="ctx_player_audio_track">Аўдыядарожка</string>
     <string name="ctx_player_subs_track">Дарожка субтытраў</string>
@@ -1168,47 +1142,7 @@
     <string name="show_only_favs">Паказваць толькі абраныя</string>
     <string name="replace_playlist">Замяніць плэйліст</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">Аддалены доступ задзейнічаны</string>
-    <string name="ra_remote_access">Аддалены доступ</string>
-    <string name="ra_remote_access_description">Апавяшчэнне пра стан аддаленага доступу</string>
-    <string name="ra_log_file">Файлы журнала</string>
-    <string name="ra_log_type">Тып журнала</string>
-    <string name="ra_send_files">Адправіць файлы</string>
-    <string name="ra_not_in_foreground">Праграма выконваецца не ў фоне. Немагчыма запусціць відэа.</string>
-    <string name="ra_disconnected">Адлучаны ад прылады</string>
-    <string name="ra_file">Файл</string>
-    <string name="ra_upload_remaining">Запампоўваецца %s файл(аў)</string>
-    <string name="ra_upload_all">Запампаваць усе</string>
-    <string name="ra_drop_files_tip">Перацягніце файлы сюды, каб адправіць іх на сваю прыладу</string>
-    <string name="ra_prepare_download">Падрыхтоўка спампоўвання</string>
-    <string name="ra_forbidden">Змесціва адключана ў наладах</string>
-    <string name="ra_playback_forbidden">Кнопкі кіравання прайграваннем адключаны ў наладах</string>
-    <string name="ra_ssl_explanation_title">Небяспечнае злучэнне</string>
-    <string name="ra_ssl_explanation">Ваша злучэнне не з\'яўляецца бяспечным.</string>
-    <string name="ra_ssl_button">Выкарыстоўваць бяспечнае злучэнне</string>
-    <string name="ra_new_code">Адправіць новы код</string>
-    <string name="home">Хатняя</string>
-    <string name="ra_code">Увядзіце код: %s</string>
-    <string name="ra_otp">Аднаразовы пароль аддаленага доступу</string>
-    <string name="ra_otp_subtitle">Калі гэта вы, увядзіце код на другой прыладзе</string>
-    <string name="ra_otp_not_me">Гэта не я</string>
-    <string name="ra_output">Аўдыявыхад</string>
-    <string name="ra_play_on_browser">Прайграць у браўзеры</string>
-    <string name="ra_play_on_device">Прайграць на прыладзе</string>
-    <string name="ra_upload_subtitle">Запампаваць субтытры</string>
 
-    <string name="ra_onboarding_ssl_title">Шыфраванне даных</string>
-    <string name="ra_onboarding_otp_title">Аўтэнтыфікацыя</string>
-    <string name="ra_onboarding_content_title">Доступ да змесціва</string>
-    <string name="ra_onboarding_content_ml">Доступ да змесціва медыятэкі</string>
-    <string name="ra_onboarding_content_files">Файлавы менеджар</string>
-    <string name="ra_onboarding_content_playback">Кіраванне прайграваннем</string>
-    <string name="ra_disable">Адключыць</string>
-    <string name="ra_log_web">Журнал аддаленага доступу</string>
-    <string name="ra_log_crash">Журнал аварыйнага спынення</string>
-    <string name="ra_log_mobile">Журнал прылады</string>
-    <string name="learn_more">Даведацца больш</string>
 
     <!-- car screens -->
     <string name="help">Даведка</string>
@@ -1224,11 +1158,7 @@
     <string name="metered_warn">Папярэдзіць (калі прайграецца аўдыя, папярэджанне можна не заўважыць)</string>
     <string name="metered_connection_stopped">Прайграванне спынена, бо задзейнічана злучэнне з тарыфікацыяй</string>
     <string name="metered_connection_warning">Задзейнічана злучэнне з тарыфікацыяй. Можа спаганяцца плата.</string>
-    <string name="adding">Дадаванне</string>
-    <string name="to">у</string>
     <string name="device">Прылада</string>
-    <string name="connected_device">Падлучаная прылада</string>
-    <string name="model">Мадэль прылады</string>
     <string name="prefs_app_data">Даныя праграмы</string>
     <string name="export_settings_summary">Экспартаваць налады ў файл, каб імпартаваць іх у будучыні</string>
     <string name="export_settings">Экспартаваць налады</string>
@@ -1260,9 +1190,6 @@
     <string name="rate_us">Ацаніць праграму</string>
     <string name="generating_logs">Стварэнне файлаў журналаў. Пачакайце.</string>
     <string name="files">Файлы</string>
-    <string name="remote_access_feedback_generate">Стварыць справаздачу</string>
-    <string name="generic_copied_to_clipboard">Скапіяваць у буфер</string>
     <string name="feedback_email_warning">Паштовы кліент не ўсталяваны</string>
-    <string name="feedback_email_warning_remote_action">Адкрыць налады</string>
     <string name="feedback_email_warning_try_anyway">Усё адно паспрабаваць</string>
     </resources>

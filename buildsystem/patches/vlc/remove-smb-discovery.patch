@@ -1,0 +1,12 @@
+diff --git a/modules/services_discovery/microdns.c b/modules/services_discovery/microdns.c
+index d481d970fc..f78630fe74 100644
+--- a/modules/services_discovery/microdns.c
++++ b/modules/services_discovery/microdns.c
+@@ -79,7 +79,6 @@ static const struct
+     int         i_renderer_flags;
+ } protocols[] = {
+     { "ftp", "_ftp._tcp.local", false, 0 },
+-    { "smb", "_smb._tcp.local", false, 0 },
+     { "nfs", "_nfs._tcp.local", false, 0 },
+     { "sftp", "_sftp-ssh._tcp.local", false, 0 },
+     { "rtsp", "_rtsp._tcp.local", false, 0 },

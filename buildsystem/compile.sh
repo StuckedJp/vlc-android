@@ -307,6 +307,21 @@ if [ ! -d "$VLC_LIBJNI_PATH" ] || [ ! -d "$VLC_LIBJNI_PATH/.git" ]; then
     cd ..
 fi
 
+# Apply persistent native SMB removal without resetting local source changes.
+apply_native_smb_patch() {
+    patch_repo=$1
+    patch_file=$2
+    if git -C "$patch_repo" apply --reverse --check "$patch_file" 2>/dev/null; then
+        diagnostic "Native SMB removal patch already applied: $(basename "$patch_file")"
+    elif git -C "$patch_repo" apply --check "$patch_file"; then
+        git -C "$patch_repo" apply "$patch_file" || fail "Unable to apply native SMB removal patch: $patch_file"
+    else
+        fail "Native SMB removal patch does not match $patch_repo; port $patch_file before building"
+    fi
+}
+SMB_PATCH_ROOT="$(pwd -P)/buildsystem/patches"
+apply_native_smb_patch "$VLC_LIBJNI_PATH" "$SMB_PATCH_ROOT/libvlcjni/0001-disable-native-smb.patch"
+
 ##########
 # GRADLE #
 ##########
@@ -359,6 +374,9 @@ if [ -z "$VLC_SRC_DIR" ]; then
 
     (cd ${VLC_LIBJNI_PATH} && ./buildsystem/get-vlc.sh ${get_vlc_args})
 fi
+
+# Keep SMB out of common mDNS discovery without disabling other network services.
+apply_native_smb_patch "${VLC_SRC_DIR:-$VLC_LIBJNI_PATH/vlc}" "$SMB_PATCH_ROOT/vlc/remove-smb-discovery.patch"
 
 # Always clone VLC when using --init since we'll need to package some files
 # during the final assembly (lua/hrtfs/..)

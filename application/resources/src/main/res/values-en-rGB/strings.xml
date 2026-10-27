@@ -234,8 +234,6 @@
     <string name="wait_before_sleep">Wait for current media item to finish first</string>
     <string name="reset_on_interaction">Reset on any interaction</string>
     <string name="default_sleep_timer_summary">%1$s, wait media end: %2$s, reset on interaction: %3$s</string>
-    <string name="video_player_remote">Video player remote</string>
-    <string name="remote_keyboard_navigation">Keyboard navigation</string>
 
     <string name="server_add_title">Add a new server to favourites</string>
     <string name="server_domain_hint">Server address (host name or IP address)</string>
@@ -358,7 +356,6 @@
     <string name="screen_orientation_landscape_sensor">Landscape (sensor)</string>
     <string name="screen_orientation_last_locked">Last locked orientation</string>
     <string name="enable_black_theme">Black theme</string>
-    <string name="dark_theme">Dark theme</string>
     <string name="theme_auto">Auto theme</string>
     <string name="subtitle_text_encoding">Subtitle text encoding</string>
     <string name="subtitle_preferred_language">Preferred subtitle language</string>
@@ -503,29 +500,6 @@
     <string name="audio_ducking_title">Lower VLC volume on notifications</string>
     <string name="audio_ducking_summary">Helps to hear audio notifications, navigation instructions or assistant talking</string>
     <string name="casting_category">Casting</string>
-    <string name="remote_access">Remote access</string>
-    <string name="remote_access_version_title">Remote access version</string>
-    <string name="remote_access_hash_title">Remote access hash</string>
-    <string name="remote_access_status">Server status</string>
-    <string name="remote_access_status_summary">Tap to see the server status</string>
-    <string name="remote_access_connections">Connections</string>
-    <string name="remote_access_links">Links</string>
-    <string name="remote_access_active">Remote access active</string>
-    <string name="remote_access_notification">Remote access active on %s</string>
-    <string name="remote_access_notification_stopped">Remote access stopped</string>
-    <string name="remote_access_notification_connecting">Remote access connecting</string>
-    <string name="remote_access_notification_error">Remote access error</string>
-    <string name="remote_access_notification_stopping">Remote access stopping</string>
-    <string name="remote_access_notification_not_init">Remote access initialising</string>
-    <string name="enable_remote_access">Enable remote access</string>
-    <string name="remote_access_info">Remote access info</string>
-    <string name="remote_access_content">Content</string>
-    <string name="remote_access_medialibrary_content">Media library content</string>
-    <string name="remote_access_medialibrary_content_summary">Enabled: %1$s\nDisabled: %2$s</string>
-    <string name="remote_access_file_browser_content">File browser</string>
-    <string name="remote_access_network_browser_content">Network browser</string>
-    <string name="remote_access_playback_control">Control playback</string>
-    <string name="remote_access_logs">Share log files</string>
     <string name="casting_switch_title">Wireless casting</string>
     <string name="casting_passthrough_title">Audio Passthrough</string>
     <string name="casting_passthrough_summary">Let your TV manage audio rendering</string>
@@ -655,8 +629,6 @@
     <string name="search_global">Search in all media library</string>
     <string name="playlist_save">Save Playlist</string>
     <string name="playlist_name_hint">Playlist name</string>
-    <string name="chapters">Chapters</string>
-    <string name="notset">Not set</string>
     <string name="go_to_chapter">Go to chapter…</string>
     <string name="current_chapter">Chapter: %s</string>
     <string name="confirm_resume">Resume from last position?</string>
@@ -867,7 +839,6 @@
     <string name="next">Next</string>
     <string name="skip">Skip</string>
     <string name="next_step">Next</string>
-    <string name="download">Download</string>
     <string name="ctx_player_video_track">Select video track</string>
     <string name="ctx_player_audio_track">Audio track</string>
     <string name="ctx_player_subs_track">Subtitles track</string>
@@ -1163,7 +1134,6 @@
     <string name="discovery_failed">Discovery failed for: %s</string>
     <string name="lock_use_sensor_title">Lock with sensor</string>
     <string name="lock_use_sensor_summary">When the orientation is locked, use the sensor to allow the reverse orientation</string>
-    <string name="start">Start</string>
     <string name="notification_permission">Notification permission</string>
     <string name="notification_permission_explanation">VLC needs your permission to send notifications.\nThe app will only notify you when scanning your media or using the custom video Picture in Picture.\nRefusing it won\'t prevent VLC to work, however the notifications will be hidden.</string>
     <string name="permission">Permission</string>
@@ -1301,65 +1271,7 @@
     <string name="ignore_headset_media_button_presses_summary">Useful, for instance, if you are using a headset with broken physical buttons</string>
     <string name="replace_playlist">Replace playlist</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">Remote access active</string>
-    <string name="ra_remote_access">Remote access</string>
-    <string name="ra_remote_access_description">Remote access state notification</string>
-    <string name="ra_log_file">Log files</string>
-    <string name="ra_log_type">Log type</string>
-    <string name="ra_send_files">Send files</string>
-    <string name="ra_not_in_foreground">Application is not in foreground. Cannot launch video.</string>
-    <string name="ra_disconnected">Disconnected from device</string>
-    <string name="ra_file">File</string>
-    <string name="ra_upload_remaining">Uploading %s files</string>
-    <string name="ra_upload_all">Upload all</string>
-    <string name="ra_drop_files_tip">Drop files anywhere to send to your device</string>
-    <string name="ra_prepare_download">Preparing your download</string>
-    <string name="ra_forbidden">Content disabled in the settings</string>
-    <string name="ra_playback_forbidden">Playback control disabled in the settings</string>
-    <string name="ra_logs_forbidden">Logs sharing disabled in the settings</string>
-    <string name="ra_code_requested_explanation">To protect your server, the access is protected.\nPlease enter the code displayed in your notifications</string>
-    <string name="ra_ssl_explanation_title">Unsecure connection</string>
-    <string name="ra_ssl_explanation">Your connection is not secure.</string>
-    <string name="ra_ssl_explanation_browser">Due to the browser security implementation, you will receive a security warning in the next page.</string>
-    <string name="ra_ssl_explanation_accept">Make sure to accept the certificate to be able to use the remote access</string>
-    <string name="ra_ssl_button">Use a secure connection</string>
-    <string name="ra_new_code">Send a new code</string>
-    <string name="home">Home</string>
-    <string name="ra_code">Enter this code: %s</string>
-    <string name="ra_send_logs">Save remote access\' logs on the device</string>
-    <string name="ra_otp">Remote access one time password</string>
-    <string name="ra_otp_description">Access requests for the remote access</string>
-    <string name="ra_otp_title">Remote access login attempt</string>
-    <string name="ra_otp_subtitle">If it\'s you, enter this code on the other device</string>
-    <string name="ra_otp_not_me">It\'s not me</string>
-    <string name="ra_output">Audio output</string>
-    <string name="ra_play_on_browser">Play on browser</string>
-    <string name="ra_play_on_device">Play on device</string>
-    <string name="ra_browser_audio_not_found">Media not found or cannot be played in browser</string>
-    <string name="ra_browser_audio_unsupported_format">This audio format is not supported by your browser</string>
-    <string name="ra_upload_subtitle">Upload subtitle</string>
 
-    <string name="ra_onboarding_welcome_desc">Welcome in VLC for Android\'s remote access\nBy enabling it you will be able to control this device\'s playback and more</string>
-    <string name="ra_onboarding_how_title">Control your device</string>
-    <string name="ra_onboarding_how_desc">Control your device playback, send or retrieve files and more</string>
-    <string name="ra_onboarding_ssl_title">Data encryption</string>
-    <string name="ra_onboarding_ssl_desc">The remote access is encrypted to prevent your data from leaking</string>
-    <string name="ra_onboarding_otp_title">Authentication</string>
-    <string name="ra_onboarding_otp_desc">With the one time password authentication, prevent unwanted access to your data</string>
-    <string name="ra_onboarding_content_title">Content access</string>
-    <string name="ra_onboarding_content_desc">Choose what can be accessed and what can\'t</string>
-    <string name="ra_onboarding_content_ml">Media library content access</string>
-    <string name="ra_onboarding_content_files">File browser</string>
-    <string name="ra_onboarding_content_playback">Playback control</string>
-    <string name="ra_disable">Disable</string>
-    <string name="ra_log_web">Remote access log</string>
-    <string name="ra_log_crash">Crash log</string>
-    <string name="ra_log_mobile">Device log</string>
-    <string name="ra_log_current">Current local logs</string>
-    <string name="ra_invalid_login">You need to log in on your device</string>
-    <string name="ra_invalid_otp">Invalid code provided</string>
-    <string name="learn_more">Learn more</string>
 
     <!-- car screens -->
     <string name="help">Help</string>
@@ -1375,11 +1287,7 @@
     <string name="metered_warn">Warn me (the warning may be missed for audio playback)</string>
     <string name="metered_connection_stopped">Media stopped because the connection is metered</string>
     <string name="metered_connection_warning">Your connection is metered. Fees may apply.</string>
-    <string name="adding">Adding</string>
-    <string name="to">to</string>
     <string name="device">Device</string>
-    <string name="connected_device">Connected device</string>
-    <string name="model">Device model</string>
     <string name="prefs_app_data">Application data</string>
     <string name="export_settings_summary">Export your settings to a file to import them later</string>
     <string name="export_settings">Export settings</string>
@@ -1415,13 +1323,6 @@
     <string name="generating_logs">Generating logs. Please wait.</string>
     <string name="default_playback_action">Playback action</string>
     <string name="files">Files</string>
-    <string name="remote_access_feedback_generate">Generate report</string>
-    <string name="remote_access_feedback_generated">Your feedback report has been generated</string>
-    <string name="remote_access_feedback_generated_explanation">Tap the button below to send it using your default email client. If you encounter any issues, you can copy paste the fields below and send the email yourself.</string>
-    <string name="remote_access_feedback_file_explanation">You just downloaded the needed file. Please remember to attach it to your email.</string>
-    <string name="generic_copied_to_clipboard">Copied to clipboard</string>
     <string name="feedback_email_warning">No email client installed</string>
-    <string name="feedback_email_warning_explanation">The easiest way to share your feedback is to use the %1$s feature.\nTo do so, enable the remote access in the settings, follow the instructions and choose the %2$s entry in the menu.</string>
-    <string name="feedback_email_warning_remote_action">Open the settings</string>
     <string name="feedback_email_warning_try_anyway">Try anyway</string>
     </resources>

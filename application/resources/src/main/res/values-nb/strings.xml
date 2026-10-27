@@ -193,8 +193,6 @@
     <string name="sleep_in">Sov om</string>
     <string name="jump_to_time">Hopp til:</string>
     <string name="subtitle_select">Velg undertekstfil</string>
-    <string name="video_player_remote">Videoavspillers-fjernkontroll</string>
-    <string name="remote_keyboard_navigation">Tastaturstyring</string>
 
     <string name="server_add_title">Legg til en ny tjener til favorittene</string>
     <string name="server_folder_hint">Mappesti (valgfritt)</string>
@@ -300,7 +298,6 @@
     <string name="screen_orientation_landscape_reverse">Landskap reversert</string>
     <string name="screen_orientation_last_locked">Siste låste orientering</string>
     <string name="enable_black_theme">Svart tema</string>
-    <string name="dark_theme">Mørkt tema</string>
     <string name="theme_auto">Automatisk tema</string>
     <string name="subtitle_text_encoding">Undertekstkoding</string>
     <string name="subtitle_preferred_language">Foretrukket undertekst språk</string>
@@ -414,11 +411,6 @@
     <string name="audio_ducking_title">Senk lyden i VLC når det kommer varsel</string>
     <string name="audio_ducking_summary">Hjelper for å høre lydvarsel, navigasjonsinstrukser, eller når assistenten prater</string>
     <string name="casting_category">Casting</string>
-    <string name="remote_access_status">Tjenerstatus</string>
-    <string name="remote_access_connections">Tilkoblinger</string>
-    <string name="remote_access_links">Lenker</string>
-    <string name="remote_access_content">Innhold</string>
-    <string name="remote_access_file_browser_content">Filutforsker</string>
     <string name="casting_switch_title">Trådløs kringkasting</string>
     <string name="casting_passthrough_title">Lydgjennomgang</string>
     <string name="casting_passthrough_summary">La TVen din behandle lydgjengivelse</string>
@@ -521,7 +513,6 @@
     <string name="search_global">Søk i hele mediebiblioteket</string>
     <string name="playlist_save">Lagre spilleliste</string>
     <string name="playlist_name_hint">Spillelistetittel</string>
-    <string name="notset">Ikke satt</string>
     <string name="go_to_chapter">Gå til kapittel…</string>
     <string name="current_chapter">Kapittel: %s</string>
     <string name="confirm_resume">Fortsett fra siste posisjon?</string>
@@ -690,7 +681,6 @@
     <string name="next">Neste</string>
     <string name="skip">Hopp over</string>
     <string name="next_step">Neste</string>
-    <string name="download">Last ned</string>
     <string name="ctx_player_video_track">Velg videospor</string>
     <string name="ctx_player_audio_track">Lydspor</string>
     <string name="ctx_player_subs_track">Undertekst</string>
@@ -913,7 +903,6 @@
     <string name="discovery_failed">Oppdaging mislyktes for: %s</string>
     <string name="lock_use_sensor_title">Lås med sensor</string>
     <string name="lock_use_sensor_summary">Når skjermrotasjonen er låst fast, kan sensoren brukes for å tillate 180°-rotasjon</string>
-    <string name="start">Start</string>
     <string name="notification_permission">Varseltillatelse</string>
     <string name="permission">Tilganger</string>
     <string name="permission_no_access">Ingen filtilgang</string>

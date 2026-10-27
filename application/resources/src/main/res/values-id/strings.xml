@@ -402,23 +402,6 @@
     <string name="audio_ducking_title">Rendahkan volume VLC bila ada notifikasi</string>
     <string name="audio_ducking_summary">Bantu untuk dengar notifikasi audio, instruksi navigasi atau asisten berbicara</string>
     <string name="casting_category">salurkan/tampilkan pada layar lain</string>
-    <string name="remote_access">Akses jarak jauh</string>
-    <string name="remote_access_status">Status server</string>
-    <string name="remote_access_status_summary">Ketuk untuk melihat status server</string>
-    <string name="remote_access_connections">Koneksi</string>
-    <string name="remote_access_active">Akses jarak jauh aktif</string>
-    <string name="remote_access_notification">Akses jarak jauh aktif di %s</string>
-    <string name="remote_access_notification_stopped">Akses jarak jauh berhenti</string>
-    <string name="remote_access_notification_connecting">Akses jarak jauh melakukan koneksi</string>
-    <string name="remote_access_notification_error">Galat pada akses jarak jauh</string>
-    <string name="remote_access_notification_stopping">Penghentian akses jarak jauh</string>
-    <string name="remote_access_notification_not_init">Inisialisasi akses jarak jauh</string>
-    <string name="enable_remote_access">Aktifkan akses jarak jauh</string>
-    <string name="remote_access_info">Info akses jarak jauh</string>
-    <string name="remote_access_content">Isi</string>
-    <string name="remote_access_medialibrary_content">Isi pustaka media</string>
-    <string name="remote_access_file_browser_content">Peramban berkas</string>
-    <string name="remote_access_network_browser_content">Peramban jaringan</string>
     <string name="casting_switch_title">Proyeksi nirkabel</string>
     <string name="casting_passthrough_title">Menyalurkan audio melalui perangkat lain</string>
     <string name="casting_passthrough_summary">Biarkan TV anda mengatur render audio</string>
@@ -694,7 +677,6 @@
     <string name="next">Selanjutya</string>
     <string name="skip">Lewati</string>
     <string name="next_step">Selanjutnya</string>
-    <string name="download">Unduh</string>
     <string name="ctx_player_video_track">Pilih trek video</string>
     <string name="ctx_player_audio_track">Trek audio</string>
     <string name="ctx_player_subs_track">Trek terjemahan</string>
@@ -936,7 +918,6 @@
     <string name="discovery_failed">Penemuan gagal untuk: %s</string>
     <string name="lock_use_sensor_title">Kunci dengan sensor</string>
     <string name="lock_use_sensor_summary">Saat orientasi dikunci, gunakan sensor untuk memungkinkan orientasi sebaliknya</string>
-    <string name="start">Mulai</string>
     <string name="notification_permission">Izin notifikasi</string>
     <string name="notification_permission_explanation">VLC memerlukan izin Anda untuk mengirim notifikasi.\nAplikasi hanya akan memberi tahu Anda saat memindai media atau menggunakan video khusus Gambar dalam Gambar.\nMenolaknya tidak akan menghalangi VLC untuk bekerja, namun notifikasi akan disembunyikan.</string>
     <string name="permission">Izin</string>
@@ -1044,7 +1025,5 @@
     <string name="show_only_favs">Tampilkan hanya favorit</string>
     <string name="ignore_headset_media_button_presses">Abaikan penekanan tombol media headset</string>
     <string name="ignore_headset_media_button_presses_summary">Berguna, misalnya jika Anda menggunakan headset dengan tombol fisik yang rusak</string>
-    <string name="ra_onboarding_content_files">Peramban berkas</string>
-    <string name="learn_more">Pelajari lebih lanjut</string>
 
     </resources>

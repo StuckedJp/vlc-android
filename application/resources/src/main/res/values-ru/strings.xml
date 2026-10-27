@@ -638,7 +638,6 @@
     <string name="next">Следующий</string>
     <string name="skip">Пропустить</string>
     <string name="next_step">Далее</string>
-    <string name="download">Загрузка</string>
     <string name="ctx_player_video_track">Видеодорожка</string>
     <string name="ctx_player_audio_track">Аудиодорожка</string>
     <string name="ctx_player_subs_track">Дорожка субтитров</string>
@@ -880,7 +879,6 @@
     <string name="discovery_failed">Ошибка сканирования %s</string>
     <string name="lock_use_sensor_title">Блокировка с сенсором</string>
     <string name="lock_use_sensor_summary">При заблокированной ориентации сенсор будет переключать ориентацию на противоположную.</string>
-    <string name="start">Поехали!</string>
     <string name="permission">Разрешение</string>
     <string name="customize">Настроить</string>
     <string name="selection_count">Выбрано: %d</string>

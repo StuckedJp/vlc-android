@@ -363,7 +363,6 @@
     <string name="subtitle_search_name_hint">பெயர்</string>
     <string name="language_to_download">மொழி</string>
     <string name="next">அடுத்து</string>
-    <string name="download">பதிவிறக்கு</string>
     <string name="ctx_player_audio_track">ஒலி தடம்</string>
     <string name="ctx_pip_title">திரைமேலியக்கி</string>
     <string name="welcome_title">VLC க்கு வருக!</string>

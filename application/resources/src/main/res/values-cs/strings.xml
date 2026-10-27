@@ -256,8 +256,6 @@
     <string name="wait_before_sleep">Počkejte na skončení aktuální mediální položky</string>
     <string name="reset_on_interaction">Obnovit odpočet při jakékoli interakci</string>
     <string name="default_sleep_timer_summary">Doba: %1$s, počkat na konec média: %2$s, obnovit odpočet při interakci: %3$s</string>
-    <string name="video_player_remote">Ovladač přehrávače videa</string>
-    <string name="remote_keyboard_navigation">Navigace pomocí klávesnice</string>
 
     <string name="server_add_title">Přidat nový server do Oblíbené</string>
     <string name="server_domain_hint">Adresa serveru (název hostitele nebo IP adresa)</string>
@@ -381,7 +379,6 @@
     <string name="screen_orientation_landscape_sensor">Na šířku (senzor)</string>
     <string name="screen_orientation_last_locked">Poslední uzamknutá orientace </string>
     <string name="enable_black_theme">Tmavé téma</string>
-    <string name="dark_theme">Tmavé téma</string>
     <string name="theme_auto">Téma automaticky</string>
     <string name="subtitle_text_encoding">Znaková sada titulků</string>
     <string name="subtitle_preferred_language">Preferovaný jazyk titulků</string>
@@ -526,29 +523,6 @@
     <string name="audio_ducking_title">Snížit hlasitost při oznámení</string>
     <string name="audio_ducking_summary">Snížit hlasitost VLC přehrávače pro zvýraznění zvukových upozornění, navigačních pokynů nebo hlasu asistenta.</string>
     <string name="casting_category">Přenos</string>
-    <string name="remote_access">Vzdálený přístup</string>
-    <string name="remote_access_version_title">Verze vzdáleného přístupu</string>
-    <string name="remote_access_hash_title">Hash pro vzdálený přístup</string>
-    <string name="remote_access_status">Stav serveru</string>
-    <string name="remote_access_status_summary">Klepnutím zobrazíte stav serveru</string>
-    <string name="remote_access_connections">Připojení</string>
-    <string name="remote_access_links">Odkazy</string>
-    <string name="remote_access_active">Vzdálený přístup je aktivní</string>
-    <string name="remote_access_notification">Vzdálený přístup je aktivní na %s</string>
-    <string name="remote_access_notification_stopped">Vzdálený přístup je zastaven</string>
-    <string name="remote_access_notification_connecting">Spouštění vzdáleného přístupu</string>
-    <string name="remote_access_notification_error">Chyba vzdáleného přístupu</string>
-    <string name="remote_access_notification_stopping">Zastavuje se vzdálený přístup</string>
-    <string name="remote_access_notification_not_init">Inicializuje se vzdálený přístup</string>
-    <string name="enable_remote_access">Povolit vzdálený přístup</string>
-    <string name="remote_access_info">Informace o vzdáleném přístupu</string>
-    <string name="remote_access_content">Obsah</string>
-    <string name="remote_access_medialibrary_content">Obsah knihovny médií</string>
-    <string name="remote_access_medialibrary_content_summary">Zapnuto: %1$s\nVypnuto: %2$s</string>
-    <string name="remote_access_file_browser_content">Prohlížeč souborů</string>
-    <string name="remote_access_network_browser_content">Síťový prohlížeč</string>
-    <string name="remote_access_playback_control">Ovládat přehrávání</string>
-    <string name="remote_access_logs">Sdílet soubory protokolu</string>
     <string name="casting_switch_title">Bezdrátový přenos</string>
     <string name="casting_passthrough_title">Zvukový průchod</string>
     <string name="casting_passthrough_summary">Spravovat vykreslování zvuku bude TV zařízení.</string>
@@ -678,8 +652,6 @@
     <string name="search_global">Prohledat v celé Knihovně médií</string>
     <string name="playlist_save">Uložit...</string>
     <string name="playlist_name_hint">Název seznamu skladeb</string>
-    <string name="chapters">Kapitoly</string>
-    <string name="notset">Nenastaveno</string>
     <string name="go_to_chapter">Přejít na kapitolu…</string>
     <string name="current_chapter">Kapitola: %s</string>
     <string name="confirm_resume">Chcete pokračovat od poslední pozice?</string>
@@ -890,7 +862,6 @@
     <string name="next">Následující</string>
     <string name="skip">Přeskočit</string>
     <string name="next_step">Následující</string>
-    <string name="download">Stáhnout</string>
     <string name="ctx_player_video_track">Video</string>
     <string name="ctx_player_audio_track">Audio</string>
     <string name="ctx_player_subs_track">Titulky</string>
@@ -1191,7 +1162,6 @@
     <string name="discovery_failed">Nenalezeno: %s</string>
     <string name="lock_use_sensor_title">Zámek se senzorem </string>
     <string name="lock_use_sensor_summary">Použít senzor k umožnění zpětné orientace, když je orientace uzamčena.</string>
-    <string name="start">Spustit</string>
     <string name="notification_permission">Oprávnění pro oznámení</string>
     <string name="notification_permission_explanation">Aplikace VLC vyžaduje oprávnění pro zasílání oznámení.\nAplikace Vás upozorní pouze při skenování Vašich médií nebo při použití vlastního videa v režimu obraz v obraze.\nOdmítnutím oprávnění zůstanou oznámení skrytá. Na funkčnost aplikace VLC odmítnutí oprávnění nemá vliv.</string>
     <string name="permission">Oprávnění</string>
@@ -1333,65 +1303,7 @@
     <string name="ignore_headset_media_button_presses_summary">Vhodné pro případ, že používáte sluchátka s poškozenými fyzickými tlačítky</string>
     <string name="replace_playlist">Nahradit seznam skladeb</string>
 
-    <!-- Remote access -->
-    <string name="ra_server_running">Vzdálený přístup je aktivní</string>
-    <string name="ra_remote_access">Vzdálený přístup</string>
-    <string name="ra_remote_access_description">Oznámení stavu vzdáleného přístupu</string>
-    <string name="ra_log_file">Soubory protokolu</string>
-    <string name="ra_log_type">Typ protokolu</string>
-    <string name="ra_send_files">Odeslat soubory</string>
-    <string name="ra_not_in_foreground">Aplikace není v popředí. Video nelze spustit.</string>
-    <string name="ra_disconnected">Odpojeno od zařízení</string>
-    <string name="ra_file">Soubor</string>
-    <string name="ra_upload_remaining">Počet nahrávaných souborů: %s</string>
-    <string name="ra_upload_all">Nahrát vše</string>
-    <string name="ra_drop_files_tip">Přetáhněte soubory kamkoli a odešlete je do zařízení</string>
-    <string name="ra_prepare_download">Připravuje se stahování</string>
-    <string name="ra_forbidden">Obsah je zakázaný v nastavení</string>
-    <string name="ra_playback_forbidden">Ovládání přehrávání je zakázané v nastavení</string>
-    <string name="ra_logs_forbidden">Sdílení protokolů je zakázané v nastavení</string>
-    <string name="ra_code_requested_explanation">Kvůli ochraně vašeho serveru je přístup chráněn.\nZadejte prosím kód zobrazený ve vašich oznámeních</string>
-    <string name="ra_ssl_explanation_title">Nezabezpečené spojení</string>
-    <string name="ra_ssl_explanation">Toto spojení není bezpečné.</string>
-    <string name="ra_ssl_explanation_browser">Vzhledem k implementaci zabezpečení prohlížeče obdržíte na další stránce bezpečnostní varování.</string>
-    <string name="ra_ssl_explanation_accept">Chcete-li používat vzdálený přístup, přijměte certifikát</string>
-    <string name="ra_ssl_button">Použít zabezpečené připojení</string>
-    <string name="ra_new_code">Odeslat nový kód</string>
-    <string name="home">Domů</string>
-    <string name="ra_code">Zadejte tento kód: %s</string>
-    <string name="ra_send_logs">Ukládat protokoly vzdáleného přístupu v zařízení</string>
-    <string name="ra_otp">Jednorázové heslo pro vzdálený přístup</string>
-    <string name="ra_otp_description">Žádosti o vzdálený přístup</string>
-    <string name="ra_otp_title">Pokus o přihlášení ke vzdálenému přístupu</string>
-    <string name="ra_otp_subtitle">Pokud jste to vy, zadejte na jiném zařízení tento kód</string>
-    <string name="ra_otp_not_me">Nejsem to já</string>
-    <string name="ra_output">Zvukový výstup</string>
-    <string name="ra_play_on_browser">Přehrát v prohlížeči</string>
-    <string name="ra_play_on_device">Přehrát na zařízení</string>
-    <string name="ra_browser_audio_not_found">Médium nebylo nalezeno nebo je nelze přehrát v prohlížeči</string>
-    <string name="ra_browser_audio_unsupported_format">Zvukový formát není podporován ve vašem prohlížeči</string>
-    <string name="ra_upload_subtitle">Nahrát titulky</string>
 
-    <string name="ra_onboarding_welcome_desc">Vítejte ve vzdáleném přístupu VLC pro Android\nPo zapnutí této funkce budete moci ovládat přehrávání na tomto zařízení a využívat další možnosti</string>
-    <string name="ra_onboarding_how_title">Ovládání vašeho zařízení</string>
-    <string name="ra_onboarding_how_desc">Ovládání přehrávání ve vašem zařízení, odesílání nebo získávání údajů a jiné</string>
-    <string name="ra_onboarding_ssl_title">Šifrování údajů</string>
-    <string name="ra_onboarding_ssl_desc">Vzdálený přístup je šifrovaný, aby se zabránilo úniku údajů</string>
-    <string name="ra_onboarding_otp_title">Ověření</string>
-    <string name="ra_onboarding_otp_desc">Ověření jednorázovým heslem brání neoprávněnému přístupu k vašim datům</string>
-    <string name="ra_onboarding_content_title">Přístup k obsahu</string>
-    <string name="ra_onboarding_content_desc">Vyberte, k čemu povolíte přístup a k čemu ne</string>
-    <string name="ra_onboarding_content_ml">Přístup k obsahu knihovny médií</string>
-    <string name="ra_onboarding_content_files">Prohlížeč souborů</string>
-    <string name="ra_onboarding_content_playback">Ovládání přehrávání</string>
-    <string name="ra_disable">Zakázat</string>
-    <string name="ra_log_web">Protokol vzdáleného přístupu</string>
-    <string name="ra_log_crash">Protokol o pádu</string>
-    <string name="ra_log_mobile">Protokol zařízení</string>
-    <string name="ra_log_current">Aktuální místní protokoly</string>
-    <string name="ra_invalid_login">Musíte se přihlásit na svém zařízení</string>
-    <string name="ra_invalid_otp">Poskytli jste neplatný kód</string>
-    <string name="learn_more">Více informací</string>
 
     <!-- car screens -->
     <string name="help">Nápověda</string>
@@ -1407,11 +1319,7 @@
     <string name="metered_warn">Upozornit (upozornění lze při přehrávání zvuku snadno přehlédnout)</string>
     <string name="metered_connection_stopped">Médium bylo zastaveno z důvodu měřeného připojení</string>
     <string name="metered_connection_warning">Používáte připojení účtované podle objemu dat. Mohou vám být účtovány poplatky.</string>
-    <string name="adding">Přidávání</string>
-    <string name="to">do</string>
     <string name="device">Zařízení</string>
-    <string name="connected_device">Připojené zařízení</string>
-    <string name="model">Model zařízení</string>
     <string name="prefs_app_data">Údaje aplikace</string>
     <string name="export_settings_summary">Export nastavení do souboru pro jejich pozdější import</string>
     <string name="export_settings">Exportovat nastavení</string>
@@ -1447,13 +1355,6 @@
     <string name="generating_logs">Vytvářejí se protokoly. Počkejte prosím.</string>
     <string name="default_playback_action">Akce přehrávání</string>
     <string name="files">Soubory</string>
-    <string name="remote_access_feedback_generate">Vytvořit hlášení</string>
-    <string name="remote_access_feedback_generated">Hlášení se zpětnou vazbou bylo vytvořeno</string>
-    <string name="remote_access_feedback_generated_explanation">Klepnutím na tlačítko níže jej odešlete pomocí svého výchozího e-mailového klienta. Pokud narazíte na nějaké problémy, můžete zkopírovat a vložit níže uvedená pole a e-mail odeslat sami.</string>
-    <string name="remote_access_feedback_file_explanation">Potřebný soubor byl stažen. Nezapomeňte jej přiložit k e-mailu.</string>
-    <string name="generic_copied_to_clipboard">Zkopírováno do schránky</string>
     <string name="feedback_email_warning">Není nainstalován žádný e-mailový klient</string>
-    <string name="feedback_email_warning_explanation">Nejjednodušší způsob, jak sdílet svou zpětnou vazbu, je použít funkci %1$s.\nChcete-li to provést, povolte vzdálený přístup v nastavení, postupujte podle pokynů a vyberte položku %2$s v nabídce.</string>
-    <string name="feedback_email_warning_remote_action">Otevřít nastavení</string>
     <string name="feedback_email_warning_try_anyway">Zkusit i tak</string>
     </resources>

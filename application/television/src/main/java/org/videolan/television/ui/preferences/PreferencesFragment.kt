@@ -28,7 +28,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
-import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.CheckBoxPreference
@@ -64,16 +63,6 @@ class PreferencesFragment : BasePreferenceFragment(), SharedPreferences.OnShared
     override fun getXml() = R.xml.preferences
 
     override fun getTitleId() = R.string.preferences
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as? PreferencesActivity)?.extraEndPoint?.let {
-            if (it == "remote_access_category") findPreference<Preference>("remote_access_category")?.let {
-                onPreferenceTreeClick(it)
-                (activity as? PreferencesActivity)?.extraEndPoint = null
-            }
-        }
-    }
 
     override fun onStart() {
         super.onStart()

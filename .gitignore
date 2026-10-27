@@ -15,10 +15,6 @@ medialibrary/jni/libs
 medialibrary/.libs
 medialibrary/prefix
 
-# Remote access
-application/remote-access-client/remoteaccess/**
-application/remote-access-client/assets/**
-
 # Android .so
 /android-libs/**/*.so
 .modules/

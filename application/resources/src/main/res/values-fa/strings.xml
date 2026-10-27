@@ -285,7 +285,6 @@
     <string name="screen_orientation_landscape_reverse">افقی معکوس</string>
     <string name="screen_orientation_last_locked">آخرین جهت قفل شده</string>
     <string name="enable_black_theme">پوسته سیاه</string>
-    <string name="dark_theme">حالت تاریک</string>
     <string name="theme_auto">زمینه خودکار</string>
     <string name="subtitle_text_encoding">کد گذاری متن زیرنویس</string>
     <string name="subtitle_preferred_language">زبان دلخواه زیرنویس</string>
@@ -649,7 +648,6 @@
     <string name="next">بعدی</string>
     <string name="skip">پرش</string>
     <string name="next_step">بعدی</string>
-    <string name="download">دانلود</string>
     <string name="ctx_player_video_track">انتخاب ویدیویی</string>
     <string name="ctx_player_audio_track">صدا</string>
     <string name="ctx_player_subs_track">زیرنویس</string>
@@ -837,7 +835,6 @@
     <string name="add_button">افزودن</string>
     <string name="add_all_button">افزودن همه</string>
     <string name="add_new_only_button">افزودن فقط موارد جدید</string>
-    <string name="start">شروع</string>
     <string name="permission">مجوز</string>
     <string name="customize">سفارشی‌سازی</string>
     <string name="selection_count">%dانتخاب شد</string>

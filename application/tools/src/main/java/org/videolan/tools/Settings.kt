@@ -33,7 +33,6 @@ object Settings : SingletonHolder<SharedPreferences, Context>({ init(it.applicat
     var showTrackNumber = true
     var tvFoldersFirst = true
     var incognitoMode = false
-    var safeMode = false
     var fastplaySpeed = 2f
     private var audioControlsChangeListener: (() -> Unit)? = null
     lateinit var device : DeviceInfo
@@ -59,7 +58,6 @@ object Settings : SingletonHolder<SharedPreferences, Context>({ init(it.applicat
         showTrackNumber = prefs.getBoolean(ALBUMS_SHOW_TRACK_NUMBER, true)
         tvFoldersFirst = prefs.getBoolean(TV_FOLDERS_FIRST, true)
         incognitoMode = prefs.getBoolean(KEY_INCOGNITO, false)
-        safeMode = prefs.getBoolean(KEY_SAFE_MODE, false) && prefs.getString(KEY_SAFE_MODE_PIN, "")?.isNotBlank() == true
         return prefs
     }
 
@@ -76,7 +74,6 @@ object Settings : SingletonHolder<SharedPreferences, Context>({ init(it.applicat
         fastplaySpeed = prefs.getInt(FASTPLAY_SPEED, 20) / 10f
     }
 
-    fun Context.isPinCodeSet() = getInstance(this).getString(KEY_SAFE_MODE_PIN, "")?.isNotBlank() == true
 
 
     /**
@@ -339,9 +336,6 @@ const val KEY_OPEN_SUBTITLES_USER = "open_subtitles_user"
 const val KEY_OPEN_SUBTITLES_LIMIT = "open_subtitles_limit"
 
 
-const val KEY_SAFE_MODE_PIN = "safe_mode_pin"
-const val KEY_RESTRICT_SETTINGS = "restrict_settings"
-const val KEY_SAFE_MODE = "safe_mode"
 
 
 const val KEY_LAST_SESSION_CRASHED = "last_session_crashed"

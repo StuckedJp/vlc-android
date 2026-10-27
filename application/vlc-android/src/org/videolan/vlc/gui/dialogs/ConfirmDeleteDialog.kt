@@ -31,18 +31,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.lifecycleScope
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
-import kotlinx.coroutines.launch
 import org.videolan.medialibrary.interfaces.media.Album
 import org.videolan.medialibrary.interfaces.media.MediaWrapper
 import org.videolan.medialibrary.interfaces.media.Playlist
 import org.videolan.medialibrary.media.MediaLibraryItem
 import org.videolan.resources.util.parcelableList
 import org.videolan.vlc.R
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 
 const val CONFIRM_DELETE_DIALOG_RESULT_DEFAULT_VALUE = 0
 const val CONFIRM_DELETE_DIALOG_RESULT_BAN_FOLDER = 1
@@ -99,7 +96,6 @@ class ConfirmDeleteDialog : VLCBottomSheetDialogFragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        lifecycleScope.launch { if (requireActivity().showPinIfNeeded()) dismiss() }
         mediaList = arguments?.parcelableList(CONFIRM_DELETE_DIALOG_MEDIALIST) ?: listOf()
         titleString = arguments?.getString(CONFIRM_DELETE_DIALOG_TITLE)
         descriptionString = arguments?.getString(CONFIRM_DELETE_DIALOG_DESCRIPTION)

@@ -59,7 +59,6 @@ import org.videolan.vlc.gui.helpers.LongClick
 import org.videolan.vlc.gui.helpers.SimpleClick
 import org.videolan.vlc.gui.helpers.SwipeDragItemTouchHelperCallback
 import org.videolan.vlc.gui.helpers.UiTools
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.gui.helpers.fillActionMode
 import org.videolan.vlc.interfaces.IHistory
 import org.videolan.vlc.interfaces.IListEventsHandler
@@ -282,11 +281,7 @@ class HistoryFragment : MediaBrowserFragment<HistoryModel>(), IRefreshable, IHis
     }
 
     override fun onRemove(position: Int, item: MediaLibraryItem) {
-        if (!requireActivity().showPinIfNeeded())
-            viewModel.removeFromHistory(item as MediaWrapper)
-        else {
-            historyAdapter.notifyItemChanged(position)
-        }
+        viewModel.removeFromHistory(item as MediaWrapper)
     }
 
     override fun onMove(oldPosition: Int, newPosition: Int) {

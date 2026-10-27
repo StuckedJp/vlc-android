@@ -24,19 +24,14 @@
 package org.videolan.television.ui.preferences
 
 import android.annotation.TargetApi
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import org.videolan.television.R
 import org.videolan.television.ui.browser.BaseTvActivity
-import org.videolan.tools.KEY_RESTRICT_SETTINGS
 import org.videolan.tools.RESULT_RESTART
 import org.videolan.tools.RESULT_RESTART_APP
-import org.videolan.tools.Settings
 import org.videolan.vlc.PlaybackService
-import org.videolan.vlc.gui.PinCodeActivity
-import org.videolan.vlc.gui.PinCodeReason
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 class PreferencesActivity : BaseTvActivity() {
@@ -45,17 +40,6 @@ class PreferencesActivity : BaseTvActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.tv_preferences_activity)
-        if (Settings.getInstance(this).getBoolean(KEY_RESTRICT_SETTINGS, false)) {
-            val intent = PinCodeActivity.getIntent(this, PinCodeReason.CHECK)
-            startActivityForResult(intent, 0)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode != RESULT_OK) {
-            finish()
-        }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun refresh() {}

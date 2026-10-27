@@ -174,7 +174,7 @@
                 android:text="@{protocol}"
                 android:textColor="@color/whitetransparent"
                 android:visibility="@{ TextUtils.isEmpty(protocol) ? View.GONE : View.VISIBLE, default=gone}"
-                tools:text="smb"
+                tools:text="upnp"
                 tools:visibility="visible"
                 vlc:layout_constraintEnd_toEndOf="parent"
                 vlc:layout_constraintTop_toTopOf="parent" />

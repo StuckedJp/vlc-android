@@ -71,7 +71,6 @@ import org.videolan.vlc.interfaces.SwipeDragHelperAdapter
 import org.videolan.vlc.util.LifecycleAwareScheduler
 import org.videolan.vlc.util.isOTG
 import org.videolan.vlc.util.isSD
-import org.videolan.vlc.util.isSchemeSMB
 import org.videolan.vlc.viewmodels.PlaylistModel
 
 private const val SHOW_IN_LIST = -1
@@ -177,7 +176,7 @@ open class AudioBrowserAdapter @JvmOverloads constructor(
         val isSelected = multiSelectHelper.isSelected(position)
         holder.selectView(isSelected)
         if (item is MediaWrapper) {
-            holder.binding.setVariable(BR.isNetwork, item.uri.scheme.isSchemeSMB())
+            holder.binding.setVariable(BR.isNetwork, false)
             holder.binding.setVariable(BR.isOTG, item.uri.isOTG())
             holder.binding.setVariable(BR.isSD, item.uri.isSD())
             holder.binding.setVariable(BR.isPresent, item.isPresent)

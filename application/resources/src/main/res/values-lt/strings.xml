@@ -991,8 +991,6 @@
     <string name="video_hud_timeout">Vaizdo grotuvo valdiklių slėpimo laikas</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Pašalinti iš istorijos</string>
-    <string name="prefersmbv1">Pirmenybė SMB 1</string>
-    <string name="prefersmbv1_summary">Panaikinkite šios nuostatos pasirinkimą, jei kyla sunkumų naršant SMB serverį</string>
     <string name="apply_to_all">Pritaikyti visiems vaizdo įr.</string>
     <string name="audio_delay_global">Pritaikyti vėlinimą %s ms visiems įrašams</string>
     <string name="audio_delay_bt">Pritaikyti %s ms garso vėlinimą „Bluetooth“ įrenginiui</string>

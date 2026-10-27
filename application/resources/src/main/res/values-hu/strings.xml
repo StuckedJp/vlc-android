@@ -1050,8 +1050,6 @@
     <string name="video_hud_timeout">Videó vezérlők elrejtési késleltetése</string>
     <string name="video_hud_timeout_summary">%s mp</string>
     <string name="remove_from_history">Eltávolítás az előzményekből</string>
-    <string name="prefersmbv1">SMB 1 előnyben részesítése</string>
-    <string name="prefersmbv1_summary">Kapcsolja ki ezt a beállítást, ha problémákba ütközik az SMB-kiszolgálók tallózásakor</string>
     <string name="apply_to_all">Alkalmazás az összes videóra</string>
     <string name="audio_delay_global">Hangkésleltetés %s ms-ra állítva az összes videónál</string>
     <string name="audio_delay_bt">A bluetoothos eszköz számára a hangkésleltetés %sms-ra állítva</string>

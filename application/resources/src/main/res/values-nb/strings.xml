@@ -863,7 +863,6 @@
     <string name="timeout_infinite">Uendelig</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Fjern fra historikk</string>
-    <string name="prefersmbv1">Foretrekk SMB 1</string>
     <string name="apply_to_all">Bruk på alle videoer</string>
     <string name="go_to_folder">Bla gjennom overmappen</string>
     <string name="go_to_album">Gå til albumet</string>

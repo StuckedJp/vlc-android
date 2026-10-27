@@ -984,8 +984,6 @@
     <string name="video_hud_timeout">Lengah penyembunyian kawalan pemain video</string>
     <string name="video_hud_timeout_summary">%ss</string>
     <string name="remove_from_history">Buang daripada sejarah</string>
-    <string name="prefersmbv1">Utamakan SMB 1</string>
-    <string name="prefersmbv1_summary">Nyahtanda tetapan ini jika anda menghadapi kesukaran ketika melayari pelayan SMB anda</string>
     <string name="apply_to_all">Terap pada semua video</string>
     <string name="audio_delay_global">Lengah audio ditetapkan pada %s ms untuk semua video</string>
     <string name="audio_delay_bt">Lengah audio ditetapkan pada %s ms untuk peranti bluetooth</string>

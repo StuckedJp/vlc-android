@@ -186,10 +186,6 @@ class NetworkServerDialog : VLCBottomSheetDialogFragment(), AdapterView.OnItemSe
         val port = getPortForProtocol(position)
         var addressHint = R.string.server_domain_hint
         when (protocols[position]) {
-            "SMB" -> {
-                addressHint = R.string.server_share_hint
-                userEnabled = false
-            }
             "NFS" -> {
                 addressHint = R.string.server_share_hint
                 userEnabled = false

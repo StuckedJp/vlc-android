@@ -160,7 +160,7 @@ class VideoListAdapter(private var isSeenMediaMarkerVisible: Boolean, private va
                 var max = 0
                 var progress = 0
                 var seen = 0L
-                holder.binding.setVariable(BR.isNetwork, item.uri.scheme.isSchemeSMB())
+                holder.binding.setVariable(BR.isNetwork, false)
                 holder.binding.setVariable(BR.isOTG, item.uri.isOTG())
                 holder.binding.setVariable(BR.isSD, item.uri.isSD())
                 holder.binding.setVariable(BR.isPresent, item.isPresent)

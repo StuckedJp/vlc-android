@@ -671,8 +671,6 @@
     <string name="timeout_infinite">असीम</string>
     <string name="video_hud_timeout">भिडियो प्लेयरले लुकाउने ढिलाइ नियन्त्रण गर्दछ</string>
     <string name="remove_from_history">इतिहासबाट हटाउनुहोस्</string>
-    <string name="prefersmbv1">SMB 1 लाई प्राथमिकता दिनुहोस्</string>
-    <string name="prefersmbv1_summary">तपाईँको SMB सर्भर ब्राउज गर्न केही कठिनाई भएमा यस सेटिङ अनचेक गर्नुहोस्  </string>
     <string name="apply_to_all">सबै भिडियोहरूमा लागू गर्नुहोस्</string>
     <string name="audio_delay_global">सबै भिडियोहरूको लागि %s ms अडियो ढिलाइ सेट भयो</string>
     <string name="go_to_folder">प्यारेन्ट ब्राउज गर्नुहोस्</string>

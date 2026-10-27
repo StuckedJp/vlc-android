@@ -94,6 +94,7 @@ import org.videolan.tools.Settings
 import org.videolan.tools.getContextWithLocale
 import org.videolan.tools.localBroadcastManager
 import org.videolan.tools.removeFileScheme
+import org.videolan.tools.isSmbScheme
 import org.videolan.vlc.gui.FeedbackActivity
 import org.videolan.vlc.gui.helpers.NotificationHelper
 import org.videolan.vlc.repository.DirectoryRepository
@@ -257,7 +258,7 @@ class MediaParsingService : LifecycleService(), DevicesDiscoveryCb {
     }
 
     private fun discoverStorage(path: String) {
-        if (path.isEmpty()) {
+        if (path.isEmpty() || Uri.parse(path).scheme.isSmbScheme()) {
             exitCommand()
             return
         }
@@ -266,7 +267,7 @@ class MediaParsingService : LifecycleService(), DevicesDiscoveryCb {
     }
 
     private fun discover(path: String) {
-        if (path.isEmpty()) {
+        if (path.isEmpty() || Uri.parse(path).scheme.isSmbScheme()) {
             exitCommand()
             return
         }
@@ -303,7 +304,7 @@ class MediaParsingService : LifecycleService(), DevicesDiscoveryCb {
     }
 
     private fun reload(path: String?) {
-        if (reload > 0) return
+        if (reload > 0 || path?.let { Uri.parse(it).scheme.isSmbScheme() } == true) return
         if (path.isNullOrEmpty()) medialibrary.reload()
         else medialibrary.reload(path)
         val ctx = this@MediaParsingService

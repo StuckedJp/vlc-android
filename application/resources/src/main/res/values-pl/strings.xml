@@ -792,7 +792,6 @@
     <string name="soundfont">MIDI SoundFont</string>
     <string name="soundfont_summary">Wybierz plik SoundFont, aby odtwarzać ścieżki dźwiękowe MIDI</string>
     <string name="missing_media_snack">Brak multimediów. Ukryć wszystkie brakujące multimedia?</string>
-    <string name="unlock">Odblokuj</string>
     <string name="search_prefs">Szukaj w ustawieniach</string>
     <string name="preferred_resolution">Preferowana rozdzielczość wideo</string>
     <string name="preferred_resolution_summary">Maksymalna jakość wideo dla strumieni, jeśli jest obsługiwana, będzie wynosić: %s</string>

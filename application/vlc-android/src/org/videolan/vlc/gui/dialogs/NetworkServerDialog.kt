@@ -15,7 +15,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.net.toUri
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.launch
@@ -24,7 +23,6 @@ import org.videolan.tools.AppScope
 import org.videolan.vlc.R
 import org.videolan.vlc.gui.DialogActivity
 import org.videolan.vlc.gui.MainActivity
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 import org.videolan.vlc.repository.BrowserFavRepository
 import java.util.Locale
 
@@ -63,7 +61,6 @@ class NetworkServerDialog : VLCBottomSheetDialogFragment(), AdapterView.OnItemSe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launch { if (requireActivity().showPinIfNeeded()) dismiss() }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

@@ -804,12 +804,6 @@
     <string name="soundfont">MIDI SoundFont</string>
     <string name="soundfont_summary">Seleccione un ficheiro de SoundFont para reproducir as pistas de son midi</string>
     <string name="missing_media_snack">Faltan multimedia. Desexa ocultar todos os multimedia que faltan?</string>
-    <string name="safe_mode">Modo seguro</string>
-    <string name="safe_mode_pin">Introduza o seu PIN</string>
-    <string name="safe_mode_new_pin">Introduza o seu novo PIN</string>
-    <string name="safe_mode_no_match">Os PINs non coinciden</string>
-    <string name="restricted_access">Acceso restrinxido</string>
-    <string name="unlock">Desbloquear</string>
     <string name="search_prefs">Axustes de busca</string>
     <string name="preferred_resolution">Resolución de vídeo preferida</string>
     <string name="preferred_resolution_summary">A calidade máxima de vídeo nos fluxos, se é aplicábel, será: %s</string>

@@ -50,7 +50,6 @@ import org.videolan.medialibrary.media.MediaLibraryItem
 import org.videolan.resources.util.parcelable
 import org.videolan.vlc.R
 import org.videolan.vlc.gui.helpers.UiTools
-import org.videolan.vlc.gui.helpers.UiTools.showPinIfNeeded
 
 const val RENAME_DIALOG_MEDIA = "RENAME_DIALOG_MEDIA"
 const val RENAME_DIALOG_FILE = "RENAME_DIALOG_FILE"
@@ -78,7 +77,6 @@ class RenameDialog : VLCBottomSheetDialogFragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        lifecycleScope.launch { if (requireActivity().showPinIfNeeded()) dismiss() }
         media = arguments?.parcelable(RENAME_DIALOG_MEDIA) ?: return
         renameFile = arguments?.getBoolean(RENAME_DIALOG_FILE) == true
         super.onCreate(savedInstanceState)

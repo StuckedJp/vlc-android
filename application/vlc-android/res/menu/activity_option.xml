@@ -2,13 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:vlc="http://schemas.android.com/apk/res-auto">
 
-    <item
-            android:id="@+id/pin_relocked"
-            android:icon="@drawable/ic_pin_lock"
-            android:orderInCategory="0"
-            android:title="@string/lock_with_pin"
-            android:visible="false"
-            vlc:showAsAction="always" />
 
     <item
             android:id="@+id/play_all"
@@ -175,13 +168,6 @@
             android:visible="false"
             vlc:showAsAction="never" />
 
-    <item
-            android:id="@+id/pin_unlock"
-            android:icon="@drawable/ic_pin_unlock"
-            android:orderInCategory="4"
-            android:title="@string/unlock_with_pin"
-            android:visible="false"
-            vlc:showAsAction="never" />
 
     <item
             android:id="@+id/ml_menu_refresh"

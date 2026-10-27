@@ -161,8 +161,6 @@ import org.videolan.vlc.gui.dialogs.LicenseDialog
 import org.videolan.vlc.gui.dialogs.SavePlaylistDialog
 import org.videolan.vlc.gui.dialogs.VideoTracksDialog
 import org.videolan.vlc.gui.helpers.BitmapUtil.vectorToBitmap
-import org.videolan.vlc.gui.helpers.hf.PinCodeDelegate
-import org.videolan.vlc.gui.helpers.hf.checkPIN
 import org.videolan.vlc.gui.preferences.PreferencesActivity
 import org.videolan.vlc.media.MediaUtils
 import org.videolan.vlc.media.getAll
@@ -582,7 +580,6 @@ object UiTools {
      * @return true if the change has been applied, false otherwise
      */
     fun updateIncognitoMode(activity: FragmentActivity, item: MenuItem): Boolean {
-        if (activity.showPinIfNeeded()) return false
         val settings = Settings.getInstance(activity)
         settings.putSingle(KEY_INCOGNITO, !settings.getBoolean(KEY_INCOGNITO, false))
         item.isChecked = !item.isChecked
@@ -623,29 +620,6 @@ object UiTools {
         val savePlaylistDialog = SavePlaylistDialog()
         savePlaylistDialog.arguments = bundleOf(key to tracks)
         savePlaylistDialog.show(supportFragmentManager, "fragment_add_to_playlist")
-    }
-
-    /**
-     * Display a restricted access snack bar if needed
-     *
-     * @return has the access been blocked
-     */
-    fun FragmentActivity.showPinIfNeeded():Boolean {
-        if (Settings.safeMode && PinCodeDelegate.pinUnlocked.value != true) {
-            if (Settings.tvUI) {
-                lifecycleScope.launch {
-                    if (checkPIN(true)) {
-                        snacker(this@showPinIfNeeded, R.string.pin_code_access_granted, false)
-                    }
-                }
-            } else {
-                snackerConfirm(this, getString(R.string.restricted_access), false, R.string.unlock) {
-                    lifecycleScope.launch { checkPIN(true) }
-                }
-            }
-            return true
-        }
-        return false
     }
 
     fun FragmentActivity.addToGroup(tracks: List<MediaWrapper>, forbidNewGroup:Boolean) {

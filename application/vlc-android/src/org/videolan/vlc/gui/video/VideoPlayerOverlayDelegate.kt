@@ -51,16 +51,12 @@ import androidx.core.net.toUri
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import androidx.window.layout.FoldingFeature
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.videolan.libvlc.util.AndroidUtil
 import org.videolan.medialibrary.interfaces.media.MediaWrapper
 import org.videolan.medialibrary.media.MediaWrapperImpl
@@ -100,7 +96,6 @@ import org.videolan.vlc.gui.helpers.TalkbackUtil
 import org.videolan.vlc.gui.helpers.talkbackAppend
 import org.videolan.vlc.gui.helpers.UiTools
 import org.videolan.vlc.gui.helpers.UiTools.showVideoTrack
-import org.videolan.vlc.gui.helpers.hf.checkPIN
 import org.videolan.vlc.gui.view.PlayerProgress
 import org.videolan.vlc.isVLC4
 import org.videolan.vlc.manageAbRepeatStep
@@ -680,15 +675,7 @@ class VideoPlayerOverlayDelegate (private val player: VideoPlayerActivity) {
             hudBinding.orientationToggle.setOnLongClickListener(if (enabled) player else null)
             hudBinding.swipeToUnlock.setOnStartTouchingListener { showOverlayTimeout(VideoPlayerActivity.OVERLAY_INFINITE) }
             hudBinding.swipeToUnlock.setOnStopTouchingListener { showOverlayTimeout(Settings.videoHudDelay * 1000) }
-            hudBinding.swipeToUnlock.setOnUnlockListener {
-                player.lifecycleScope.launch(Dispatchers.IO) {
-                    if (!player.checkPIN())
-                        player.isLocked = false
-                    withContext(Dispatchers.Main) {
-                        player.toggleLock()
-                    }
-                }
-            }
+            hudBinding.swipeToUnlock.setOnUnlockListener { player.toggleLock() }
             hudRightBinding.playerOverlayTitleWarning.setOnClickListener(player)
             hudBinding.playerOverlaySeekbar.setOnClickListener {
                 if (player.service?.isPaused == true)
